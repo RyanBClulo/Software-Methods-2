@@ -7,18 +7,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Random;
-import java.util.Set;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import graphics.ImageLoader;
-import graphics.SpriteSheet;
+import graphics.Images;
 import phisicsObjects.Enemy;
 import phisicsObjects.PlayerShip;
 import phisicsObjects.Projectile;
@@ -57,19 +48,19 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 	
 	public MainWindow() {
 		initialize();
-		
 	}
 
 	private void initialize() {
+		
+		Images.initiateImages(); //This method initializes all the images of the game
+		
 		frame = new JFrame();
 		frame.setBounds(40, 40, aspectRatio.x, aspectRatio.y);
 		frame.setCursor(Cursor.DEFAULT_CURSOR);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addMouseListener(this);
 		frame.addKeyListener(this);
-		SpriteSheet test =new SpriteSheet(ImageLoader.loadImage("/test.png"));
-		image = test.crop(0, 0, 100, 100);
-		
 		
 	}
 
@@ -96,7 +87,7 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 			//This section renders and updates the player ship
 			bufferedImageG2D.setColor(Color.CYAN);
 			//bufferedImageG2D.fillOval(PlayerShip.getShipX()-25, PlayerShip.getShipY()-25, 50, 50);
-			bufferedImageG2D.drawImage(image, PlayerShip.getShipX()-50, PlayerShip.getShipY()-50, this);
+			bufferedImageG2D.drawImage(Images.player_ship, PlayerShip.getShipX()-50, PlayerShip.getShipY()-50, this);
 			checkMovement();//checks for player movement using a system of booleans and keylistener method
 			
 			//This section keeps track of and renders all of the enemies in the arraylist within the Enemy Class
