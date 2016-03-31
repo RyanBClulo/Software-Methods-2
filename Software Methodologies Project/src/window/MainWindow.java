@@ -17,6 +17,8 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import graphics.ImageLoader;
+import graphics.SpriteSheet;
 import phisicsObjects.Enemy;
 import phisicsObjects.PlayerShip;
 import phisicsObjects.Projectile;
