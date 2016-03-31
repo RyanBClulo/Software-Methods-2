@@ -1,5 +1,7 @@
 package window;
 
+//This is a test comment
+
 import java.awt.Point;
 import java.util.Random;
 import phisicsObjects.Enemy;
