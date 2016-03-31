@@ -1,33 +1,30 @@
 package window;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.util.Iterator;
 import javax.swing.*;
 import graphics.Images;
 import input.Keyboard;
+import input.Mouse;
 import phisicsObjects.Enemy;
 import phisicsObjects.PlayerShip;
 import phisicsObjects.Projectile;
 
-public class MainWindow implements MouseListener, ImageObserver {
+public class MainWindow implements ImageObserver {
 	
 	private JLabel label1;
 	private JFrame frame;
 	
 	private static Keyboard keyboard;
+	private static Mouse mouse;
 	
 	private boolean done=false;
 	public static final Point aspectRatio=new Point(800,950); 
 	
 	private BufferedImage bufferedImage = new BufferedImage(aspectRatio.x, aspectRatio.y, BufferedImage.TYPE_INT_ARGB);
 	private Graphics2D bufferedImageG2D = (Graphics2D) bufferedImage.getGraphics();
-	private BufferedImage image = new BufferedImage(aspectRatio.x, aspectRatio.y, BufferedImage.TYPE_INT_ARGB);
 	
 	/**
 	 * This method creates the window and contains the game loop that renders all sprites and controls game functions.
@@ -59,15 +56,15 @@ public class MainWindow implements MouseListener, ImageObserver {
 		Images.initiateImages(); //This method initializes all the images of the game
 		
 		keyboard =  new Keyboard(); //Creating a new Keaboard object
+		mouse = new Mouse();	//Creating a new mouse object
 		
 		frame = new JFrame();
 		frame.setBounds(40, 40, aspectRatio.x, aspectRatio.y);
-		frame.setCursor(Cursor.DEFAULT_CURSOR);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.addMouseListener(this);
 		
-		frame.addKeyListener(keyboard); //adding the keyboard object the game frame
+		frame.addKeyListener(keyboard); //adding the keyboard object to the game frame
+		frame.addMouseListener(mouse);	//adding the mouse object to the game frame
 		
 	}
 
@@ -170,31 +167,4 @@ public class MainWindow implements MouseListener, ImageObserver {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		//sets player ship location to mouse click for testing purposes 
-		PlayerShip.setShipLocation(new Point(e.getX(),e.getY()));
-		PlayerShip.updateXY();
-	}
-	
-	//Unused mouse listener methods
-	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub	
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub	
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub		
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub		
-	}	
 }

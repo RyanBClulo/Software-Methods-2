@@ -1,7 +1,10 @@
 package input;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import phisicsObjects.PlayerShip;
 
 public class Mouse implements MouseListener{
 	
@@ -21,8 +24,9 @@ public class Mouse implements MouseListener{
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		
+	public void mousePressed(MouseEvent e) {
+		PlayerShip.setShipLocation(new Point(e.getX(),e.getY()));
+		PlayerShip.updateXY();
 	}
 
 	@Override
