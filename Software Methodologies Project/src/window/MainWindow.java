@@ -21,6 +21,8 @@ import phisicsObjects.Enemy;
 import phisicsObjects.PlayerShip;
 import phisicsObjects.Projectile;
 
+//In the game know!!
+
 public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 	
 	private JLabel label1;
