@@ -30,6 +30,7 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 	
 	private BufferedImage bufferedImage = new BufferedImage(aspectRatio.x, aspectRatio.y, BufferedImage.TYPE_INT_ARGB);
 	private Graphics2D bufferedImageG2D = (Graphics2D) bufferedImage.getGraphics();
+	private BufferedImage image = new BufferedImage(aspectRatio.x, aspectRatio.y, BufferedImage.TYPE_INT_ARGB);
 	
 	/**
 	 * This method creates the window and contains the game loop that renders all sprites and controls game functions.
@@ -43,7 +44,6 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 				try {
 					MainWindow window = new MainWindow();
 					window.frame.setVisible(true);
-					// Make sure our game stays at 800x950
 					window.frame.setResizable(false); 
 					window.runGameLoop();
 				} catch (Exception e) {
@@ -54,7 +54,8 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 	}
 	
 	public MainWindow() {
-		initialize();	
+		initialize();
+		
 	}
 
 	private void initialize() {
@@ -63,7 +64,11 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 		frame.setCursor(Cursor.DEFAULT_CURSOR);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addMouseListener(this);
-		frame.addKeyListener(this);	
+		frame.addKeyListener(this);
+		SpriteSheet test =new SpriteSheet(ImageLoader.loadImage("/test.png"));
+		image = test.crop(0, 0, 100, 100);
+		
+		
 	}
 
 	public void runGameLoop() {
@@ -84,14 +89,17 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 			//This section renders the background
 			bufferedImageG2D.setColor(Color.black);                 
 			bufferedImageG2D.fillRect(0,0,aspectRatio.x,aspectRatio.y);
+
 			
 			//This section renders and updates the player ship
 			bufferedImageG2D.setColor(Color.CYAN);
-			bufferedImageG2D.fillOval(PlayerShip.getShipX()-25, PlayerShip.getShipY()-25, 50, 50);
+			//bufferedImageG2D.fillOval(PlayerShip.getShipX()-25, PlayerShip.getShipY()-25, 50, 50);
+			bufferedImageG2D.drawImage(image, PlayerShip.getShipX()-50, PlayerShip.getShipY()-50, this);
 			checkMovement();//checks for player movement using a system of booleans and keylistener method
 			
 			//This section keeps track of and renders all of the enemies in the arraylist within the Enemy Class
 			//It also checks if ships were destroyed by projectiles
+			//moves the ship to its next destination.
 			Enemy ship;
 			Iterator<Enemy> enemyIterator = Enemy.enemyIterator();		//Always create and refresh the iterator to get the list of enemy objects to display. Same for other objects.
 			bufferedImageG2D.setColor(Color.RED);
@@ -99,21 +107,24 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 				ship = (Enemy) enemyIterator.next();
 				if (ship.exists()){ //render
 					bufferedImageG2D.fillOval(ship.currentLocation().x-25,ship.currentLocation().y-25,50,50);
-					System.out.println(ship.currentLocation());
 				}
 				Projectile collisionCheck;//collision check with player projectiles
 				Iterator<Projectile> projectileCheckIterator = Projectile.ProjecileIterator();
 				while(projectileCheckIterator.hasNext()){
 					collisionCheck=projectileCheckIterator.next();
-					if(ship.containsPoint(collisionCheck.currentLocation())){
+					if(ship.containsPoint(collisionCheck.currentLocation(),30)){
 						ship.enemyDestroyed();
 						collisionCheck.hit();
 					}
 				}
 				//checks for enemy/player collision
-				if(ship.containsPoint(new Point(PlayerShip.getShipX()-25,PlayerShip.getShipY()-25))){
+				if(ship.containsPoint(new Point(PlayerShip.getShipX()-25,PlayerShip.getShipY()-25),30)){
 					ship.clearEnemies();
 					PlayerShip.playerDeath();
+				}
+				//Controls enemy formation movement
+				if(ship.hasReachedDestination){
+					EnemyPatterns.moveFormation(ship,LevelControl.getCurrentFormationPattern());
 				}
 			}
 	
@@ -127,26 +138,15 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 					bufferedImageG2D.fillOval(shot.currentLocation().x,shot.currentLocation().y,20,20);
 				}
 			}
-			
-			updateLevel(); //This method will be called to check level end condition
+
+			LevelControl.updateLevel(); //This method will be called to check level end condition
 			
 			//This line renders all the graphics together on the screen
 			frame.getGraphics().drawImage(bufferedImage, 0, 0, this);
 		}
 	}
 	
-	/**
-	 * This method is called in the game loop to check if the level is finished.
-	 * Currently very empty (for testing)
-	 * @return
-	 */
-	private void updateLevel() {
-		// TODO Auto-generated method stub
-		Iterator<Enemy> enemyExistanceCheck = Enemy.enemyIterator();
-		if(!enemyExistanceCheck.hasNext())
-        	EnemyFormation.createFormation();
-	}
-
+	
 	/**
 	 * This method is called in the game loop to check if the player ship needs to be moved based on the booleans set in the override methods of keylistener.
 	 * @return

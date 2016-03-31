@@ -18,21 +18,24 @@ import java.util.Random;
 public class Enemy {
 	public Point origin;
 	public Point destination;
-	public double launchTime = 0;
-	public long delayTime = 0;
+	public long launchTime = 0;
 	public double percent;
+	public int formationStatus=0;
+	public boolean hasReachedDestination;
+	public int health;
+	
 	protected static ArrayList<Enemy> enemyArray =new ArrayList<Enemy>();
-	public int patternState=0;
+
 		
 	public Enemy(){
 		Random rnd =new Random();
 		int x=rnd.nextInt(19)*40+25;
 		origin=new Point(x,-25);
 		//destination=new Point(x,rnd.nextInt(100)+100);
-		destination=new Point(x,900);
+		destination=new Point(x,500);
 		launchTime = System.currentTimeMillis();
-		delayTime=(long) Math.round(Math.random() * 10);
 		enemyArray.add(this);
+		hasReachedDestination=false;
 	}
 	/**
 	 * Main constructor for the enemy class. If the argument is empty, it will create an enemy with a random x and y.
@@ -44,8 +47,17 @@ public class Enemy {
 		origin=start;
 		destination=end;
 		launchTime = System.currentTimeMillis();
-		delayTime=(long) Math.round(Math.random() * 10);
 		enemyArray.add(this);
+		hasReachedDestination=false;
+	}
+	
+	public Enemy(Point start, Point end,int status){
+		origin=start;
+		destination=end;
+		launchTime = System.currentTimeMillis();
+		enemyArray.add(this);
+		formationStatus=status;
+		hasReachedDestination=false;
 	}
 
 		/**
@@ -82,8 +94,8 @@ public class Enemy {
 		public  Point currentLocation() {
 			percent = percentageTraveled();
 			if (percent > 1.0){
-				movement(destination);
-				//return destination;
+				hasReachedDestination=true;
+				return destination;
 			}
 			int currentX = (int) (origin.x + diffX() * percent);
 			int currentY = (int) (origin.y + diffY() * percent);
@@ -91,20 +103,7 @@ public class Enemy {
 		}
 		private int diffX() {return destination.x - origin.x;}
 		private int diffY() {return destination.y - origin.y;}
-		private void movement(Point center){
-			origin=center;
-			if(patternState==0)
-				destination=new Point(destination.x+1,destination.y);
-			else if(patternState==1)
-				destination=new Point(destination.x,destination.y+1);
-			else if(patternState==2)
-				destination=new Point(destination.x-1,destination.y);
-			else if(patternState==3)
-				destination=new Point(destination.x,destination.y-1);
-			else if(patternState>3)
-				patternState=0;
-			patternState++;
-		}
+		
 		
 		public static Iterator<Enemy> enemyIterator() {
 			//need to make a copy of the arraylist for public consumption 
@@ -139,8 +138,8 @@ public class Enemy {
 		 * @return boolean (ship/projectile overlap)
 		 * @param Point p (location of projectile or other attacking object)
 		 */
-		public boolean containsPoint(Point p){
-			return (Math.sqrt(Math.pow((this.currentLocation().getX()-p.getX()-12),2)+Math.pow((this.currentLocation().getY()-p.getY()-12),2))<30);
+		public boolean containsPoint(Point p,int radius){
+			return (Math.sqrt(Math.pow((this.currentLocation().getX()-p.getX()-12),2)+Math.pow((this.currentLocation().getY()-p.getY()-12),2))<radius);
 		}	
 	}
 

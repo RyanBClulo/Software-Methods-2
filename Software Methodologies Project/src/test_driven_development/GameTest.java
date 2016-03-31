@@ -49,9 +49,9 @@ public class GameTest {
 			ship = (Enemy) enemyIterator.next();
 			for(int i=0;i<100;i++){
 				Projectile shot =new Projectile(200,200+i);
-				System.out.println(ship.containsPoint(shot.currentLocation()));
+				System.out.println(ship.containsPoint(shot.currentLocation(),30));
 				if(i<5)
-					assertEquals(true,ship.containsPoint(shot.currentLocation()));
+					assertEquals(true,ship.containsPoint(shot.currentLocation(),30));
 			}
 		}
 		else assert(false);

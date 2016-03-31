@@ -6,17 +6,20 @@ import phisicsObjects.Enemy;
 
 public class EnemyFormation {
 	
-	public final static int LINE=0;
-	public final static int DIAMOND=1;
-	public final static int W=2;
-	public final static int SQUARES2=3;
-	
+	//start formations
+	public static final int LINE=0;
+	public static final int DIAMOND=1;
+	public static final int W=2;
+	public static final int SQUARES2=3;
+	public static final int RING=4;
+	public static final int formationCount(){return 5;}
+		
 	public static void createFormation(int formation){
 		formations(formation);
 	}
 	public static void createFormation(){
 		Random rnd =new Random();
-		formations(rnd.nextInt(4));
+		formations(rnd.nextInt(formationCount()));
 	}
 	private static void formations(int formation){
 		switch (formation){
@@ -54,6 +57,21 @@ public class EnemyFormation {
 			new Enemy(new Point(700,-25),new Point(700,150));
 			new Enemy(new Point(700,-25),new Point(700,275));
 			break;
-		}
+		case RING:
+			new Enemy(new Point(100,-25),new Point(500,200));
+			new Enemy(new Point(100,-25),new Point(487,150));
+			new Enemy(new Point(100,-25),new Point(450,113));
+			new Enemy(new Point(100,-25),new Point(400,100));
+			new Enemy(new Point(100,-25),new Point(350,113));
+			new Enemy(new Point(100,-25),new Point(313,150));
+			new Enemy(new Point(100,-25),new Point(300,200));
+			new Enemy(new Point(100,-25),new Point(313,250));
+			new Enemy(new Point(100,-25),new Point(350,287));
+			new Enemy(new Point(100,-25),new Point(400,300));
+			new Enemy(new Point(100,-25),new Point(487,250));
+			new Enemy(new Point(100,-25),new Point(450,287));
+			break;
+		}			
 	}
+
 }

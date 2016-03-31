@@ -18,7 +18,6 @@ public class Projectile {
 	public Point origin;
 	public Point destination;
 	public double launchTime = 0;
-	public long delayTime = 0;
 	public double percent = percentageTraveled();
 	protected static ArrayList<Projectile> projectileArray =new ArrayList<Projectile>();
 		
@@ -26,7 +25,6 @@ public class Projectile {
 		origin=new Point(x,y);
 		destination=new Point(x,-10);
 		launchTime = System.currentTimeMillis();
-		delayTime=(long) Math.round(Math.random() * 10);
 		projectileArray.add(this);
 	}
 
@@ -34,7 +32,7 @@ public class Projectile {
 		 * Based on distance, elapsed time, and speed, how far has the missile traveled 
 		 * @return
 		 */
-		public  double percentageTraveled() {
+		public double percentageTraveled() {
 			long currentTime= System.currentTimeMillis();
 			double percentageTraveled =pointsPerMillisecond()*(currentTime-launchTime);
 			return percentageTraveled/100;	

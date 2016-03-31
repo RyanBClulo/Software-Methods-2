@@ -37,7 +37,7 @@ public class PlayerShip {
 	}
 	public static double getShipSpeed(){
 		//update once we have more information on the different ships. for now returns 1.6
-		return 1.6;
+		return 2.1;
 	}
 }
 
