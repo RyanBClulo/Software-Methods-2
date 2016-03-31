@@ -10,14 +10,18 @@ import java.awt.image.ImageObserver;
 import java.util.Iterator;
 import javax.swing.*;
 import graphics.Images;
+import input.Keyboard;
 import phisicsObjects.Enemy;
 import phisicsObjects.PlayerShip;
 import phisicsObjects.Projectile;
 
-public class MainWindow implements MouseListener, ImageObserver, KeyListener {
+public class MainWindow implements MouseListener, ImageObserver {
 	
 	private JLabel label1;
 	private JFrame frame;
+	
+	private static Keyboard keyboard;
+	
 	private boolean done=false;
 	public static final Point aspectRatio=new Point(800,950); 
 	
@@ -54,13 +58,16 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 		
 		Images.initiateImages(); //This method initializes all the images of the game
 		
+		keyboard =  new Keyboard(); //Creating a new Keaboard object
+		
 		frame = new JFrame();
 		frame.setBounds(40, 40, aspectRatio.x, aspectRatio.y);
 		frame.setCursor(Cursor.DEFAULT_CURSOR);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addMouseListener(this);
-		frame.addKeyListener(this);
+		
+		frame.addKeyListener(keyboard); //adding the keyboard object the game frame
 		
 	}
 
@@ -79,6 +86,9 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 		frame.add(label1);
 		//This while loop contains all of the things drawn on the screen
 		while (!done) {
+			
+			
+			
 			//This section renders the background
 			bufferedImageG2D.setColor(Color.black);                 
 			bufferedImageG2D.fillRect(0,0,aspectRatio.x,aspectRatio.y);
@@ -145,90 +155,20 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 	 * @return
 	 */
 	private static void checkMovement(){
-		if(PlayerShip.getShipY()>50 && moveUp)
+		if(PlayerShip.getShipY()>50 && keyboard.moveUp)
     		PlayerShip.moveShipY(-PlayerShip.getShipSpeed());
-    	if(PlayerShip.getShipY()<aspectRatio.getY()-35 && moveDown)
+    	if(PlayerShip.getShipY()<aspectRatio.getY()-35 && keyboard.moveDown)
     		PlayerShip.moveShipY(PlayerShip.getShipSpeed());
-    	if(PlayerShip.getShipX()>25 && moveLeft)
+    	if(PlayerShip.getShipX()>25 && keyboard.moveLeft)
     		PlayerShip.moveShipX(-PlayerShip.getShipSpeed());
-    	if(PlayerShip.getShipX()<aspectRatio.getX()-25 && moveRight)
+    	if(PlayerShip.getShipX()<aspectRatio.getX()-25 && keyboard.moveRight)
     		PlayerShip.moveShipX(PlayerShip.getShipSpeed());
 	}
-	//private variables that control keyboard input
-	private static boolean moveUp =false;
-	private static boolean moveDown =false;
-	private static boolean moveLeft =false;
-	private static boolean moveRight =false;
-	private static boolean spamPrevention=false;
 	
-	@Override
-	public void keyPressed(KeyEvent e) {
+	public boolean imageUpdate(Image img, int infoflags, int x, int y,
+			int width, int height) {
 		// TODO Auto-generated method stub
-		int keyCode = e.getKeyCode();
-	    switch( keyCode ) { 
-	        case KeyEvent.VK_UP:
-	            // handle up (Moves the ship in the positive direction)
-	        	moveUp=true;
-	            break;
-	        case KeyEvent.VK_DOWN:
-	            // handle down
-	        	moveDown=true;
-	            break;
-	        case KeyEvent.VK_LEFT:
-	            // handle left
-	        	moveLeft=true;
-	            break;
-	        case KeyEvent.VK_RIGHT :
-	            // handle right
-	        	moveRight=true;
-	            break;
-	        case KeyEvent.VK_SPACE:
-	        	//handle space (Fires projectiles from the player's ship)
-	        	//spam prevention prevents the player from holding down the spacebar to shoot.
-	        	if(!spamPrevention)
-	        		new Projectile(PlayerShip.getShipX()-10,PlayerShip.getShipY()-10);
-	        	spamPrevention=true;
-	        	break;
-	        case KeyEvent.VK_E:
-	        	//handle E (creates random enemies for testing purposes)
-	        	new Enemy();
-	        	break;
-	        case KeyEvent.VK_F:
-	        	//handle F (creates random or preset enemy formations for testing purposes)
-	        	EnemyFormation.createFormation();break;
-	        	
-	        case KeyEvent.VK_C:
-	        	// handle C (clears all enemies for testing purposes)
-	        	Enemy.clearEnemies();break;
-	     }
-	}
-	
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub	
-		int keyCode = e.getKeyCode();
-	    switch( keyCode ) { 
-	        case KeyEvent.VK_UP:
-	            // handle up (Moves the ship in the positive direction)
-	        	moveUp=false;
-	            break;
-	        case KeyEvent.VK_DOWN:
-	            // handle down
-	        	moveDown=false;
-	            break;
-	        case KeyEvent.VK_LEFT:
-	            // handle left
-	        	moveLeft=false;
-	            break;
-	        case KeyEvent.VK_RIGHT :
-	            // handle right
-	        	moveRight=false;
-	            break;
-	        case KeyEvent.VK_SPACE :
-	        	//spam protection stops when you let go of space
-	        	spamPrevention=false;
-	        	break;
-	    }
+		return false;
 	}
 	
 	@Override
@@ -239,17 +179,8 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 		PlayerShip.updateXY();
 	}
 	
-	//Unused mouse and key listener methods
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub	
-	}
-	@Override
-	public boolean imageUpdate(Image img, int infoflags, int x, int y,
-			int width, int height) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	//Unused mouse listener methods
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub	
@@ -265,11 +196,5 @@ public class MainWindow implements MouseListener, ImageObserver, KeyListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub		
-	}
-	
+	}	
 }
-
-
-
-
-
