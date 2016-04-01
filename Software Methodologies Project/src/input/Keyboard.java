@@ -2,11 +2,10 @@ package input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import phisicsObjects.Enemy;
-import phisicsObjects.PlayerShip;
 import phisicsObjects.Projectile;
 import window.EnemyFormation;
+import window.MainWindow;
 
 public class Keyboard implements KeyListener{
 	
@@ -41,7 +40,7 @@ public class Keyboard implements KeyListener{
 			        	//handle space (Fires projectiles from the player's ship)
 			        	//spam prevention prevents the player from holding down the spacebar to shoot.
 			        	if(!spamPrevention)
-			        		new Projectile(PlayerShip.getShipX()-10,PlayerShip.getShipY()-10);
+			        		new Projectile((int)MainWindow.getPlayerShip().getShipX()-10,(int)MainWindow.getPlayerShip().getShipY()-10);
 			        	spamPrevention=true;
 			        	break;
 			        case KeyEvent.VK_E:

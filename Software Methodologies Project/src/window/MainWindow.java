@@ -20,8 +20,10 @@ public class MainWindow implements ImageObserver {
 	private static Keyboard keyboard;
 	private static Mouse mouse;
 	
+	private static PlayerShip player;
+	
 	private boolean done=false;
-	public static final Point aspectRatio=new Point(800,950); 
+	public static final Point aspectRatio = new Point(800,950); 
 	
 	private BufferedImage bufferedImage = new BufferedImage(aspectRatio.x, aspectRatio.y, BufferedImage.TYPE_INT_ARGB);
 	private Graphics2D bufferedImageG2D = (Graphics2D) bufferedImage.getGraphics();
@@ -36,10 +38,8 @@ public class MainWindow implements ImageObserver {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow window = new MainWindow();
-					window.frame.setVisible(true);
-					window.frame.setResizable(false); 
-					window.runGameLoop();
+						MainWindow window = new MainWindow();
+						window.runGameLoop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,16 +55,19 @@ public class MainWindow implements ImageObserver {
 		
 		Images.initiateImages(); //This method initializes all the images of the game
 		
-		keyboard =  new Keyboard(); //Creating a new Keaboard object
+		keyboard =  new Keyboard(); //Creating a new Keyboard object
 		mouse = new Mouse();	//Creating a new mouse object
-		
+		 
 		frame = new JFrame();
 		frame.setBounds(40, 40, aspectRatio.x, aspectRatio.y);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		frame.setResizable(false);
 		frame.addKeyListener(keyboard); //adding the keyboard object to the game frame
 		frame.addMouseListener(mouse);	//adding the mouse object to the game frame
+		frame.setVisible(true);
+		
+		player = new PlayerShip();
 		
 	}
 
@@ -84,18 +87,15 @@ public class MainWindow implements ImageObserver {
 		//This while loop contains all of the things drawn on the screen
 		while (!done) {
 			
-			
+			bufferedImageG2D.clearRect(0,0,aspectRatio.x,aspectRatio.y);
 			
 			//This section renders the background
 			bufferedImageG2D.setColor(Color.black);                 
 			bufferedImageG2D.fillRect(0,0,aspectRatio.x,aspectRatio.y);
-
 			
-			//This section renders and updates the player ship
-			bufferedImageG2D.setColor(Color.CYAN);
-			//bufferedImageG2D.fillOval(PlayerShip.getShipX()-25, PlayerShip.getShipY()-25, 50, 50);
-			bufferedImageG2D.drawImage(Images.player_ship, PlayerShip.getShipX()-50, PlayerShip.getShipY()-50, this);
-			checkMovement();//checks for player movement using a system of booleans and keylistener method
+			//updates the player position and prints it
+			player.updateVariables(aspectRatio);
+			player.draw(bufferedImageG2D);
 			
 			//This section keeps track of and renders all of the enemies in the arraylist within the Enemy Class
 			//It also checks if ships were destroyed by projectiles
@@ -118,9 +118,9 @@ public class MainWindow implements ImageObserver {
 					}
 				}
 				//checks for enemy/player collision
-				if(ship.containsPoint(new Point(PlayerShip.getShipX()-25,PlayerShip.getShipY()-25),30)){
+				if(ship.containsPoint(new Point((int)player.getShipX()-25,(int)player.getShipY()-25),30)){
 					ship.clearEnemies();
-					PlayerShip.playerDeath();
+					player.playerDeath();
 				}
 				//Controls enemy formation movement
 				if(ship.hasReachedDestination){
@@ -146,25 +146,17 @@ public class MainWindow implements ImageObserver {
 		}
 	}
 	
-	
-	/**
-	 * This method is called in the game loop to check if the player ship needs to be moved based on the booleans set in the override methods of keylistener.
-	 * @return
-	 */
-	private static void checkMovement(){
-		if(PlayerShip.getShipY()>50 && keyboard.moveUp)
-    		PlayerShip.moveShipY(-PlayerShip.getShipSpeed());
-    	if(PlayerShip.getShipY()<aspectRatio.getY()-35 && keyboard.moveDown)
-    		PlayerShip.moveShipY(PlayerShip.getShipSpeed());
-    	if(PlayerShip.getShipX()>25 && keyboard.moveLeft)
-    		PlayerShip.moveShipX(-PlayerShip.getShipSpeed());
-    	if(PlayerShip.getShipX()<aspectRatio.getX()-25 && keyboard.moveRight)
-    		PlayerShip.moveShipX(PlayerShip.getShipSpeed());
+	public boolean imageUpdate(Image img, int infoflags, int x, int y,int width, int height) {
+		return false;
 	}
 	
-	public boolean imageUpdate(Image img, int infoflags, int x, int y,
-			int width, int height) {
-		// TODO Auto-generated method stub
-		return false;
+	//GETTERS
+	
+	public static Keyboard getKeyboard(){
+		return keyboard;
+	}
+	
+	public static PlayerShip getPlayerShip(){
+		return player;
 	}
 }
