@@ -40,7 +40,8 @@ public class Keyboard implements KeyListener{
 			        	//handle space (Fires projectiles from the player's ship)
 			        	//spam prevention prevents the player from holding down the spacebar to shoot.
 			        	if(!spamPrevention)
-			        		new Projectile((int)MainWindow.getPlayerShip().getShipX()-10,(int)MainWindow.getPlayerShip().getShipY()-10);
+			        		MainWindow.getPlayerShip().bullet.addProjectile(
+			        		new Projectile((int)MainWindow.getPlayerShip().getShipX()-10,(int)MainWindow.getPlayerShip().getShipY()-10));
 			        	spamPrevention=true;
 			        	break;
 			        case KeyEvent.VK_E:

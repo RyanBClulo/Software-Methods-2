@@ -10,11 +10,17 @@
 
 package phisicsObjects;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Projectile {
+	
+	private float x;
+	private float y;
+	
 	public Point origin;
 	public Point destination;
 	public double launchTime = 0;
@@ -22,12 +28,27 @@ public class Projectile {
 	protected static ArrayList<Projectile> projectileArray =new ArrayList<Projectile>();
 		
 	public Projectile(int x,int y){
+		
+		this.x=x;
+		this.y=y;
+		
 		origin=new Point(x,y);
 		destination=new Point(x,-10);
 		launchTime = System.currentTimeMillis();
 		projectileArray.add(this);
 	}
-
+	
+	public void updateVariables(){
+		y-=4.0f;
+	}
+	
+	public void draw(Graphics g){
+		g.setColor(Color.GREEN);
+		g.fillOval((int)x,(int)y,20,20);
+	}
+	
+	
+	
 		/**
 		 * Based on distance, elapsed time, and speed, how far has the missile traveled 
 		 * @return
@@ -37,6 +58,7 @@ public class Projectile {
 			double percentageTraveled =pointsPerMillisecond()*(currentTime-launchTime);
 			return percentageTraveled/100;	
 		}
+		
 		public static double pointsPerMillisecond() {
 			return 7.2;
 		}
@@ -46,13 +68,13 @@ public class Projectile {
 		 * determine where the missile is at the current time
 		 * @return
 		 */
-		public  Point currentLocation() {
+		public Point currentLocation() {
 			percent = percentageTraveled();			
 			int currentY = (int) (origin.y+(destination.y* percent));
-			if (currentY<0){
+			if (y<=-10){
 				projectileArray.remove(this);
 			}
-			return new Point(origin.x, currentY);
+			return new Point((int)x,(int)y);
 		}
 		
 		public static Iterator<Projectile> ProjecileIterator() {

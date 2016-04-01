@@ -14,6 +14,10 @@ import phisicsObjects.Projectile;
 
 public class MainWindow implements ImageObserver {
 	
+	private int counter;
+	private long lasttime;
+	private long newtime;
+	
 	private JLabel label1;
 	private JFrame frame;
 	
@@ -82,20 +86,30 @@ public class MainWindow implements ImageObserver {
 		
 	@SuppressWarnings("static-access")
 	public void renderingLoop() {
+		
+		lasttime=System.nanoTime();
+		
 		label1= new JLabel("Our Game Here");
 		frame.add(label1);
 		//This while loop contains all of the things drawn on the screen
 		while (!done) {
+			
+			counter++;
+			newtime=System.nanoTime();
+
+			if(newtime-lasttime>1000000000){
+				System.out.println("Frames per second: "+counter);
+				counter=0;
+				lasttime=newtime;
+			}
+			
+			
 			
 			bufferedImageG2D.clearRect(0,0,aspectRatio.x,aspectRatio.y);
 			
 			//This section renders the background
 			bufferedImageG2D.setColor(Color.black);                 
 			bufferedImageG2D.fillRect(0,0,aspectRatio.x,aspectRatio.y);
-			
-			//updates the player position and prints it
-			player.updateVariables(aspectRatio);
-			player.draw(bufferedImageG2D);
 			
 			//This section keeps track of and renders all of the enemies in the arraylist within the Enemy Class
 			//It also checks if ships were destroyed by projectiles
@@ -127,7 +141,8 @@ public class MainWindow implements ImageObserver {
 					EnemyPatterns.moveFormation(ship,LevelControl.getCurrentFormationPattern());
 				}
 			}
-	
+			
+			/* commented to work with the new bullet project
 			//This section keeps track of and renders all of the player projectiles in the arraylist within the Projectile Class
 			Projectile shot;
 			Iterator<Projectile> projectileIterator = Projectile.ProjecileIterator();
@@ -135,9 +150,15 @@ public class MainWindow implements ImageObserver {
 			while (projectileIterator.hasNext()) {
 				shot = (Projectile) projectileIterator.next();
 				if (shot.exists()){
+					shot.updateVariables();
+					shot.draw(bufferedImageG2D);
 					bufferedImageG2D.fillOval(shot.currentLocation().x,shot.currentLocation().y,20,20);
 				}
-			}
+			}*/
+			
+			//updates the player position and prints it
+			player.updateVariables(aspectRatio);
+			player.draw(bufferedImageG2D);
 
 			LevelControl.updateLevel(); //This method will be called to check level end condition
 			
