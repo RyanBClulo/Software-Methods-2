@@ -142,7 +142,7 @@ public class MainWindow implements ImageObserver {
 				}
 			}
 			
-			/* commented to work with the new bullet project
+			// commented to work with the new bullet project
 			//This section keeps track of and renders all of the player projectiles in the arraylist within the Projectile Class
 			Projectile shot;
 			Iterator<Projectile> projectileIterator = Projectile.ProjecileIterator();
@@ -154,7 +154,7 @@ public class MainWindow implements ImageObserver {
 					shot.draw(bufferedImageG2D);
 					bufferedImageG2D.fillOval(shot.currentLocation().x,shot.currentLocation().y,20,20);
 				}
-			}*/
+			}
 			
 			//updates the player position and prints it
 			player.updateVariables(aspectRatio);

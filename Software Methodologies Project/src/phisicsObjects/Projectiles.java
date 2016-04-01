@@ -15,7 +15,7 @@ public class Projectiles {
 		for( int i=0 ; i<projectileList.size() ; i++ ){
 			if(projectileList.get(i)!=null){
 				
-				if(projectileList.get(i).currentLocation().getY()<200)
+				if(projectileList.get(i).currentLocation().getY()<-10)
 					removeProjectile(projectileList.get(i));
 				else
 					projectileList.get(i).updateVariables();

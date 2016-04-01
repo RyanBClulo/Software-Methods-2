@@ -17,13 +17,13 @@ public class PlayerShip {
 	public PlayerShip(){
 		this.shipX=(float)(MainWindow.aspectRatio.getX()/2);
 		this.shipY=(float)(MainWindow.aspectRatio.getY()/1.2);
-		this.speed=2.1f;
+		this.speed=3.0f;
 	}
 	
 	//update the player position on the screen
 	public void updateVariables(Point aspectRatio){
 		
-		bullet.updateVariables(); //comment this line to work with the last project
+		//bullet.updateVariables(); //comment this line to work with the last project
 		
 		if(	shipY	>	50	&&	MainWindow.getKeyboard().moveUp)
     		shipY-=speed;
@@ -38,7 +38,7 @@ public class PlayerShip {
 	//draws the player on the screen
 	public void draw(Graphics2D g){
 		
-		bullet.draw(g); //comment this line to work with the last project
+		//bullet.draw(g); //comment this line to work with the last project
 		
 		g.drawImage(Images.player_ship, (int)(shipX-50),(int)(shipY-50),null);
 	}
