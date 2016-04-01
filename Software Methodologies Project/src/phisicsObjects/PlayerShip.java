@@ -22,13 +22,13 @@ public class PlayerShip {
 	public void updateVariables(Point aspectRatio){
 		
 		if(	shipY	>	50	&&	MainWindow.getKeyboard().moveUp)
-    		moveShipY(-speed);
+    		shipY-=speed;
     	if(	shipY	<	aspectRatio.getY()-35	&&	MainWindow.getKeyboard().moveDown)
-    		moveShipY(speed);
+    		shipY+=speed;
     	if(	shipX	>	25	&&	MainWindow.getKeyboard().moveLeft)
-    		moveShipX(-speed);
+    		shipX-=speed;
     	if(	shipX	<	aspectRatio.getX()-25	&&	MainWindow.getKeyboard().moveRight)
-    		moveShipX(speed);
+    		shipX+=speed;
 	}
 	
 	//draws the player on the screen
@@ -42,14 +42,6 @@ public class PlayerShip {
 	
 	public float getShipY(){
 		return shipY;
-	}
-	
-	public void moveShipX(double x){
-		shipX+=x;
-	}
-	
-	public void moveShipY(double y){
-		shipY+=y;
 	}
 	
 	public void setShipLocation(float x,float y) {
