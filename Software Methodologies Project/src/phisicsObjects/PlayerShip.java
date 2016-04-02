@@ -56,8 +56,8 @@ public class PlayerShip {
 		shipY=y;
 	}
 	
-	public void playerDeath(){
-		//setShipLocation((float)MainWindow.aspectRatio.getX()/2,(float)MainWindow.aspectRatio.getY()/1.2f);
+	public void playerDeath(Point point){
+		setShipLocation((float)point.getX()/2,(float)point.getY()/1.2f);
 	}
 	
 	public float getShipSpeed(){

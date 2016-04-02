@@ -161,7 +161,7 @@ public class MainWindow implements ImageObserver,Runnable {
 				//checks for enemy/player collision
 				if(ship.containsPoint(new Point((int)player.getShipX()-25,(int)player.getShipY()-25),30)){
 					ship.clearEnemies();
-					player.playerDeath();
+					player.playerDeath(aspectRatio);
 				}
 				//Controls enemy formation movement
 				if(ship.hasReachedDestination){
