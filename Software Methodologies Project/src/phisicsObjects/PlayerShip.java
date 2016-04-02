@@ -1,6 +1,6 @@
 package phisicsObjects;
 
-import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.awt.Point;
 
 import graphics.Images;
@@ -14,10 +14,10 @@ public class PlayerShip {
 	
 	public Projectiles bullet = new Projectiles();
 	
-	public PlayerShip(){
-		this.shipX=(float)(MainWindow.aspectRatio.getX()/2);
-		this.shipY=(float)(MainWindow.aspectRatio.getY()/1.2);
-		this.speed=3.0f;
+	public PlayerShip(Point point){
+		this.shipX=(float)(point.getX()/2);
+		this.shipY=(float)(point.getY()/1.2);
+		this.speed=1.0f;
 	}
 	
 	//update the player position on the screen
@@ -36,7 +36,7 @@ public class PlayerShip {
 	}
 	
 	//draws the player on the screen
-	public void draw(Graphics2D g){
+	public void draw(Graphics g){
 		
 		//bullet.draw(g); //comment this line to work with the last project
 		
@@ -57,7 +57,7 @@ public class PlayerShip {
 	}
 	
 	public void playerDeath(){
-		setShipLocation((float)MainWindow.aspectRatio.getX()/2,(float)MainWindow.aspectRatio.getY()/1.2f);
+		//setShipLocation((float)MainWindow.aspectRatio.getX()/2,(float)MainWindow.aspectRatio.getY()/1.2f);
 	}
 	
 	public float getShipSpeed(){

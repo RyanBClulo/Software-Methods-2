@@ -48,7 +48,7 @@ public class TestWindowBuilder extends JFrame {
 		JButton btnStart =new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainWindow.main(null);
+				//MainWindow.main(null);
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

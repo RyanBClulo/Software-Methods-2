@@ -10,10 +10,13 @@
 
 package phisicsObjects;
 
+import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+
+import graphics.Images;
 
 public class Enemy {
 	public Point origin;
@@ -58,6 +61,10 @@ public class Enemy {
 		enemyArray.add(this);
 		formationStatus=status;
 		hasReachedDestination=false;
+	}
+	
+	public void draw(Graphics g){
+		g.drawImage(Images.enemy_ship,currentLocation().x-25,currentLocation().y-25,50,50,null);
 	}
 
 		/**
