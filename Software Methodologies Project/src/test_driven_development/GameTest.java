@@ -7,8 +7,8 @@ import java.util.Iterator;
 
 import org.junit.Test;
 
-import phisicsObjects.Enemy;
-import phisicsObjects.Projectile;
+import physicsObjects.Enemy;
+import physicsObjects.Projectile;
 
 public class GameTest {
 

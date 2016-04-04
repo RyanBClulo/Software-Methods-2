@@ -11,9 +11,9 @@ import display.Display;
 import graphics.Images;
 import input.Keyboard;
 import input.Mouse;
-import phisicsObjects.Enemy;
-import phisicsObjects.PlayerShip;
-import phisicsObjects.Projectile;
+import physicsObjects.Enemy;
+import physicsObjects.PlayerShip;
+import physicsObjects.Projectile;
 
 public class MainWindow implements ImageObserver,Runnable {
 	

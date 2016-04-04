@@ -4,7 +4,8 @@ package window;
 
 import java.awt.Point;
 import java.util.Random;
-import phisicsObjects.Enemy;
+
+import physicsObjects.Enemy;
 
 public class EnemyFormation {
 	

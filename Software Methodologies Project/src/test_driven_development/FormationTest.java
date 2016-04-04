@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 import org.junit.Test;
 
-import phisicsObjects.Enemy;
+import physicsObjects.Enemy;
 import window.EnemyFormation;
 
 public class FormationTest {

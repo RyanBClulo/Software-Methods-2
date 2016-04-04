@@ -3,12 +3,12 @@
  * 
  * References: In Class notes
  * 
- * @author Ryan Nelsen-Freund, Ryan Clulo, Mat Møgensen
+ * @author Ryan Nelsen-Freund, Ryan Clulo, Mat Mï¿½gensen
  * 
  * @Version Created: 4/15/2015;
  */
 
-package phisicsObjects;
+package physicsObjects;
 
 import java.awt.Color;
 import java.awt.Graphics;

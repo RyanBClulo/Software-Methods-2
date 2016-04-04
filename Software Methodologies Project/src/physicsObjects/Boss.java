@@ -1,4 +1,4 @@
-package phisicsObjects;
+package physicsObjects;
 //test commment
 public class Boss {
 

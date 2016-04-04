@@ -1,4 +1,4 @@
-package phisicsObjects;
+package physicsObjects;
 
 import java.awt.Graphics;
 import java.awt.Point;

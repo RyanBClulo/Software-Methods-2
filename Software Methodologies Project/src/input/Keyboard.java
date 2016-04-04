@@ -2,8 +2,9 @@ package input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import phisicsObjects.Enemy;
-import phisicsObjects.Projectile;
+
+import physicsObjects.Enemy;
+import physicsObjects.Projectile;
 import window.EnemyFormation;
 import window.MainWindow;
 
