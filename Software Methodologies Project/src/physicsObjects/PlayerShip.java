@@ -1,37 +1,46 @@
 package physicsObjects;
 
 import java.awt.Graphics;
-import java.awt.Point;
-
 import graphics.Images;
 import window.MainWindow;
 
 public class PlayerShip {
 	
-	private float shipX;
-	private float shipY;
-	private float speed;
+	private MainWindow game;
 	
-	public Projectiles bullet = new Projectiles();
+	private float shipX,shipY,speed;
+	private boolean shoot=true;
 	
-	public PlayerShip(Point point){
-		this.shipX=(float)(point.getX()/2);
-		this.shipY=(float)(point.getY()/1.2);
+	private Projectiles bullet = new Projectiles();
+	
+	public PlayerShip(MainWindow game){
+		this.game=game;
+		this.shipX=(float)(game.getWidth()/2);
+		this.shipY=(float)(game.getHeight()/1.2);
 		this.speed=1.0f;
 	}
 	
 	//update the player position on the screen
-	public void updateVariables(Point aspectRatio){
+	public void updateVariables(){
+		
+		//Controls player so only one bullet is shot by space press
+		if(game.getKeyboard().shoot){
+			if(shoot){
+				shoot=false;
+				bullet.addProjectile(new Projectile((int)shipX-10,(int)shipY-10));
+			}
+		}else
+			shoot=true;    		
 		
 		//bullet.updateVariables(); //comment this line to work with the last project
 		
-		if(	shipY	>	50	&&	MainWindow.getKeyboard().moveUp)
+		if(	shipY	>	50	&&	game.getKeyboard().moveUp)
     		shipY-=speed;
-    	if(	shipY	<	aspectRatio.getY()-35	&&	MainWindow.getKeyboard().moveDown)
+    	if(	shipY	<	game.getHeight()-35	&&	game.getKeyboard().moveDown)
     		shipY+=speed;
-    	if(	shipX	>	25	&&	MainWindow.getKeyboard().moveLeft)
+    	if(	shipX	>	25	&&	game.getKeyboard().moveLeft)
     		shipX-=speed;
-    	if(	shipX	<	aspectRatio.getX()-25	&&	MainWindow.getKeyboard().moveRight)
+    	if(	shipX	<	game.getWidth()-25	&&	game.getKeyboard().moveRight)
     		shipX+=speed;
 	}
 	
@@ -56,8 +65,8 @@ public class PlayerShip {
 		shipY=y;
 	}
 	
-	public void playerDeath(Point point){
-		setShipLocation((float)point.getX()/2,(float)point.getY()/1.2f);
+	public void playerDeath(){
+		setShipLocation((float)game.getWidth()/2,(float)game.getHeight()/1.2f);
 	}
 	
 	public float getShipSpeed(){

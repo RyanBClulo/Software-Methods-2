@@ -2,46 +2,58 @@ package window;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Point;
 import java.awt.image.BufferStrategy;
-import java.awt.image.ImageObserver;
-import java.util.Iterator;
 import display.Display;
+import gamestates.GameState;
+import gamestates.HandleQuitState;
+import gamestates.PauseState;
+import gamestates.PlayingState;
+import gamestates.ShipSelectionState;
+import gamestates.StartMenuState;
 import graphics.Images;
 import input.Keyboard;
 import input.Mouse;
-import physicsObjects.Enemy;
-import physicsObjects.PlayerShip;
-import physicsObjects.Projectile;
 
-public class MainWindow implements ImageObserver,Runnable {
+public class MainWindow implements Runnable {
 	
 	private int counter;
 	private long lasttime;
 	private long newtime;
 	
+	private String name;
+	private int width;
+	private int height;
+	
 	private BufferStrategy bs;
 	private Graphics graphics;
 	private Thread thread;
 	private Display display;
+	private boolean running=false;
 	
 	private static Keyboard keyboard;
 	private static Mouse mouse;
 	
-	private static PlayerShip player;
+	private GameState playingState;
+	private GameState startMenuState;
+	private GameState handleQuitState;
+	private GameState pauseState;
+	private GameState shipSelectionState;
 	
-	private boolean running=false;
-	public final Point aspectRatio = new Point(800,950); 
-	
-	//Constructor - starts the MainWindow objects
-	public MainWindow(){
-		keyboard =  new Keyboard(); //Creating a new Keyboard object
-		mouse = new Mouse();	//Creating a new mouse object
-		player = new PlayerShip(aspectRatio);
+	/**
+	 * Sets Game window variables.
+	 * @param name Name at the upper left of the screen.
+	 * @param width Game Window width.
+	 * @param height Game window Height.
+	 */
+	public MainWindow(String name,int width,int height){
+		this.name=name;
+		this.width=width;
+		this.height=height;
 	}
 	
-	//Starts the MainWindow thread
+	/**
+	 * Start the main window thread.
+	 */
 	public synchronized void start(){
 		if(running)
 			return;
@@ -50,7 +62,10 @@ public class MainWindow implements ImageObserver,Runnable {
 		thread.start();
 	}
 	
-	//Ends and closes the game
+
+	/**
+	 * Ends the thread, closes the window and finishes the program.
+	 */
 	public synchronized void stop(){
 		if(!running)
 			return;
@@ -63,7 +78,9 @@ public class MainWindow implements ImageObserver,Runnable {
 		}
 	}
 	
-	//here is where the game loop is now
+	/**
+	 * GAME LOOP.
+	 */
 	@Override
 	public void run() {
 		
@@ -89,27 +106,45 @@ public class MainWindow implements ImageObserver,Runnable {
 		}		
 	}
 	
-	//Initiate the game display and images of the game
+	/**
+	 * Initiate the game display, images, keyboard listener, mouse listener and states of the game.
+	 */
 	public void initiate(){
 		
 		//Creates the window of the game
-		display = new Display();
+		display = new Display(name,width,height);
 		display.createDisplay();
 		
 		//Adds the mouse and the keyboard to the game
+		keyboard =  new Keyboard(); //Creating a new Keyboard object
+		mouse = new Mouse(); //Creating a new mouse object
 		display.getFrame().addKeyListener(keyboard);
 		display.getFrame().addMouseListener(mouse);
+		display.getFrame().addMouseMotionListener(mouse);
 		display.getCanvas().addMouseListener(mouse);
+		display.getCanvas().addMouseMotionListener(mouse);
 	
-		Images.initiateImages(); //This method initializes all the images of the game	
+		Images.initiateImages(); //This method initializes all the images of the game
+		
+		//Creates the states of the game and start the first one
+		playingState = new PlayingState(this);
+		startMenuState = new StartMenuState(this);
+		handleQuitState = new HandleQuitState(this);
+		pauseState = new PauseState(this);
+		shipSelectionState = new ShipSelectionState(this);
+		GameState.setGameStateTo(startMenuState);
 	}
 	
-	//This method will update all variables of the game in the future
+	/**
+	 * Update all variable of the game.
+	 */
 	public void upgradeVariables(){
-		player.updateVariables(aspectRatio);
+		GameState.getCurrentGameState().updateVariables();
 	}
 	
-	//This method will update all variables of te game in the future
+	/**
+	 * Draw all the game objects in the screen.
+	 */
 	public void draw(){
 		bs = display.getCanvas().getBufferStrategy();
 		if(bs==null){
@@ -117,88 +152,90 @@ public class MainWindow implements ImageObserver,Runnable {
 			return;
 		}
 		graphics = bs.getDrawGraphics();
-		graphics.clearRect(0,0,aspectRatio.x,aspectRatio.y);
+		graphics.clearRect(0,0,width,height);
 		
 		//DRAW HERE!!!!!!!
 		
-		renderingLoop(); //Calls the renderingLoop temporarily until we get to split the game in update variables and draw
-		player.draw(graphics);
+		//This section renders the background
+		graphics.setColor(Color.black);                 
+		graphics.fillRect(0,0,width,height);
+		
+		GameState.getCurrentGameState().draw(graphics); //Draw the current running game state
 		
 		//RENDERS EVERYTHING TOGETHER AND DRAWS IT!!!!
 		bs.show();
 		graphics.dispose();
 	}
-		
-	@SuppressWarnings("static-access")
-	public void renderingLoop() {
-		
-		//This while loop contains all of the things drawn on the screen
-			
-			//This section renders the background
-			graphics.setColor(Color.black);                 
-			graphics.fillRect(0,0,aspectRatio.x,aspectRatio.y);
-			
-			//This section keeps track of and renders all of the enemies in the arraylist within the Enemy Class
-			//It also checks if ships were destroyed by projectiles
-			//moves the ship to its next destination.
-			Enemy ship;
-			Iterator<Enemy> enemyIterator = Enemy.enemyIterator();		//Always create and refresh the iterator to get the list of enemy objects to display. Same for other objects.
-			graphics.setColor(Color.RED);
-			while (enemyIterator.hasNext()) {
-				ship = (Enemy) enemyIterator.next();
-				if (ship.exists()){ //render
-					ship.draw(graphics);
-				}
-				Projectile collisionCheck;//collision check with player projectiles
-				Iterator<Projectile> projectileCheckIterator = Projectile.ProjecileIterator();
-				while(projectileCheckIterator.hasNext()){
-					collisionCheck=projectileCheckIterator.next();
-					if(ship.containsPoint(collisionCheck.currentLocation(),30)){
-						ship.enemyDestroyed();
-						collisionCheck.hit();
-					}
-				}
-				//checks for enemy/player collision
-				if(ship.containsPoint(new Point((int)player.getShipX()-25,(int)player.getShipY()-25),30)){
-					ship.clearEnemies();
-					player.playerDeath(aspectRatio);
-				}
-				//Controls enemy formation movement
-				if(ship.hasReachedDestination){
-					EnemyPatterns.moveFormation(ship,LevelControl.getCurrentFormationPattern());
-				}
-			}
-			
-			
-			
-			// commented to work with the new bullet project
-			//This section keeps track of and renders all of the player projectiles in the arraylist within the Projectile Class
-			Projectile shot;
-			Iterator<Projectile> projectileIterator = Projectile.ProjecileIterator();
-			graphics.setColor(Color.GREEN);
-			while (projectileIterator.hasNext()) {
-				shot = (Projectile) projectileIterator.next();
-				if (shot.exists()){
-					shot.updateVariables();
-					shot.draw(graphics);
-					graphics.fillOval(shot.currentLocation().x,shot.currentLocation().y,20,20);
-				}
-			}
-
-			LevelControl.updateLevel(); //This method will be called to check level end condition
+	
+	/**
+	 * Getter of the game window width.
+	 * @return Game window width
+	 */
+	public int getWidth(){
+		return width;
 	}
 	
-	public boolean imageUpdate(Image img, int infoflags, int x, int y,int width, int height) {
-		return false;
+	/**
+	 * Getter for the game window height.
+	 * @return Game window height.
+	 */
+	public int getHeight(){
+		return height;
 	}
 	
-	//GETTERS
-	
-	public static Keyboard getKeyboard(){
+	/**
+	 * Getter for the game keyboard listener.
+	 * @return Keyboard listener object.
+	 */
+	public Keyboard getKeyboard(){
 		return keyboard;
 	}
 	
-	public static PlayerShip getPlayerShip(){
-		return player;
+	/**
+	 * Getter for the game mouse listener.
+	 * @return Mouse listener and motion listener object
+	 */
+	public Mouse getMouse(){
+		return mouse;
+	}
+	
+	/**
+	 * Getter for the start menu game state.
+	 * @return Start Menu game state.
+	 */
+	public GameState startMenu(){
+		return startMenuState;
+	}
+	
+	/**
+	 * Getter for the playing game state.
+	 * @return Playing game state.
+	 */
+	public GameState playingState(){
+		return playingState;
+	}
+	
+	/**
+	 * Getter for the handle quit game state.
+	 * @return Handle quit game state.
+	 */
+	public GameState handleQuitState(){
+		return handleQuitState;
+	}
+	
+	/**
+	 * Getter for the pause game state.
+	 * @return Pause game state.
+	 */
+	public GameState pauseState(){
+		return pauseState;
+	}
+	
+	/**
+	 * Getter for the ship selection game state.
+	 * @return Ship selection game state.
+	 */
+	public GameState shipSelectionState(){
+		return shipSelectionState;
 	}
 }
