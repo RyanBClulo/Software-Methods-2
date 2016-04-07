@@ -34,7 +34,6 @@ public class Enemy {
 		Random rnd =new Random();
 		int x=rnd.nextInt(19)*40+25;
 		origin=new Point(x,-25);
-		//destination=new Point(x,rnd.nextInt(100)+100);
 		destination=new Point(x,500);
 		launchTime = System.currentTimeMillis();
 		enemyArray.add(this);

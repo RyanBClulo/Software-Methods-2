@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="physicsObjects.PlayerShip" project="Software Methodologies Project" 
     file="/Software Methodologies Project/src/physicsObjects/PlayerShip.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1242" y="700"/>    
+    <position height="-1" width="-1" x="1241" y="676"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="physicsObjects.Projectile" project="Software Methodologies Project" 
     file="/Software Methodologies Project/src/physicsObjects/Projectile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1573" y="983"/>    
+    <position height="-1" width="-1" x="1574" y="852"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="gamestates.GameState" project="Software Methodologies Project" 
     file="/Software Methodologies Project/src/gamestates/GameState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1028" y="87"/>    
+    <position height="-1" width="-1" x="1028" y="34"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="gamestates.PlayingState" project="Software Methodologies Project" 
     file="/Software Methodologies Project/src/gamestates/PlayingState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1243" y="392"/>    
+    <position height="-1" width="-1" x="1243" y="347"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,7 +174,7 @@
   </class>  
   <class id="20" language="java" name="gamestates.StartMenuState" project="Software Methodologies Project" 
     file="/Software Methodologies Project/src/gamestates/StartMenuState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="691" y="330"/>    
+    <position height="-1" width="-1" x="693" y="288"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -183,7 +183,7 @@
   </class>  
   <class id="21" language="java" name="gamestates.HandleQuitState" project="Software Methodologies Project" 
     file="/Software Methodologies Project/src/gamestates/HandleQuitState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="941" y="329"/>    
+    <position height="-1" width="-1" x="943" y="288"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -192,7 +192,7 @@
   </class>  
   <class id="22" language="java" name="gamestates.PauseState" project="Software Methodologies Project" 
     file="/Software Methodologies Project/src/gamestates/PauseState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="689" y="492"/>    
+    <position height="-1" width="-1" x="685" y="448"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -201,7 +201,7 @@
   </class>  
   <class id="23" language="java" name="gamestates.ShipSelectionState" project="Software Methodologies Project" 
     file="/Software Methodologies Project/src/gamestates/ShipSelectionState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="950" y="494"/>    
+    <position height="-1" width="-1" x="950" y="448"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -231,10 +231,10 @@
   <association id="29">    
     <end type="SOURCE" refId="18" navigable="false">      
       <attribute id="30" name="lastState">        
-        <position height="20" width="60" x="1190" y="197"/>      
+        <position height="20" width="60" x="1190" y="144"/>      
       </attribute>      
       <multiplicity id="31" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="0" y="-53"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
@@ -255,10 +255,10 @@
   <association id="35">    
     <end type="SOURCE" refId="8" navigable="false">      
       <attribute id="36" name="projectileArray">        
-        <position height="0" width="0" x="226" y="466"/>      
+        <position height="0" width="0" x="227" y="335"/>      
       </attribute>      
       <multiplicity id="37" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="226" y="466"/>      
+        <position height="0" width="0" x="227" y="335"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
@@ -271,10 +271,10 @@
   <association id="39">    
     <end type="SOURCE" refId="9" navigable="false">      
       <attribute id="40" name="projectileList">        
-        <position height="0" width="0" x="226" y="466"/>      
+        <position height="0" width="0" x="227" y="335"/>      
       </attribute>      
       <multiplicity id="41" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="226" y="466"/>      
+        <position height="0" width="0" x="227" y="335"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
@@ -310,10 +310,10 @@
   <association id="48">    
     <end type="SOURCE" refId="18" navigable="false">      
       <attribute id="49" name="currentState">        
-        <position height="20" width="79" x="1187" y="219"/>      
+        <position height="20" width="79" x="1187" y="166"/>      
       </attribute>      
       <multiplicity id="50" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="0" y="-53"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
@@ -326,10 +326,10 @@
   <association id="52">    
     <end type="SOURCE" refId="19" navigable="false">      
       <attribute id="53" name="player">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-1" y="-24"/>      
       </attribute>      
       <multiplicity id="54" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-1" y="-24"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    

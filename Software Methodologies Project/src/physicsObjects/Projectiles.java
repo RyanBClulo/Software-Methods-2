@@ -5,16 +5,15 @@ import java.util.ArrayList;
 
 public class Projectiles {
 	
-	private ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
+	private ArrayList<Projectile> projectileList;
 	
 	public Projectiles(){
-		
+		projectileList = new ArrayList<Projectile>();
 	}
 	
 	public void updateVariables(){
 		for( int i=0 ; i<projectileList.size() ; i++ ){
 			if(projectileList.get(i)!=null){
-				
 				if(projectileList.get(i).currentLocation().getY()<-10)
 					removeProjectile(projectileList.get(i));
 				else
