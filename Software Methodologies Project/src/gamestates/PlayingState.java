@@ -1,6 +1,5 @@
 package gamestates;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.Iterator;
@@ -35,6 +34,8 @@ public class PlayingState extends GameState{
 	@Override
 	public void updateVariables() {
 		
+		LevelControl.updateLevel(); //This method will be called to check level end condition
+		
 		player.updateVariables();
 		
 		if(game.getKeyboard().esc){
@@ -57,55 +58,47 @@ public class PlayingState extends GameState{
 	}
 	
 	@SuppressWarnings("static-access")
-	public void renderingLoop(Graphics graphics) {
-		
-		//This while loop contains all of the things drawn on the screen
-			
-			//This section keeps track of and renders all of the enemies in the arraylist within the Enemy Class
-			//It also checks if ships were destroyed by projectiles
-			//moves the ship to its next destination.
-			Enemy ship;
-			Iterator<Enemy> enemyIterator = Enemy.enemyIterator();		//Always create and refresh the iterator to get the list of enemy objects to display. Same for other objects.
-			graphics.setColor(Color.RED);
-			while (enemyIterator.hasNext()) {
-				ship = (Enemy) enemyIterator.next();
-				if (ship.exists()){ //render
-					ship.draw(graphics);
-				}
-				Projectile collisionCheck;//collision check with player projectiles
-				Iterator<Projectile> projectileCheckIterator = Projectile.ProjecileIterator();
-				while(projectileCheckIterator.hasNext()){
-					collisionCheck=projectileCheckIterator.next();
-					if(ship.containsPoint(collisionCheck.currentLocation(),30)){
-						ship.enemyDestroyed();
-						collisionCheck.hit();
-					}
-				}
-				//checks for enemy/player collision
-				if(ship.containsPoint(new Point((int)player.getShipX()-25,(int)player.getShipY()-25),30)){
-					ship.clearEnemies();
-					player.playerDeath();
-				}
-				//Controls enemy formation movement
-				if(ship.hasReachedDestination){
-					EnemyPatterns.moveFormation(ship,LevelControl.getCurrentFormationPattern());
+	public void renderingLoop(Graphics graphics) {			
+		//This section keeps track of and renders all of the enemies in the arraylist within the Enemy Class
+		//It also checks if ships were destroyed by projectiles
+		//moves the ship to its next destination.
+		Enemy ship;
+		Iterator<Enemy> enemyIterator = Enemy.enemyIterator();	//Always create and refresh the iterator to get the list of enemy objects to display. Same for other objects.
+		while (enemyIterator.hasNext()) {
+			ship = (Enemy) enemyIterator.next();
+			if (ship.exists()){ //render
+				ship.draw(graphics);
+			}
+			Projectile collisionCheck;//collision check with player projectiles
+			Iterator<Projectile> projectileCheckIterator = Projectile.ProjecileIterator();
+			while(projectileCheckIterator.hasNext()){
+				collisionCheck=projectileCheckIterator.next();
+				if(ship.containsPoint(collisionCheck.currentLocation(),30)){
+					ship.enemyDestroyed();
+					collisionCheck.hit();
 				}
 			}
-			
-			// commented to work with the new bullet project
-			//This section keeps track of and renders all of the player projectiles in the arraylist within the Projectile Class
-			Projectile shot;
-			Iterator<Projectile> projectileIterator = Projectile.ProjecileIterator();
-			graphics.setColor(Color.GREEN);
-			while (projectileIterator.hasNext()) {
-				shot = (Projectile) projectileIterator.next();
-				if (shot.exists()){
-					shot.updateVariables();
-					shot.draw(graphics);
-					graphics.fillOval(shot.currentLocation().x,shot.currentLocation().y,20,20);
-				}
+			//checks for enemy/player collision
+			if(ship.containsPoint(new Point((int)player.getShipX()-25,(int)player.getShipY()-25),30)){
+				ship.clearEnemies();
+				player.playerDeath();
 			}
-
-			LevelControl.updateLevel(); //This method will be called to check level end condition
+			//Controls enemy formation movement
+			if(ship.hasReachedDestination){
+				EnemyPatterns.moveFormation(ship,LevelControl.getCurrentFormationPattern());
+			}
+		}
+	
+		// commented to work with the new bullet project
+		//This section keeps track of and renders all of the player projectiles in the arraylist within the Projectile Class
+		Projectile shot;
+		Iterator<Projectile> projectileIterator = Projectile.ProjecileIterator();
+		while (projectileIterator.hasNext()) {
+			shot = (Projectile) projectileIterator.next();
+			if (shot.exists()){
+				shot.updateVariables();
+				shot.draw(graphics);
+			}
+		}
 	}
 }

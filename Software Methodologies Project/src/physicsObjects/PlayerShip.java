@@ -1,6 +1,7 @@
 package physicsObjects;
 
 import java.awt.Graphics;
+
 import graphics.Images;
 import window.MainWindow;
 
@@ -23,6 +24,8 @@ public class PlayerShip {
 	//update the player position on the screen
 	public void updateVariables(){
 		
+		//bullet.updateVariables(); //comment this line to work with the last project
+		
 		//Controls player so only one bullet is shot by space press
 		if(game.getKeyboard().shoot){
 			if(shoot){
@@ -31,8 +34,6 @@ public class PlayerShip {
 			}
 		}else
 			shoot=true;    		
-		
-		//bullet.updateVariables(); //comment this line to work with the last project
 		
 		if(	shipY	>	50	&&	game.getKeyboard().moveUp)
     		shipY-=speed;
@@ -47,7 +48,7 @@ public class PlayerShip {
 	//draws the player on the screen
 	public void draw(Graphics g){
 		
-		//bullet.draw(g); //comment this line to work with the last project
+		//bullet.draw((Graphics2D) g); //comment this line to work with the last project
 		
 		g.drawImage(Images.player_ship, (int)(shipX-50),(int)(shipY-50),null);
 	}
