@@ -98,11 +98,33 @@ public class MainWindow implements Runnable {
 				lasttime=newtime;
 			}
 			
-			//This method will update all variables of the game in the future
-			upgradeVariables();
+			int fps = 60;
+			double timePerTick = 1000000000/fps;
+			double delta = 0;
+			long now;
+			long lastTime = System.nanoTime();
+			long timer = 0;
+			int ticks = 0;
 			
-			//This method will update all variables of the game in the future
-			draw();
+			while(running){
+				now = System.nanoTime();
+				delta += (now - lastTime)/timePerTick;
+				timer += now - lastTime;
+				lastTime = now;
+				
+				if(delta >= 1){
+					upgradeVariables();
+					draw();
+					ticks++;
+					delta--;
+				}
+				
+				if(timer >= 1000000000){
+					System.out.println("Tickts and Frames: "+ticks);
+					ticks = 0;
+					timer = 0;
+				}
+			}
 		}		
 	}
 	
