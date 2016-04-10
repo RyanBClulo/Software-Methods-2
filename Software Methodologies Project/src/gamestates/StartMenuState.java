@@ -57,7 +57,7 @@ public class StartMenuState extends GameState{
 		graphics.drawRect((game.getWidth()-400)/2,(game.getHeight()-285)/2+75+30,400,75);
 		graphics.drawRect((game.getWidth()-400)/2,(game.getHeight()-285)/2+2*(75+30),400,75);
 		
-		graphics.drawString("MS - EXTREME",330,200);
+		graphics.drawString("SMP - eXtreme",330,200);
 		graphics.drawString("Temporary Start",325,375);
 		graphics.drawString("Temporary High Scores",290,480);
 		graphics.drawString("Temporary Exit",330,585);
