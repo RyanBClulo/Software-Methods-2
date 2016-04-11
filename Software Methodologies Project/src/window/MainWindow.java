@@ -2,11 +2,16 @@ package window;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.image.BufferStrategy;
+import java.util.Iterator;
+import java.util.Random;
+
 import display.Display;
 import gamestates.*;
 import graphics.Images;
 import input.*;
+import physicsObjects.*;
 
 public class MainWindow implements Runnable {
 	
@@ -14,9 +19,10 @@ public class MainWindow implements Runnable {
 	private long	lasttime,
 					newtime;
 	
-	private String name;
+	private String	name;
 	private int 	width,
-					height;
+					height,
+					starX;
 	
 	private BufferStrategy	bs;
 	private Graphics	graphics;
@@ -32,6 +38,9 @@ public class MainWindow implements Runnable {
 						handleQuitState,
 						pauseState,
 						shipSelectionState;
+	
+	private Stars bullet = new Stars();
+	Random r = new Random();
 	
 	
 	/**
@@ -178,12 +187,42 @@ public class MainWindow implements Runnable {
 		graphics.setColor(Color.black);
 		graphics.fillRect(0,0,width,height);
 		
+		starLoop(graphics);
 		GameState.getCurrentGameState().draw(graphics); //Draw the current running game state
 		
 		//RENDERS EVERYTHING TOGETHER AND DRAWS IT!!!!
 		bs.show();
 		graphics.dispose();
 	}
+	
+	
+	/**
+	 * 
+	 * @param graphics
+	 */
+	public void starLoop(Graphics graphics) {
+		
+		// commented to work with the new bullet project
+		//This section keeps track of and renders all of the player star in the starlist within the Star Class
+		
+		starX = r.nextInt(getWidth());
+		
+		bullet.addStar(new Star((int)starX,(int)-10));
+		Star shot;
+		Iterator<Star> starIterator = Star.StarIterator();
+		while (starIterator.hasNext()) {
+			shot = (Star) starIterator.next();
+			if (shot.exists()){
+				shot.updateVariables();
+				shot.draw(graphics);
+			}
+		}
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * Getter of the game window width.
