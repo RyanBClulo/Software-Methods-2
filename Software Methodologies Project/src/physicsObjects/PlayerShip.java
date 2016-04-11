@@ -36,13 +36,13 @@ public class PlayerShip {
 			shoot=true;    		
 		
 		if(	shipY	>	50	&&	game.getKeyboard().moveUp)
-    		shipY-=speed;
-    	if(	shipY	<	game.getHeight()-35	&&	game.getKeyboard().moveDown)
-    		shipY+=speed;
-    	if(	shipX	>	25	&&	game.getKeyboard().moveLeft)
-    		shipX-=speed;
-    	if(	shipX	<	game.getWidth()-25	&&	game.getKeyboard().moveRight)
-    		shipX+=speed;
+			shipY-=speed;
+		if(	shipY	<	game.getHeight()-35	&&	game.getKeyboard().moveDown)
+			shipY+=speed;
+		if(	shipX	>	25	&&	game.getKeyboard().moveLeft)
+			shipX-=speed;
+		if(	shipX	<	game.getWidth()-25	&&	game.getKeyboard().moveRight)
+			shipX+=speed;
 	}
 	
 	//draws the player on the screen
