@@ -2,7 +2,8 @@ package gamestates;
 
 import java.awt.Font;
 import java.awt.Graphics;
-import window.MainWindow;
+
+import main.MainWindow;
 
 /**
  * 

@@ -2,7 +2,8 @@ package gamestates;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import window.MainWindow;
+
+import main.MainWindow;
 
 /**
  * Game state used to handle quit game option.

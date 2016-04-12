@@ -1,4 +1,4 @@
-package window;
+package main;
 /**
  * This is Class creates and launches the Game
  * @author 

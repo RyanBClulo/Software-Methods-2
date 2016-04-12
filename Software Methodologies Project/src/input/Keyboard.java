@@ -3,10 +3,6 @@ package input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import physicsObjects.Enemy;
-import window.EnemyFormation;
-
-
 public class Keyboard implements KeyListener{
 	
 	public boolean moveUp =false;
@@ -39,18 +35,6 @@ public class Keyboard implements KeyListener{
 	        case KeyEvent.VK_SPACE:
 	        	//handle space (shooting)
 	        	shoot = true;
-	        	break;
-	        case KeyEvent.VK_E:
-	        	//handle E (creates random enemies for testing purposes)
-	        	new Enemy();
-	        	break;
-	        case KeyEvent.VK_F:
-	        	//handle F (creates random or preset enemy formations for testing purposes)
-	        	EnemyFormation.createFormation();
-	        	break;
-	        case KeyEvent.VK_C:
-	        	// handle C (clears all enemies for testing purposes)
-	        	Enemy.clearEnemies();
 	        	break;
 	        case KeyEvent.VK_ESCAPE:
 	        	esc=true;

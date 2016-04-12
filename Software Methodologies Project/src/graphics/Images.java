@@ -11,7 +11,7 @@ public class Images {
 		SpriteSheet test = new SpriteSheet(ImageLoader.loadImage("/test.png"));
 		SpriteSheet galagaSprites = new SpriteSheet(ImageLoader.loadImage("/Galaga_Sprite_Sheet.png"));
 		
-		player_ship = test.crop(0, 0, 100, 100);
+		player_ship = test.crop(27,25,48,52);
 		enemy_ship = galagaSprites.crop(249,219,13,10);
 		
 	}

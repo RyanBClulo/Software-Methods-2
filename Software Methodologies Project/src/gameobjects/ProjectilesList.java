@@ -1,20 +1,20 @@
-package physicsObjects;
+package gameobjects;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-public class Projectiles {
+public class ProjectilesList {
 	
 	private ArrayList<Projectile> projectileList;
 	
-	public Projectiles(){
+	public ProjectilesList(){
 		projectileList = new ArrayList<Projectile>();
 	}
 	
 	public void updateVariables(){
 		for( int i=0 ; i<projectileList.size() ; i++ ){
 			if(projectileList.get(i)!=null){
-				if(projectileList.get(i).currentLocation().getY()<-10)
+				if(projectileList.get(i).getY()<-10)
 					removeProjectile(projectileList.get(i));
 				else
 					projectileList.get(i).updateVariables();

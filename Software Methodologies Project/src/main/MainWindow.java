@@ -1,4 +1,4 @@
-package window;
+package main;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -98,7 +98,7 @@ public class MainWindow implements Runnable {
 				lasttime=newtime;
 			}
 			
-			int fps = 60;
+			int fps = 100;
 			double timePerTick = 1000000000/fps;
 			double delta = 0;
 			long now;

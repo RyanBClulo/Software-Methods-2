@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="window.GameLauncher" project="Software Methodologies Project" 
-    file="/Software Methodologies Project/src/window/GameLauncher.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="main.GameLauncher" project="Software Methodologies Project" 
+    file="/Software Methodologies Project/src/main/GameLauncher.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="112" y="1"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="window.MainWindow" project="Software Methodologies Project" 
-    file="/Software Methodologies Project/src/window/MainWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="main.MainWindow" project="Software Methodologies Project" 
+    file="/Software Methodologies Project/src/main/MainWindow.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="390" y="206"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="window.EnemyFormation" project="Software Methodologies Project" 
-    file="/Software Methodologies Project/src/window/EnemyFormation.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="gameobjects.EnemyFormation" project="Software Methodologies Project" 
+    file="/Software Methodologies Project/src/gameobjects/EnemyFormation.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1918" y="130"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +55,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="physicsObjects.PlayerShip" project="Software Methodologies Project" 
-    file="/Software Methodologies Project/src/physicsObjects/PlayerShip.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="gameobjects.PlayerShip" project="Software Methodologies Project" 
+    file="/Software Methodologies Project/src/gameobjects/PlayerShip.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1241" y="676"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -64,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="physicsObjects.Projectile" project="Software Methodologies Project" 
-    file="/Software Methodologies Project/src/physicsObjects/Projectile.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="gameobjects.Projectile" project="Software Methodologies Project" 
+    file="/Software Methodologies Project/src/gameobjects/Projectile.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1574" y="852"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -73,8 +73,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="physicsObjects.Projectiles" project="Software Methodologies Project" 
-    file="/Software Methodologies Project/src/physicsObjects/Projectiles.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="9" language="java" name="gameobjects.ProjectilesList" project="Software Methodologies Project" 
+    file="/Software Methodologies Project/src/gameobjects/ProjectilesList.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1241" y="983"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -82,8 +82,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="physicsObjects.Enemy" project="Software Methodologies Project" 
-    file="/Software Methodologies Project/src/physicsObjects/Enemy.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="gameobjects.Enemy" project="Software Methodologies Project" 
+    file="/Software Methodologies Project/src/gameobjects/Enemy.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1707" y="230"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -91,8 +91,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="physicsObjects.Boss" project="Software Methodologies Project" 
-    file="/Software Methodologies Project/src/physicsObjects/Boss.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="11" language="java" name="gameobjects.Boss" project="Software Methodologies Project" 
+    file="/Software Methodologies Project/src/gameobjects/Boss.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1885" y="540"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -220,149 +220,149 @@
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="18"/>  
-  </generalization>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="18"/>  
-  </generalization>  
-  <association id="29">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="30" name="lastState">        
-        <position height="20" width="60" x="1190" y="144"/>      
-      </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="-53"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
+  <association id="27">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="33" name="bullet">        
+      <attribute id="28" name="bullet">        
         <position height="20" width="39" x="1179" y="881"/>      
       </attribute>      
-      <multiplicity id="34" minimum="0" maximum="1">        
+      <multiplicity id="29" minimum="0" maximum="1">        
         <position height="0" width="0" x="-100" y="728"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="35">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="36" name="projectileArray">        
+  <association id="30">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="31" name="projectileList">        
         <position height="0" width="0" x="227" y="335"/>      
       </attribute>      
-      <multiplicity id="37" minimum="0" maximum="2147483647">        
+      <multiplicity id="32" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="227" y="335"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="23"/>    
+  <generalization id="33">    
+    <end type="SOURCE" refId="20"/>    
     <end type="TARGET" refId="18"/>  
   </generalization>  
-  <association id="39">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="40" name="projectileList">        
-        <position height="0" width="0" x="227" y="335"/>      
-      </attribute>      
-      <multiplicity id="41" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="227" y="335"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="42">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="43" name="game">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="44" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="45">    
-    <bendpoint x="1580" y="436"/>    
-    <bendpoint x="1547" y="427"/>    
-    <bendpoint x="1544" y="389"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="46" name="enemyArray">        
-        <position height="0" width="0" x="58" y="13"/>      
-      </attribute>      
-      <multiplicity id="47" minimum="0" maximum="2147483647">        
-        <position height="18" width="25" x="1531" y="349"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="48">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="49" name="currentState">        
-        <position height="20" width="79" x="1187" y="166"/>      
-      </attribute>      
-      <multiplicity id="50" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="-53"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="51">    
+  <generalization id="34">    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="18"/>  
   </generalization>  
-  <association id="52">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="53" name="player">        
-        <position height="0" width="0" x="-1" y="-24"/>      
-      </attribute>      
-      <multiplicity id="54" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1" y="-24"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="55">    
+  <association id="35">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="56" name="display">        
-        <position height="0" width="0" x="-422" y="65"/>      
-      </attribute>      
-      <multiplicity id="57" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-422" y="65"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="58">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="59" name="keyboard">        
+      <attribute id="36" name="keyboard">        
         <position height="20" width="61" x="599" y="577"/>      
       </attribute>      
-      <multiplicity id="60" minimum="0" maximum="1">        
+      <multiplicity id="37" minimum="0" maximum="1">        
         <position height="0" width="0" x="-445" y="250"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="61">    
+  <generalization id="38">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <association id="39">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="40" name="lastState">        
+        <position height="20" width="60" x="1190" y="144"/>      
+      </attribute>      
+      <multiplicity id="41" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="-53"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="42">    
+    <bendpoint x="1580" y="436"/>    
+    <bendpoint x="1547" y="427"/>    
+    <bendpoint x="1544" y="389"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="43" name="enemyArray">        
+        <position height="0" width="0" x="58" y="13"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="1531" y="349"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="45">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="46" name="player">        
+        <position height="0" width="0" x="-1" y="-24"/>      
+      </attribute>      
+      <multiplicity id="47" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1" y="-24"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="48">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="49" name="projectileArray">        
+        <position height="0" width="0" x="227" y="335"/>      
+      </attribute>      
+      <multiplicity id="50" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="227" y="335"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="51">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="52" name="display">        
+        <position height="0" width="0" x="-422" y="65"/>      
+      </attribute>      
+      <multiplicity id="53" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-422" y="65"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="54">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="55" name="game">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="56" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="57">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <generalization id="58">    
     <end type="SOURCE" refId="19"/>    
     <end type="TARGET" refId="18"/>  
   </generalization>  
+  <association id="59">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="60" name="currentState">        
+        <position height="20" width="79" x="1187" y="166"/>      
+      </attribute>      
+      <multiplicity id="61" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="-53"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
