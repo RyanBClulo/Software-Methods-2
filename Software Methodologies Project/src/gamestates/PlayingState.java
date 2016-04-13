@@ -2,7 +2,7 @@ package gamestates;
 
 import java.awt.Graphics;
 
-import gameobjects.EnemiesList;
+import gameobjectLists.EnemiesList;
 import gameobjects.EnemyFormation;
 import gameobjects.PlayerShip;
 import main.MainWindow;

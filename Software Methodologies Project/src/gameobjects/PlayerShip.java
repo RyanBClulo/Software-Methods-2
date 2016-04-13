@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import gameobjectLists.ProjectilesList;
 import graphics.Images;
 import main.MainWindow;
 

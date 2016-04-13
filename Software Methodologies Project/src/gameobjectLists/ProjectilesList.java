@@ -1,7 +1,9 @@
-package gameobjects;
+package gameobjectLists;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+
+import gameobjects.Projectile;
 
 public class ProjectilesList {
 	
