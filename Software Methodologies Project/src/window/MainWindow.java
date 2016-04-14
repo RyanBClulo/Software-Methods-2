@@ -3,6 +3,8 @@ package window;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+
+import score.Score;
 import display.Display;
 import gamestates.GameState;
 import gamestates.HandleQuitState;
@@ -181,6 +183,8 @@ public class MainWindow implements Runnable {
 		//This section renders the background
 		graphics.setColor(Color.black);                 
 		graphics.fillRect(0,0,width,height);
+		
+
 		
 		GameState.getCurrentGameState().draw(graphics); //Draw the current running game state
 		

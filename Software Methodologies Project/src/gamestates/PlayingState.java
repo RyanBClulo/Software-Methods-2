@@ -57,7 +57,8 @@ public class PlayingState extends GameState{
 	public void draw(Graphics graphics) {
 		renderingLoop(graphics);
 		player.draw(graphics);
-		graphics.drawString("Hello", 400, 30);
+		//Draw Score
+		Score.drawScore(graphics);
 	}
 	
 	@SuppressWarnings("static-access")

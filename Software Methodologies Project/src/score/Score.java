@@ -2,6 +2,7 @@ package score;
 
 import graphics.Images;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.io.File;
@@ -16,8 +17,10 @@ public class Score {
 		Scanner inputScores =new Scanner(new File("scores.txt"));
 	}
 	public static void drawScore(Graphics g){
-		g.setFont(new Font("TimesRoman", Font.PLAIN, 24)); 
-		g.drawString("Score: "+currentScore, 400, 30);
+		String scoreString="Score: "+currentScore;
+		g.setColor(Color.GREEN);
+		g.setFont(new Font("Helvetica", Font.BOLD, 24)); 
+		g.drawString(scoreString, 400-scoreString.length()*5, 30);
 	}
 
 }
