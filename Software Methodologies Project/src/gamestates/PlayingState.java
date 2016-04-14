@@ -7,6 +7,7 @@ import collision.Collision;
 import gameobjectLists.EnemiesList;
 import gameobjectLists.ProjectilesList;
 import gameobjects.EnemyFormation;
+import gameobjects.GameObjects;
 import gameobjects.PlayerShip;
 import gameobjects.Projectile;
 import main.MainWindow;
@@ -59,7 +60,7 @@ public class PlayingState extends GameState{
 				enemyIndex=r.nextInt(enemies.getEnemy1List().size());
 				enemyBullets.addProjectile(
 						new Projectile(game,
-								enemies.getEnemy1List().get(enemyIndex).getX(),
+								enemies.getEnemy1List().get(enemyIndex).getX()+(GameObjects.enemyWidth-GameObjects.bulletWidth)/2,
 								enemies.getEnemy1List().get(enemyIndex).getY(), 4.0f));
 			}
 		}
