@@ -17,7 +17,7 @@ import main.MainWindow;
  * @author Eder Paz
  */
 public class PlayingState extends GameState{
-	//asd
+	
 	private PlayerShip player;
 	private EnemiesList enemies;
 	private ProjectilesList enemyBullets;
@@ -61,7 +61,7 @@ public class PlayingState extends GameState{
 				enemyBullets.addProjectile(
 						new Projectile(game,
 								enemies.getEnemy1List().get(enemyIndex).getX()+(GameObjects.enemyWidth-GameObjects.bulletWidth)/2,
-								enemies.getEnemy1List().get(enemyIndex).getY(), 4.0f));
+								enemies.getEnemy1List().get(enemyIndex).getY()+GameObjects.enemyHeight/2, 8.0f));
 			}
 		}
 		
