@@ -1,5 +1,6 @@
 package gamestates;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
@@ -76,6 +77,7 @@ public class PlayingState extends GameState{
 		
 		collisionDetector.playerBulletEnemy(player.getBullets(),enemies);
 		collisionDetector.playerEnemy(player,enemies);
+		collisionDetector.playerEnemybullet(enemyBullets, player);
 	}
 	
 	/**
@@ -86,5 +88,8 @@ public class PlayingState extends GameState{
 		enemyBullets.draw(graphics);
 		enemies.draw(graphics);
 		player.draw(graphics);
+		graphics.setFont(font);
+		graphics.setColor(Color.WHITE);
+		graphics.drawString("Amount of Lives: "+player.getLife(),game.getWidth()/2-70,game.getHeight()-50);
 	}
 }

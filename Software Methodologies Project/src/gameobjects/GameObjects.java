@@ -17,7 +17,7 @@ public abstract class GameObjects {
 	protected float x,y;
 	protected int width, height;
 	protected float speed= 1.0f;
-	protected int health;
+	protected int life;
 	protected int counter;
 	protected Rectangle bounds;
 	
@@ -60,6 +60,14 @@ public abstract class GameObjects {
 	
 	public int getCounter(){
 		return counter;
+	}
+	
+	public int getLife(){
+		return life;
+	}
+	
+	public void setLife(int life){
+		this.life=life;
 	}
 	
 	public Rectangle getBounds(){

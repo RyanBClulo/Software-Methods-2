@@ -34,7 +34,7 @@ public class ProjectilesList {
 		projectileList.remove(projectile);
 	}
 	
-	public LinkedList<Projectile> getPlayerBullet(){
+	public LinkedList<Projectile> getBulletList(){
 		return projectileList;
 	}
 }

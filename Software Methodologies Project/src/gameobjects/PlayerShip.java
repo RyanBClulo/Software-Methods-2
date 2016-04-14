@@ -16,6 +16,7 @@ public class PlayerShip extends GameObjects{
 		super(game,0,0,playerWidth,playerHeight);
 		this.x=(float)(game.getWidth()-width)/2;
 		this.y=(float)(game.getHeight()-height)/1.2f;
+		life=5;
 		speed=4.0f;
 		bounds.x=5;
 		bounds.y=17;
@@ -61,7 +62,7 @@ public class PlayerShip extends GameObjects{
 	}
 	
 	public void playerDeath(){
-		setShipLocation((float)game.getWidth()/2,(float)game.getHeight()/1.2f);
+		setShipLocation((float)(game.getWidth()-width)/2,(float)(game.getHeight()-height)/1.2f);
 	}
 	
 	public ProjectilesList getBullets(){
