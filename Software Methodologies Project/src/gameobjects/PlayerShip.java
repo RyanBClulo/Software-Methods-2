@@ -1,9 +1,7 @@
 package gameobjects;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import gameobjectLists.ProjectilesList;
 import graphics.Images;
 import main.MainWindow;
@@ -34,7 +32,7 @@ public class PlayerShip extends GameObjects{
 		if(game.getKeyboard().shoot){
 			if(shoot){
 				shoot=false;
-				bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+(height)/2));
+				bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+(height)/2,-9.0f));
 			}
 		}else
 			shoot=true;    		
@@ -55,8 +53,6 @@ public class PlayerShip extends GameObjects{
 		bullet.draw((Graphics2D) g);
 		
 		g.drawImage(Images.player_ship,(int)x,(int)y,width,height,null);
-		g.setColor(Color.RED);
-		g.fillRect(bounds.x+(int)x, bounds.y+(int)y, bounds.width, bounds.height);
 	}
 	
 	public void setShipLocation(float x,float y) {
@@ -66,5 +62,9 @@ public class PlayerShip extends GameObjects{
 	
 	public void playerDeath(){
 		setShipLocation((float)game.getWidth()/2,(float)game.getHeight()/1.2f);
+	}
+	
+	public ProjectilesList getBullets(){
+		return bullet;
 	}
 }

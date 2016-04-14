@@ -18,6 +18,7 @@ public abstract class GameObjects {
 	protected int width, height;
 	protected float speed= 1.0f;
 	protected int health;
+	protected int counter;
 	protected Rectangle bounds;
 	
 	public GameObjects(MainWindow game,float x, float y, int width, int height){
@@ -55,6 +56,10 @@ public abstract class GameObjects {
 
 	public void setSpeed(float speed) {
 		this.speed = speed;
+	}
+	
+	public int getCounter(){
+		return counter;
 	}
 	
 	public Rectangle getBounds(){

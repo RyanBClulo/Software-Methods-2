@@ -1,17 +1,13 @@
 package gameobjectLists;
 
-import java.awt.Graphics2D;
-import java.util.ArrayList;
+import java.awt.Graphics;
+import java.util.LinkedList;
 
 import gameobjects.Projectile;
 
 public class ProjectilesList {
 	
-	private ArrayList<Projectile> projectileList;
-	
-	public ProjectilesList(){
-		projectileList = new ArrayList<Projectile>();
-	}
+	private LinkedList<Projectile> projectileList = new LinkedList<Projectile>();
 	
 	public void updateVariables(){
 		for( int i=0 ; i<projectileList.size() ; i++ ){
@@ -24,7 +20,7 @@ public class ProjectilesList {
 		}
 	}
 	
-	public void draw(Graphics2D g){
+	public void draw(Graphics g){
 		for( int i=0 ; i<projectileList.size() ; i++ ){
 			projectileList.get(i).draw(g);
 		}
@@ -36,5 +32,9 @@ public class ProjectilesList {
 	
 	public void removeProjectile(Projectile projectile){
 		projectileList.remove(projectile);
+	}
+	
+	public LinkedList<Projectile> getPlayerBullet(){
+		return projectileList;
 	}
 }

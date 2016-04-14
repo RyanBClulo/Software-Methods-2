@@ -1,13 +1,13 @@
 package gameobjectLists;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import gameobjects.Enemy;
 
 public class EnemiesList {
 	
-	private ArrayList<Enemy> enemy1 = new ArrayList<Enemy>();
+	private LinkedList<Enemy> enemy1 = new LinkedList<Enemy>();
 	
 	public void updateVariables(){
 		for(int x=0 ; x<enemy1.size() ; x++){
@@ -33,7 +33,7 @@ public class EnemiesList {
 		enemy1.remove(enemy);
 	}
 	
-	public ArrayList<Enemy> getEnemy1List(){
+	public LinkedList<Enemy> getEnemy1List(){
 		return enemy1;
 	}
 }
