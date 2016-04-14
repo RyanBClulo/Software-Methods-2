@@ -18,7 +18,7 @@ public class PlayerShip {
 		this.game=game;
 		this.shipX=(float)(game.getWidth()/2);
 		this.shipY=(float)(game.getHeight()/1.2);
-		this.speed=1.0f;
+		this.speed=4.0f;
 	}
 	
 	//update the player position on the screen

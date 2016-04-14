@@ -3,9 +3,11 @@ package gamestates;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.Iterator;
+
 import physicsObjects.Enemy;
 import physicsObjects.PlayerShip;
 import physicsObjects.Projectile;
+import score.Score;
 import window.EnemyPatterns;
 import window.LevelControl;
 import window.MainWindow;
@@ -55,6 +57,7 @@ public class PlayingState extends GameState{
 	public void draw(Graphics graphics) {
 		renderingLoop(graphics);
 		player.draw(graphics);
+		graphics.drawString("Hello", 400, 30);
 	}
 	
 	@SuppressWarnings("static-access")
@@ -88,7 +91,7 @@ public class PlayingState extends GameState{
 				EnemyPatterns.moveFormation(ship,LevelControl.getCurrentFormationPattern());
 			}
 		}
-	
+
 		// commented to work with the new bullet project
 		//This section keeps track of and renders all of the player projectiles in the arraylist within the Projectile Class
 		Projectile shot;
