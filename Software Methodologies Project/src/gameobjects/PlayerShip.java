@@ -16,7 +16,7 @@ public class PlayerShip extends GameObjects{
 		super(game,0,0,playerWidth,playerHeight);
 		this.x=(float)(game.getWidth()-width)/2;
 		this.y=(float)(game.getHeight()-height)/1.2f;
-		speed=2.0f;
+		speed=4.0f;
 		bounds.x=5;
 		bounds.y=17;
 		bounds.width=width-2*bounds.x;
