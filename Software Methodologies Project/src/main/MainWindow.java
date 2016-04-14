@@ -3,41 +3,44 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.Iterator;
+import java.util.Random;
+
 import display.Display;
-import gamestates.GameState;
-import gamestates.HandleQuitState;
-import gamestates.PauseState;
-import gamestates.PlayingState;
-import gamestates.ShipSelectionState;
-import gamestates.StartMenuState;
+import gamestates.*;
 import graphics.Images;
-import input.Keyboard;
-import input.Mouse;
+import input.*;
+import physicsObjects.*;
 
 public class MainWindow implements Runnable {
 	
-	private int counter;
-	private long lasttime;
-	private long newtime;
+	private int 	counter;
+	private long	lasttime,
+					newtime;
 	
-	private String name;
-	private int width;
-	private int height;
+	private String	name;
+	private int 	width,
+					height,
+					starX;
 	
-	private BufferStrategy bs;
-	private Graphics graphics;
-	private Thread thread;
-	private Display display;
-	private boolean running=false;
+	private BufferStrategy	bs;
+	private Graphics	graphics;
+	private Thread		thread;
+	private Display		display;
+	private boolean		running=false;
 	
-	private static Keyboard keyboard;
-	private static Mouse mouse;
+	private static		Keyboard keyboard;
+	private static		Mouse mouse;
 	
-	private GameState playingState;
-	private GameState startMenuState;
-	private GameState handleQuitState;
-	private GameState pauseState;
-	private GameState shipSelectionState;
+	private GameState	playingState,
+						startMenuState,
+						handleQuitState,
+						pauseState,
+						shipSelectionState;
+	
+	private Stars bullet = new Stars();
+	Random r = new Random();
+	
 	
 	/**
 	 * Sets Game window variables.
@@ -98,7 +101,7 @@ public class MainWindow implements Runnable {
 				lasttime=newtime;
 			}
 			
-			int fps = 100;
+			int fps = 60;
 			double timePerTick = 1000000000/fps;
 			double delta = 0;
 			long now;
@@ -155,6 +158,7 @@ public class MainWindow implements Runnable {
 		pauseState = new PauseState(this);
 		shipSelectionState = new ShipSelectionState(this);
 		GameState.setGameStateTo(startMenuState);
+		
 	}
 	
 	/**
@@ -179,15 +183,45 @@ public class MainWindow implements Runnable {
 		//DRAW HERE!!!!!!!
 		
 		//This section renders the background
-		graphics.setColor(Color.black);                 
+		graphics.setColor(Color.black);
 		graphics.fillRect(0,0,width,height);
 		
+		starLoop(graphics);
 		GameState.getCurrentGameState().draw(graphics); //Draw the current running game state
 		
 		//RENDERS EVERYTHING TOGETHER AND DRAWS IT!!!!
 		bs.show();
 		graphics.dispose();
 	}
+	
+	
+	/**
+	 * 
+	 * @param graphics
+	 */
+	public void starLoop(Graphics graphics) {
+		
+		// commented to work with the new bullet project
+		//This section keeps track of and renders all of the player star in the starlist within the Star Class
+		
+		starX = r.nextInt(getWidth());
+		
+		bullet.addStar(new Star((int)starX,(int)-10));
+		Star shot;
+		Iterator<Star> starIterator = Star.StarIterator();
+		while (starIterator.hasNext()) {
+			shot = (Star) starIterator.next();
+			if (shot.exists()){
+				shot.updateVariables();
+				shot.draw(graphics);
+			}
+		}
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * Getter of the game window width.
