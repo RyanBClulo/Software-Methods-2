@@ -58,7 +58,8 @@ public class PlayingState extends GameState{
 				counter=0;
 				enemyIndex=r.nextInt(enemies.getEnemy1List().size());
 				enemyBullets.addProjectile(
-						new Projectile(game,enemies.getEnemy1List().get(enemyIndex).getX(),
+						new Projectile(game,
+								enemies.getEnemy1List().get(enemyIndex).getX(),
 								enemies.getEnemy1List().get(enemyIndex).getY(), 4.0f));
 			}
 		}
