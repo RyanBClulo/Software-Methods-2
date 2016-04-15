@@ -15,7 +15,7 @@ public class Keyboard implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-	    switch( keyCode ) { 
+		switch( keyCode ) { 
 	        case KeyEvent.VK_UP:
 	            // handle up (Moves the ship in the positive direction)
 	        	moveUp=true;

@@ -27,8 +27,8 @@ public class MainWindow implements Runnable {
 	private Display		display;
 	private boolean		running=false;
 	
-	private static		Keyboard keyboard;
-	private static		Mouse mouse;
+	private				Keyboard keyboard;
+	private				Mouse mouse;
 	
 	private GameState	playingState,
 						startMenuState,
