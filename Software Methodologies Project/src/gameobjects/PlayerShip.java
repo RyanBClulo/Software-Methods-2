@@ -1,7 +1,6 @@
 package gameobjects;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import gameobjectLists.ProjectilesList;
 import graphics.Images;
 import main.MainWindow;
@@ -51,7 +50,7 @@ public class PlayerShip extends GameObjects{
 	//draws the player on the screen
 	public void draw(Graphics g){
 		
-		bullet.draw((Graphics2D) g);
+		bullet.draw(g);
 		
 		g.drawImage(Images.player_ship,(int)x,(int)y,width,height,null);
 	}

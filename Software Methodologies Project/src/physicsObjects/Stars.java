@@ -1,14 +1,7 @@
 package physicsObjects;
 
-/**
- * @author Franco Reda
- * 
- * @version Created: April 11, 2016
- */
-
-import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.util.ArrayList;
-
 import main.GameLauncher;
 
 public class Stars {
@@ -22,7 +15,7 @@ public class Stars {
 	public void updateVariables(){
 		for( int i=0 ; i<starList.size() ; i++ ){
 			if(starList.get(i)!=null){
-				if(starList.get(i).currentLocation().getY()>(GameLauncher.gameHeight+10))
+				if(starList.get(i).currentLocation().y>(GameLauncher.gameHeight+10))
 					removeStar(starList.get(i));
 				else
 					starList.get(i).updateVariables();
@@ -30,7 +23,7 @@ public class Stars {
 		}
 	}
 	
-	public void draw(Graphics2D g){
+	public void draw(Graphics g){
 		for( int i=0 ; i<starList.size() ; i++ ){
 			starList.get(i).draw(g);
 		}
