@@ -29,7 +29,7 @@ public class PlayerShip extends GameObjects{
 		bullet.updateVariables();
 		
 		//Controls player so only one bullet is shot by space press
-		if(game.getKeyboard().shoot){
+		if(game.getKeyboard().space()){
 			if(shoot){
 				shoot=false;
 				bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+(height)/2,-9.0f));
@@ -37,13 +37,13 @@ public class PlayerShip extends GameObjects{
 		}else
 			shoot=true;    		
 		
-		if(	y	>	0	&&	game.getKeyboard().moveUp)
+		if(	y	>	0	&&	game.getKeyboard().up())
     		y-=speed;
-    	if(	y	<	game.getHeight()-height	&&	game.getKeyboard().moveDown)
+    	if(	y	<	game.getHeight()-height	&&	game.getKeyboard().down())
     		y+=speed;
-    	if(	x	>	0	&&	game.getKeyboard().moveLeft)
+    	if(	x	>	0	&&	game.getKeyboard().right())
     		x-=speed;
-    	if(	x	<	game.getWidth()-width	&&	game.getKeyboard().moveRight)
+    	if(	x	<	game.getWidth()-width	&&	game.getKeyboard().left())
     		x+=speed;
 	}
 	

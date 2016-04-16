@@ -66,7 +66,7 @@ public class PlayingState extends GameState{
 			}
 		}
 		
-		if(game.getKeyboard().esc){
+		if(game.getKeyboard().esc()){
 			if(GameState.getChangeState()){
 				GameState.setGameStateTo(game.pauseState());
 				GameState.setChangeState(false);

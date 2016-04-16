@@ -24,17 +24,17 @@ public class StartMenuState extends GameState{
 	 */
 	@Override
 	public void updateVariables() {
-		if(game.getMouse().rightPressed){
+		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
-				if(game.getMouse().mouseX >= 200 && game.getMouse().mouseX <= 600){
-					if(game.getMouse().mouseY >= 332 && game.getMouse().mouseY <= 407){
+				if(game.getMouse().getMouseX() >= 200 && game.getMouse().getMouseX() <= 600){
+					if(game.getMouse().getMouseY() >= 332 && game.getMouse().getMouseY() <= 407){
 						GameState.setGameStateTo(game.shipSelectionState());
 						GameState.setChangeState(false);
 					}
-					if(game.getMouse().mouseY >= 437 && game.getMouse().mouseY <= 512){
+					if(game.getMouse().getMouseY() >= 437 && game.getMouse().getMouseY() <= 512){
 						//Place for got to showScoreState
 					}
-					if(game.getMouse().mouseY >= 542 && game.getMouse().mouseY <= 617){
+					if(game.getMouse().getMouseY() >= 542 && game.getMouse().getMouseY() <= 617){
 						GameState.setGameStateTo(game.handleQuitState());
 						GameState.setChangeState(false);
 					}

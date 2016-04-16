@@ -13,19 +13,19 @@ public class PauseState extends GameState{
 
 	@Override
 	public void updateVariables() {
-		if(game.getKeyboard().esc){
+		if(game.getKeyboard().esc()){
 			if(GameState.getChangeState()){
 				GameState.setGameStateTo(game.playingState());
 				GameState.setChangeState(false);
 			}
-		}else if(game.getMouse().rightPressed){
+		}else if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
-				if(game.getMouse().mouseX >= 325 && game.getMouse().mouseX <= 475){
-					if(game.getMouse().mouseY >= 410 && game.getMouse().mouseY <= 460){
+				if(game.getMouse().getMouseX() >= 325 && game.getMouse().getMouseX() <= 475){
+					if(game.getMouse().getMouseY() >= 410 && game.getMouse().getMouseY() <= 460){
 						GameState.setGameStateTo(game.playingState());
 						GameState.setChangeState(false);
 					}
-					if(game.getMouse().mouseY >= 490 && game.getMouse().mouseY <= 540){
+					if(game.getMouse().getMouseY() >= 490 && game.getMouse().getMouseY() <= 540){
 						GameState.setGameStateTo(game.handleQuitState());
 						GameState.setChangeState(false);
 					}

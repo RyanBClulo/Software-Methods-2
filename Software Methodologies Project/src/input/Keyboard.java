@@ -5,12 +5,12 @@ import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener{
 	
-	public boolean moveUp =false;
-	public boolean moveDown =false;
-	public boolean moveLeft =false;
-	public boolean moveRight =false;
-	public boolean shoot = false;
-	public boolean esc = false;
+	private boolean moveUp =false;
+	private boolean moveDown =false;
+	private boolean moveLeft =false;
+	private boolean moveRight =false;
+	private boolean shoot = false;
+	private boolean esc = false;
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -74,5 +74,29 @@ public class Keyboard implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		
+	}
+	
+	public boolean up(){
+		return moveUp;
+	}
+	
+	public boolean down(){
+		return moveDown;
+	}
+	
+	public boolean left(){
+		return moveLeft;
+	}
+	
+	public boolean right(){
+		return moveRight;
+	}
+	
+	public boolean space(){
+		return shoot;
+	}
+	
+	public boolean esc(){
+		return esc;
 	}
 }

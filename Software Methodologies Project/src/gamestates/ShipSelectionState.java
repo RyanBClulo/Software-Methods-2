@@ -13,14 +13,14 @@ public class ShipSelectionState extends GameState{
 
 	@Override
 	public void updateVariables() {
-		if(game.getMouse().rightPressed){
+		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
-				if(game.getMouse().mouseY >= 425 && game.getMouse().mouseY <= 525){
-					if(game.getMouse().mouseX >= 275 && game.getMouse().mouseX <= 375){
+				if(game.getMouse().getMouseY() >= 425 && game.getMouse().getMouseY() <= 525){
+					if(game.getMouse().getMouseX() >= 275 && game.getMouse().getMouseX() <= 375){
 						GameState.setGameStateTo(game.playingState());
 						GameState.setChangeState(false);
 					}
-					if(game.getMouse().mouseX >= 425 && game.getMouse().mouseX <= 525){
+					if(game.getMouse().getMouseX() >= 425 && game.getMouse().getMouseX() <= 525){
 						GameState.setGameStateTo(game.playingState());
 						GameState.setChangeState(false);
 					}
@@ -40,10 +40,10 @@ public class ShipSelectionState extends GameState{
 		graphics.drawRect((game.getWidth()-250)/2,(game.getHeight()-100)/2,100,100);
 		graphics.drawRect((game.getWidth()-250)/2+100+50,(game.getHeight()-100)/2,100,100);
 		
-		if(game.getMouse().mouseY >= 425 && game.getMouse().mouseY <= 525){
-			if(game.getMouse().mouseX >= 275 && game.getMouse().mouseX <= 375)
+		if(game.getMouse().getMouseY() >= 425 && game.getMouse().getMouseY() <= 525){
+			if(game.getMouse().getMouseX() >= 275 && game.getMouse().getMouseX() <= 375)
 				graphics.drawString("Ship 1 Atributes",330,590);
-			if(game.getMouse().mouseX >= 425 && game.getMouse().mouseX <= 525)
+			if(game.getMouse().getMouseX() >= 425 && game.getMouse().getMouseX() <= 525)
 				graphics.drawString("Ship 2 Atributes",330,590);
 				
 		}

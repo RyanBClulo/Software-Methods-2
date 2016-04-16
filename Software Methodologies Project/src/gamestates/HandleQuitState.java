@@ -24,16 +24,16 @@ public class HandleQuitState extends GameState{
 	 */
 	@Override
 	public void updateVariables() {
-		if(game.getMouse().rightPressed){
+		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
-				if(game.getMouse().mouseX >= 325 && game.getMouse().mouseX <= 475){
-					if(game.getMouse().mouseY >= 410 && game.getMouse().mouseY <= 460){
+				if(game.getMouse().getMouseX() >= 325 && game.getMouse().getMouseX() <= 475){
+					if(game.getMouse().getMouseY() >= 410 && game.getMouse().getMouseY() <= 460){
 						if(GameState.getLastGameState()==game.startMenu())
 							game.stop();
 						else
 							GameState.setGameStateTo(game.startMenu());
 					}
-					if(game.getMouse().mouseY >= 490 && game.getMouse().mouseY <= 540){
+					if(game.getMouse().getMouseY() >= 490 && game.getMouse().getMouseY() <= 540){
 						GameState.backToLastState();
 						GameState.setChangeState(false);
 					}

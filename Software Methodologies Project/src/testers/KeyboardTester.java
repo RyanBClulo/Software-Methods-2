@@ -1,9 +1,8 @@
 package testers;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import java.awt.Button;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 import org.junit.Test;
 import input.Keyboard;
 
@@ -17,16 +16,17 @@ public class KeyboardTester {
 		
 		Keyboard keyboard = new Keyboard();
 		
-		assertTrue(!keyboard.moveDown);
-		assertTrue(!keyboard.moveUp);
-		assertTrue(!keyboard.moveRight);
-		assertTrue(!keyboard.moveLeft);
-		assertTrue(!keyboard.esc);
-		assertTrue(!keyboard.shoot);
+		assertFalse(keyboard.down());
+		assertFalse(keyboard.up());
+		assertFalse(keyboard.right());
+		assertFalse(keyboard.left());
+		assertFalse(keyboard.esc());
+		assertFalse(keyboard.space());
 	}
 	
 	/**
-	 * Test if the moveDown variable changes whenever the key down is pressed on the keyboard
+	 * Test if the moveDown variable changes whenever the key down is pressed on the keyboard.<br>
+	 * Test if any of the other variables are not changed by this actions to.
 	 */
 	@Test
 	public void moveDownVariable(){
@@ -36,16 +36,28 @@ public class KeyboardTester {
 		Button button = new Button("");
 		KeyEvent event = new KeyEvent(button,1,20,1,KeyEvent.VK_DOWN,' ');
 		
-		for(int x=0 ; x<1000 ; x++){
+		for(int x=0 ; x<501 ; x++){
 			keyboard.keyReleased(event);
-			assertTrue(!keyboard.moveDown);
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.esc());
+			assertFalse(keyboard.space());
+			
 			keyboard.keyPressed(event);
-			assertTrue(keyboard.moveDown);
+			assertTrue(keyboard.down());
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.esc());
+			assertFalse(keyboard.space());
 		}
 	}
 	
 	/**
-	 * Test if the moveUp variable changes whenever the key up is pressed on the keyboard
+	 * Test if the moveUp variable changes whenever the key up is pressed on the keyboard.<br>
+	 * Test if any of the other variables are not changed by this actions to.
 	 */
 	@Test
 	public void moveUpVariable(){
@@ -55,16 +67,28 @@ public class KeyboardTester {
 		Button button = new Button("");
 		KeyEvent event = new KeyEvent(button,1,20,1,KeyEvent.VK_UP,' ');
 		
-		for(int x=0 ; x<1000 ; x++){
+		for(int x=0 ; x<501 ; x++){
 			keyboard.keyReleased(event);
-			assertTrue(!keyboard.moveUp);
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.esc());
+			assertFalse(keyboard.space());
+			
 			keyboard.keyPressed(event);
-			assertTrue(keyboard.moveUp);
+			assertTrue(keyboard.up());
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.esc());
+			assertFalse(keyboard.space());
 		}
 	}
 	
 	/**
-	 * Test if the moveRight variable changes whenever the key right is pressed on the keyboard
+	 * Test if the moveRight variable changes whenever the key right is pressed on the keyboard.<br>
+	 * Test if any of the other variables are not changed by this actions to.
 	 */
 	@Test
 	public void moveRightVariable(){
@@ -74,16 +98,28 @@ public class KeyboardTester {
 		Button button = new Button("");
 		KeyEvent event = new KeyEvent(button,1,20,1,KeyEvent.VK_RIGHT,' ');
 		
-		for(int x=0 ; x<1000 ; x++){
+		for(int x=0 ; x<501 ; x++){
 			keyboard.keyReleased(event);
-			assertTrue(!keyboard.moveRight);
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.esc());
+			assertFalse(keyboard.space());
+			
 			keyboard.keyPressed(event);
-			assertTrue(keyboard.moveRight);
+			assertTrue(keyboard.right());
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.esc());
+			assertFalse(keyboard.space());
 		}
 	}
 	
 	/**
-	 * Test if the moveLeft variable changes whenever the key left is pressed on the keyboard
+	 * Test if the moveLeft variable changes whenever the key left is pressed on the keyboard.<br>
+	 * Test if any of the other variables are not changed by this actions to.
 	 */
 	@Test
 	public void moveLeftVariable(){
@@ -95,14 +131,26 @@ public class KeyboardTester {
 		
 		for(int x=0 ; x<1000 ; x++){
 			keyboard.keyReleased(event);
-			assertTrue(!keyboard.moveLeft);
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.esc());
+			assertFalse(keyboard.space());
+			
 			keyboard.keyPressed(event);
-			assertTrue(keyboard.moveLeft);
+			assertTrue(keyboard.left());
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.esc());
+			assertFalse(keyboard.space());
 		}
 	}
 	
 	/**
-	 * Test if the shoot variable changes whenever the space bar is pressed on the keyboard
+	 * Test if the shoot variable changes whenever the space bar is pressed on the keyboard.<br>
+	 * Test if any of the other variables are not changed by this actions to.
 	 */
 	@Test
 	public void shootVariable(){
@@ -114,14 +162,26 @@ public class KeyboardTester {
 		
 		for(int x=0 ; x<1000 ; x++){
 			keyboard.keyReleased(event);
-			assertTrue(!keyboard.shoot);
+			assertFalse(keyboard.space());
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.esc());
+			
 			keyboard.keyPressed(event);
-			assertTrue(keyboard.shoot);
+			assertTrue(keyboard.space());
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.esc());
 		}
 	}
 	
 	/**
-	 * Test if the shoot variable changes whenever the space bar is pressed on the keyboard
+	 * Test if the esc variable changes whenever the escape key is pressed on the keyboard.<br>
+	 * Test if any of the other variables are not changed by this actions to.
 	 */
 	@Test
 	public void escVariable(){
@@ -133,9 +193,20 @@ public class KeyboardTester {
 		
 		for(int x=0 ; x<1000 ; x++){
 			keyboard.keyReleased(event);
-			assertTrue(!keyboard.esc);
+			assertFalse(keyboard.esc());
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.space());
+			
 			keyboard.keyPressed(event);
-			assertTrue(keyboard.esc);
+			assertTrue(keyboard.esc());
+			assertFalse(keyboard.down());
+			assertFalse(keyboard.up());
+			assertFalse(keyboard.right());
+			assertFalse(keyboard.left());
+			assertFalse(keyboard.space());
 		}
 	}
 	
@@ -149,41 +220,34 @@ public class KeyboardTester {
 		Button button = new Button("");
 		KeyEvent event = new KeyEvent(button,1,20,1,0,' ');
 		
-		Random r = new Random();
-		int keyCode;
-		
-		for(int x=0 ; x<1000 ; x++){
-			do{
-				keyCode = r.nextInt(256);
-			}while(	keyCode==KeyEvent.VK_ESCAPE || keyCode==KeyEvent.VK_SPACE ||
-					keyCode==KeyEvent.VK_UP || keyCode==KeyEvent.VK_DOWN ||
-					keyCode==KeyEvent.VK_RIGHT || keyCode==KeyEvent.VK_LEFT);
-			
-			event.setKeyCode(keyCode);
-			
-			keyboard.keyReleased(event);
-			assertTrue(!keyboard.esc);
-			assertTrue(!keyboard.shoot);
-			assertTrue(!keyboard.moveDown);
-			assertTrue(!keyboard.moveUp);
-			assertTrue(!keyboard.moveRight);
-			assertTrue(!keyboard.moveLeft);
-			
-			keyboard.keyPressed(event);
-			assertTrue(!keyboard.esc);
-			assertTrue(!keyboard.shoot);
-			assertTrue(!keyboard.moveDown);
-			assertTrue(!keyboard.moveUp);
-			assertTrue(!keyboard.moveRight);
-			assertTrue(!keyboard.moveLeft);
-			
-			keyboard.keyTyped(event);
-			assertTrue(!keyboard.esc);
-			assertTrue(!keyboard.shoot);
-			assertTrue(!keyboard.moveDown);
-			assertTrue(!keyboard.moveUp);
-			assertTrue(!keyboard.moveRight);
-			assertTrue(!keyboard.moveLeft);
+		for(int x=0 ; x<256 ; x++){
+			if(x!=KeyEvent.VK_ESCAPE&&x!=KeyEvent.VK_SPACE&&x!=KeyEvent.VK_UP&&x!=KeyEvent.VK_DOWN&&x!=KeyEvent.VK_RIGHT&&x!=KeyEvent.VK_LEFT){
+				event.setKeyCode(x);
+				
+				keyboard.keyReleased(event);
+				assertFalse(keyboard.esc());
+				assertFalse(keyboard.space());
+				assertFalse(keyboard.down());
+				assertFalse(keyboard.up());
+				assertFalse(keyboard.right());
+				assertFalse(keyboard.left());
+				
+				keyboard.keyPressed(event);
+				assertFalse(keyboard.esc());
+				assertFalse(keyboard.space());
+				assertFalse(keyboard.down());
+				assertFalse(keyboard.up());
+				assertFalse(keyboard.right());
+				assertTrue(!keyboard.left());
+				
+				keyboard.keyTyped(event);
+				assertFalse(keyboard.esc());
+				assertFalse(keyboard.space());
+				assertFalse(keyboard.down());
+				assertFalse(keyboard.up());
+				assertFalse(keyboard.right());
+				assertFalse(keyboard.left());
+			}
 		}		
 	}
 }
