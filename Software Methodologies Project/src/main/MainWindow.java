@@ -268,4 +268,8 @@ public class MainWindow implements Runnable {
 	public GameState shipSelectionState(){
 		return shipSelectionState;
 	}
+	
+	public PlayingState getPlayingState(){
+		return (PlayingState)playingState;
+	}
 }

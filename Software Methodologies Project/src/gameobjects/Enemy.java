@@ -18,13 +18,15 @@ public class Enemy extends GameObjects{
 	
 	private int movingPattern;
 	private int movingStage;
+	private int anim;
 	private boolean rush = true;
 	private final int distance=100;
 	private float xINI,yINI;
 	
-	public Enemy(MainWindow game,int x,int y,int movingPattern){
+	public Enemy(MainWindow game,int x,int y,int movingPattern,int anim){
 		super(game,x,y,enemyWidth,enemyHeight);
 		this.movingPattern = movingPattern;
+		this.anim=anim;
 		bounds.x=5;
 		bounds.y=5;
 		bounds.width=width-2*bounds.x;
@@ -107,6 +109,6 @@ public class Enemy extends GameObjects{
 	}
 	
 	public void draw(Graphics g){
-		g.drawImage(Images.enemy_ship,(int)x,(int)y,width,height,null);
+		g.drawImage(Images.enemyShip[anim],(int)x,(int)y,width,height,null);
 	}	
 }

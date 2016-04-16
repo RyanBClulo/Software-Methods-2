@@ -92,4 +92,8 @@ public class PlayingState extends GameState{
 		graphics.setColor(Color.WHITE);
 		graphics.drawString("Amount of Lives: "+player.getLife(),game.getWidth()/2-70,game.getHeight()-50);
 	}
+	
+	public PlayerShip getPlayerShip(){
+		return player;
+	}
 }

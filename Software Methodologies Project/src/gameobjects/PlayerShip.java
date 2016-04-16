@@ -7,7 +7,8 @@ import main.MainWindow;
 
 public class PlayerShip extends GameObjects{
 	
-	private boolean shoot=true;
+	private int shootSpam;
+	private int ship;
 	
 	private ProjectilesList bullet = new ProjectilesList();
 	
@@ -28,22 +29,21 @@ public class PlayerShip extends GameObjects{
 		
 		bullet.updateVariables();
 		
-		//Controls player so only one bullet is shot by space press
 		if(game.getKeyboard().space()){
-			if(shoot){
-				shoot=false;
-				bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+(height)/2,-9.0f));
+			if(counter==0)bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+(height)/2,-9.0f));
+			counter++;
+			if(counter>shootSpam){
+				counter=0;
 			}
-		}else
-			shoot=true;    		
+		}    		
 		
 		if(	y	>	0	&&	game.getKeyboard().up())
     		y-=speed;
     	if(	y	<	game.getHeight()-height	&&	game.getKeyboard().down())
     		y+=speed;
-    	if(	x	>	0	&&	game.getKeyboard().right())
+    	if(	x	>	0	&&	game.getKeyboard().left())
     		x-=speed;
-    	if(	x	<	game.getWidth()-width	&&	game.getKeyboard().left())
+    	if(	x	<	game.getWidth()-width	&&	game.getKeyboard().right())
     		x+=speed;
 	}
 	
@@ -52,7 +52,7 @@ public class PlayerShip extends GameObjects{
 		
 		bullet.draw(g);
 		
-		g.drawImage(Images.player_ship,(int)x,(int)y,width,height,null);
+		g.drawImage(Images.playerShip[ship],(int)x,(int)y,width,height,null);
 	}
 	
 	public void setShipLocation(float x,float y) {
@@ -66,5 +66,16 @@ public class PlayerShip extends GameObjects{
 	
 	public ProjectilesList getBullets(){
 		return bullet;
+	}
+	
+	public void setShip(int ship){
+		this.ship=ship;
+		if(ship==0){
+			speed=3.0f;
+			shootSpam=20;
+		}else{
+			speed=4.0f;
+			shootSpam=30;
+		}
 	}
 }
