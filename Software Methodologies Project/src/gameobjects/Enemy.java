@@ -35,10 +35,6 @@ public class Enemy extends GameObjects{
 	}
 	
 	public void updateVariables(){
-		counter++;
-		
-		if(counter==101)
-			counter=0;
 		
 		if(rush){
 			y+=speed;
@@ -99,6 +95,44 @@ public class Enemy extends GameObjects{
 						y+=speed;
 						if((int)Math.abs(yINI-y)==0){
 							movingStage=0;
+							speed*=-1;
+						}
+					}
+					break;
+				}
+			case 2:
+				switch(movingStage){
+				case 0:
+					if(Math.abs(xINI-x)<distance/2){
+						x+=speed;
+					}else if (Math.abs(yINI-y)<distance){
+						y+=speed;
+						if((int)Math.abs(yINI-y)==distance){
+							movingStage++;
+							speed*=-1;
+							xINI=x;
+							yINI=y;
+						}
+					}
+					break;
+				case 1:
+					if(Math.abs(xINI-x)<distance){
+						x+=speed;
+					}else if (Math.abs(yINI-y)<distance){
+						y+=speed;
+						if((int)Math.abs(yINI-y)==distance){
+							movingStage++;
+							speed*=-1;
+						}
+					}
+					break;
+				case 2:
+					if(Math.abs(xINI-x)>0){
+						x+=speed;
+					}else if (Math.abs(yINI-y)>0){
+						y+=speed;
+						if((int)Math.abs(yINI-y)==0){
+							movingStage--;
 							speed*=-1;
 						}
 					}

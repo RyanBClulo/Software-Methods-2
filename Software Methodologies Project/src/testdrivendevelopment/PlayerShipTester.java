@@ -3,8 +3,8 @@ package testdrivendevelopment;
 import static org.junit.Assert.*;
 
 import java.awt.Button;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-
 import org.junit.Test;
 import gameobjects.PlayerShip;
 import main.MainWindow;
@@ -32,6 +32,30 @@ public class PlayerShipTester {
 				assertEquals(5,player.getLife());
 			}
 		}		
+	}
+	
+	/**
+	 * Test if the player is moved to the correct position using the setShipLocation() method.<br>
+	 * Test if the player gets back to the initial position using the playerDeath() method.
+	 */
+	@Test
+	public void setShipLocationAndPlayerDeathFunctions(){
+		
+		MainWindow game = new MainWindow("",900,900);
+		PlayerShip player = new PlayerShip(game);
+		
+		for(int x=0 ; x<200 ; x++){
+			for(int y=0 ; y<200 ; y++){
+				
+				player.setShipLocation(x,y);
+				assertEquals(x,player.getX(),0.0f);
+				assertEquals(y,player.getY(),0.0f);
+				
+				player.playerDeath();
+				assertEquals((900-50)/2,player.getX(),0.0f);
+				assertEquals((900-50)/1.2f,player.getY(),0.0f);
+			}
+		}
 	}
 	
 	/**
@@ -87,30 +111,6 @@ public class PlayerShipTester {
 	}
 	
 	/**
-	 * Test if the player is moved to the correct position using the setShipLocation() method.<br>
-	 * Test if the player gets back to the initial position using the playerDeath() method.
-	 */
-	@Test
-	public void setShipLocationAndPlayerDeathFunctions(){
-		
-		MainWindow game = new MainWindow("",900,900);
-		PlayerShip player = new PlayerShip(game);
-		
-		for(int x=0 ; x<200 ; x++){
-			for(int y=0 ; y<200 ; y++){
-				
-				player.setShipLocation(x,y);
-				assertEquals(x,player.getX(),0.0f);
-				assertEquals(y,player.getY(),0.0f);
-				
-				player.playerDeath();
-				assertEquals((900-50)/2,player.getX(),0.0f);
-				assertEquals((900-50)/1.2f,player.getY(),0.0f);
-			}
-		}
-	}
-	
-	/**
 	 * Test if the player moves up according o its speed when the key up is pressed.<br>
 	 * Test if the player stops moving when gets to the higher limit of the screen (y position 0).
 	 */
@@ -120,33 +120,33 @@ public class PlayerShipTester {
 		KeyEvent event = new KeyEvent(button,1,20,1,KeyEvent.VK_UP,' ');
 		
 		MainWindow game = new MainWindow("",900,900);
+		PlayerShip player = new PlayerShip(game);
 		
-		PlayerShip player1 = new PlayerShip(game);
-		player1.setShip(0); //set player's speed to zero, check setShipFunction() method
+		player.setShip(0); //set player's speed, check setShipFunction() method
 		
 		game.getKeyboard().keyPressed(event);
 		
 		for(int x=0 ; x<1000 ; x++){
-			if(player1.getY()>0){
-				assertEquals((900-50)/1.2f-x*3.0f,player1.getY(),0.0f);
+			if(player.getY()>0){
+				assertEquals((900-50)/1.2f-x*3.0f,player.getY(),0.0f);
 			}else{
-				assertEquals(0.0f,player1.getY(),3.0f);
+				assertEquals(0.0f,player.getY(),3.0f);
 			}
-			player1.updateVariables();
+			player.updateVariables(); //move the player
 		}
 		
-		PlayerShip player2 = new PlayerShip(game);
-		player2.setShip(1); //set player's speed to zero, check setShipFunction() method
+		player.playerDeath(); //gets the player to the initial position, check setShipLocationAndPlayerDeathFunctions() method
+		player.setShip(1); //set player's speed, check setShipFunction() method
 		
 		game.getKeyboard().keyPressed(event);
 		
 		for(int x=0 ; x<1000 ; x++){
-			if(player2.getY()>0){
-				assertEquals((900-50)/1.2f-x*4.0f,player2.getY(),0.0f);
+			if(player.getY()>0){
+				assertEquals((900-50)/1.2f-x*4.0f,player.getY(),0.0f);
 			}else{
-				assertEquals(0.0f,player2.getY(),4.0f);
+				assertEquals(0.0f,player.getY(),4.0f);
 			}
-			player2.updateVariables();
+			player.updateVariables();
 		}	
 	}
 	
@@ -160,33 +160,33 @@ public class PlayerShipTester {
 		KeyEvent event = new KeyEvent(button,1,20,1,KeyEvent.VK_DOWN,' ');
 		
 		MainWindow game = new MainWindow("",900,900);
+		PlayerShip player = new PlayerShip(game);
 		
-		PlayerShip player1 = new PlayerShip(game);
-		player1.setShip(0); //set player's speed to zero, check setShipFunction() method
+		player.setShip(0); //set player's speed to zero, check setShipFunction() method
 		
 		game.getKeyboard().keyPressed(event);
 		
 		for(int x=0 ; x<1000 ; x++){
-			if(player1.getY()<850){
-				assertEquals((900-50)/1.2f+x*3.0f,player1.getY(),0.0f);
+			if(player.getY()<850){
+				assertEquals((900-50)/1.2f+x*3.0f,player.getY(),0.0f);
 			}else{
-				assertEquals(850,player1.getY(),3.0f);
+				assertEquals(850,player.getY(),3.0f);
 			}
-			player1.updateVariables();
+			player.updateVariables();
 		}
 		
-		PlayerShip player2 = new PlayerShip(game);
-		player2.setShip(1); //set player's speed to zero, check setShipFunction() method
+		player.playerDeath(); //gets the player to the initial position, check setShipLocationAndPlayerDeathFunctions() method
+		player.setShip(1); //set player's speed to zero, check setShipFunction() method
 		
 		game.getKeyboard().keyPressed(event);
 		
 		for(int x=0 ; x<1000 ; x++){
-			if(player2.getY()<850){
-				assertEquals((900-50)/1.2f+x*4.0f,player2.getY(),0.0f);
+			if(player.getY()<850){
+				assertEquals((900-50)/1.2f+x*4.0f,player.getY(),0.0f);
 			}else{
-				assertEquals(850,player2.getY(),4.0f);
+				assertEquals(850,player.getY(),4.0f);
 			}
-			player2.updateVariables();
+			player.updateVariables();
 		}	
 	}
 	
@@ -200,33 +200,33 @@ public class PlayerShipTester {
 		KeyEvent event = new KeyEvent(button,1,20,1,KeyEvent.VK_LEFT,' ');
 		
 		MainWindow game = new MainWindow("",900,900);
+		PlayerShip player = new PlayerShip(game);
 		
-		PlayerShip player1 = new PlayerShip(game);
-		player1.setShip(0); //set player's speed to zero, check setShipFunction() method
+		player.setShip(0); //set player's speed to zero, check setShipFunction() method
 		
 		game.getKeyboard().keyPressed(event);
 		
 		for(int x=0 ; x<1000 ; x++){
-			if(player1.getX()>0){
-				assertEquals((900-50)/2-x*3.0f,player1.getX(),0.0f);
+			if(player.getX()>0){
+				assertEquals((900-50)/2-x*3.0f,player.getX(),0.0f);
 			}else{
-				assertEquals(0.0f,player1.getX(),3.0f);
+				assertEquals(0.0f,player.getX(),3.0f);
 			}
-			player1.updateVariables();
+			player.updateVariables();
 		}
 		
-		PlayerShip player2 = new PlayerShip(game);
-		player2.setShip(1); //set player's speed to zero, check setShipFunction() method
+		player.playerDeath(); //gets the player to the initial position, check setShipLocationAndPlayerDeathFunctions() method
+		player.setShip(1); //set player's speed to zero, check setShipFunction() method
 		
 		game.getKeyboard().keyPressed(event);
 		
 		for(int x=0 ; x<1000 ; x++){
-			if(player2.getX()>0){
-				assertEquals((900-50)/2f-x*4.0f,player2.getX(),0.0f);
+			if(player.getX()>0){
+				assertEquals((900-50)/2f-x*4.0f,player.getX(),0.0f);
 			}else{
-				assertEquals(0.0f,player2.getX(),4.0f);
+				assertEquals(0.0f,player.getX(),4.0f);
 			}
-			player2.updateVariables();
+			player.updateVariables();
 		}	
 	}
 	
@@ -240,33 +240,112 @@ public class PlayerShipTester {
 		KeyEvent event = new KeyEvent(button,1,20,1,KeyEvent.VK_RIGHT,' ');
 		
 		MainWindow game = new MainWindow("",900,900);
+		PlayerShip player = new PlayerShip(game);
 		
-		PlayerShip player1 = new PlayerShip(game);
-		player1.setShip(0); //set player's speed to zero, check setShipFunction() method
+		player.setShip(0); //set player's speed to zero, check setShipFunction() method
 		
 		game.getKeyboard().keyPressed(event);
 		
 		for(int x=0 ; x<1000 ; x++){
-			if(player1.getX()<850){
-				assertEquals((900-50)/2f+x*3.0f,player1.getX(),0.0f);
+			if(player.getX()<850){
+				assertEquals((900-50)/2f+x*3.0f,player.getX(),0.0f);
 			}else{
-				assertEquals(850,player1.getX(),3.0f);
+				assertEquals(850,player.getX(),3.0f);
 			}
-			player1.updateVariables();
+			player.updateVariables();
 		}
 		
-		PlayerShip player2 = new PlayerShip(game);
-		player2.setShip(1); //set player's speed to zero, check setShipFunction() method
+		player.playerDeath(); //gets the player to the initial position, check setShipLocationAndPlayerDeathFunctions() method
+		player.setShip(1); //set player's speed to zero, check setShipFunction() method
 		
 		game.getKeyboard().keyPressed(event);
 		
 		for(int x=0 ; x<1000 ; x++){
-			if(player2.getX()<850){
-				assertEquals((900-50)/2f+x*4.0f,player2.getX(),0.0f);
+			if(player.getX()<850){
+				assertEquals((900-50)/2f+x*4.0f,player.getX(),0.0f);
 			}else{
-				assertEquals(850,player2.getX(),4.0f);
+				assertEquals(850,player.getX(),4.0f);
 			}
-			player2.updateVariables();
+			player.updateVariables();
 		}	
+	}
+	
+	/**
+	 * Test if the hit box used for collision detection is created right
+	 */
+	@Test
+	public void HitBox(){
+		
+		for(int x=0 ; x<200 ; x++){
+			for(int y=0 ; y<200 ; y++){
+				MainWindow game = new MainWindow("",x,y);
+				PlayerShip player = new PlayerShip(game);
+				/*
+				 * The hit box of the player should always be a rectangle located 5 pixels to the right of its x position
+				 * and 17 pixels below its y position.
+				 * It also should hold the size of 40 x 35 pixels;
+				 */
+				Rectangle hitBox = new Rectangle((int)player.getX()+5,(int)player.getY()+17,40,35);
+				assertEquals(hitBox,player.getBounds());				
+			}
+		}
+	}
+	
+	/**
+	 * Test if the player hit box moves together with the player
+	 */
+	@Test
+	public void HitBoxPosition(){
+		
+		Button button =  new Button("");
+		KeyEvent upEvent = new KeyEvent(button,1,20,1,KeyEvent.VK_UP,' ');
+		KeyEvent downEvent = new KeyEvent(button,1,20,1,KeyEvent.VK_DOWN,' ');
+		KeyEvent rightEvent = new KeyEvent(button,1,20,1,KeyEvent.VK_RIGHT,' ');
+		KeyEvent leftEvent = new KeyEvent(button,1,20,1,KeyEvent.VK_LEFT,' ');
+		
+		MainWindow game = new MainWindow("",900,900);
+		PlayerShip player = new PlayerShip(game);
+		
+		//moving up and right
+		game.getKeyboard().keyPressed(upEvent);
+		game.getKeyboard().keyPressed(rightEvent);
+		for(int x=0 ; x<100 ; x++){
+			//creating a rectangle that "moves" with the player
+			Rectangle hitBox = new Rectangle((int)player.getX()+5,(int)player.getY()+17,40,35);
+			assertEquals(hitBox,player.getBounds());
+			player.updateVariables(); //move the player
+		}
+		
+		//moving up and left
+		game.getKeyboard().keyReleased(rightEvent);
+		game.getKeyboard().keyPressed(leftEvent);
+		for(int x=0 ; x<100 ; x++){
+			//creating a rectangle that "moves" with the player
+			Rectangle hitBox = new Rectangle((int)player.getX()+5,(int)player.getY()+17,40,35);
+			assertEquals(hitBox,player.getBounds());
+			player.updateVariables(); //move the player
+		}
+		
+		//moving down and right
+		game.getKeyboard().keyReleased(upEvent);
+		game.getKeyboard().keyPressed(downEvent);
+		game.getKeyboard().keyReleased(leftEvent);
+		game.getKeyboard().keyPressed(rightEvent);
+		for(int x=0 ; x<100 ; x++){
+			//creating a rectangle that "moves" with the player
+			Rectangle hitBox = new Rectangle((int)player.getX()+5,(int)player.getY()+17,40,35);
+			assertEquals(hitBox,player.getBounds());
+			player.updateVariables(); //move the player
+		}
+		
+		//moving down and left
+		game.getKeyboard().keyReleased(rightEvent);
+		game.getKeyboard().keyPressed(leftEvent);
+		for(int x=0 ; x<100 ; x++){
+			//creating a rectangle that "moves" with the player
+			Rectangle hitBox = new Rectangle((int)player.getX()+5,(int)player.getY()+17,40,35);
+			assertEquals(hitBox,player.getBounds());
+			player.updateVariables(); //move the player
+		}		
 	}
 }

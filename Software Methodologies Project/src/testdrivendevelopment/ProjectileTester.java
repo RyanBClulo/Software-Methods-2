@@ -2,11 +2,7 @@ package testdrivendevelopment;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Rectangle;
-import javax.swing.JFrame;
 import org.junit.Test;
 import gameobjects.Projectile;
 
@@ -107,45 +103,5 @@ public class ProjectileTester {
 				bullet2.updateVariables(); //moves the projectile
 			}
 		}
-	}
-	
-	//Still looking for the right coding to put in here
-	@Test
-	public void graphics(){
-		
-		JFrame frame1 = new JFrame();
-		Canvas canvas1 = new Canvas();
-		frame1.add(canvas1);
-		frame1.pack();
-		
-		JFrame frame2 = new JFrame();
-		Canvas canvas2 = new Canvas();
-		frame2.add(canvas2);
-		frame2.pack();
-		
-		Graphics graphics1,graphics2;
-		graphics1 = canvas1.getGraphics();
-		graphics2 = canvas2.getGraphics();
-		
-		System.out.println(graphics1);
-		System.out.println(graphics2);
-		
-		
-		
-		System.out.println(graphics1.getClass());
-		System.out.println(graphics1.getClip());
-		System.out.println(graphics1.getClipBounds());
-	
-		Projectile bullet = new Projectile(null,0,0,0);
-		
-		graphics1.setColor(Color.GREEN);	//Hard code drawing the bullet image
-		graphics1.fillOval(0, 0, 20, 500000000);
-		
-		bullet.draw(graphics2);
-		
-		assertEquals(graphics1.toString(),graphics2.toString());
-		
-		System.out.println(graphics1);
-		System.out.println(graphics2);		
 	}
 }
