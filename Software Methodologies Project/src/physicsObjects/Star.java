@@ -2,12 +2,12 @@ package physicsObjects;
 
 /**
  * @author Franco Reda
+ * @author Eder Paz
  * 
  * @version Created: April 11, 2016
  */
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.util.Random;
 
 import gameobjects.GameObjects;
@@ -49,9 +49,5 @@ public class Star extends GameObjects{
 	public void draw(Graphics g){
 		g.setColor(Color.WHITE);
 		g.fillRect((int)x, (int)y,width,height);
-	}
-	
-	public Point currentLocation() {
-		return new Point((int)x,(int)y);
 	}
 }

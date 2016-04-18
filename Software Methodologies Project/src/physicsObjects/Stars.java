@@ -15,7 +15,7 @@ public class Stars {
 	public void updateVariables(){
 		for( int i=0 ; i<starList.size() ; i++ ){
 			if(starList.get(i)!=null){
-				if(starList.get(i).currentLocation().y>(GameLauncher.gameHeight+10))
+				if(starList.get(i).getY()>(GameLauncher.gameHeight+10))
 					removeStar(starList.get(i));
 				else
 					starList.get(i).updateVariables();
