@@ -27,8 +27,8 @@ public class MainWindow implements Runnable {
 	private Display		display;
 	private boolean		running=false;
 	
-	private				Keyboard keyboard;
-	private				Mouse mouse;
+	private				Keyboard keyboard =  new Keyboard(); //Creating a new Keyboard object
+	private				Mouse mouse = new Mouse(); //Creating a new mouse object;
 	
 	private GameState	playingState,
 						startMenuState,
@@ -138,9 +138,6 @@ public class MainWindow implements Runnable {
 		display = new Display(name,width,height);
 		display.createDisplay();
 		
-		//Adds the mouse and the keyboard to the game
-		keyboard =  new Keyboard(); //Creating a new Keyboard object
-		mouse = new Mouse(); //Creating a new mouse object
 		display.getFrame().addKeyListener(keyboard);
 		display.getFrame().addMouseListener(mouse);
 		display.getFrame().addMouseMotionListener(mouse);

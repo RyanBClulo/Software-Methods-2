@@ -1,4 +1,4 @@
-package testers;
+package testdrivendevelopment;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -8,7 +8,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.JFrame;
 import org.junit.Test;
-import gameobjects.GameObjects;
 import gameobjects.Projectile;
 
 public class ProjectileTester {
@@ -28,8 +27,8 @@ public class ProjectileTester {
 					assertEquals(bullet.getX(),x,0.0f);
 					assertEquals(bullet.getY(),y,0.0f);
 					assertEquals(bullet.getSpeed(),z,0.0f);
-					assertEquals(bullet.getWidth(),GameObjects.bulletWidth);
-					assertEquals(bullet.getHeight(),GameObjects.bulletHeight);
+					assertEquals(bullet.getWidth(),20);
+					assertEquals(bullet.getHeight(),20);
 				}
 			}
 		}
@@ -40,7 +39,9 @@ public class ProjectileTester {
 	 */
 	@Test
 	public void movement(){
-		for(float y=1 ; y<100 ; y++){ //assign different speed for the projectile
+		for(float y=1 ; y<100 ; y++){
+			//y defines the speed in which the projectile should be moving
+			
 			//for positive speed
 			Projectile bullet1 = new Projectile(null,100,100,y);
 			for(float x=0 ; x<100 ; x+=y){
@@ -70,7 +71,7 @@ public class ProjectileTester {
 				/*
 				 * The hit box of a projectile should always be a rectangle located 4 pixels to the right of its x position
 				 * and 4 pixels below its y position.
-				 * It also should hold the size of 12X12 pixels;
+				 * It also should hold the size of 12 x 12 pixels;
 				 */
 				Rectangle hitBox = new Rectangle(x+4,y+4,12,12);
 				assertTrue(hitBox.equals(bullet.getBounds()));

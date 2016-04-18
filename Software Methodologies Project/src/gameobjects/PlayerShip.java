@@ -17,7 +17,6 @@ public class PlayerShip extends GameObjects{
 		this.x=(float)(game.getWidth()-width)/2;
 		this.y=(float)(game.getHeight()-height)/1.2f;
 		life=5;
-		speed=4.0f;
 		bounds.x=5;
 		bounds.y=17;
 		bounds.width=width-2*bounds.x;
@@ -35,7 +34,9 @@ public class PlayerShip extends GameObjects{
 			if(counter>shootSpam){
 				counter=0;
 			}
-		}    		
+		}else{
+			counter=0;
+		}
 		
 		if(	y	>	0	&&	game.getKeyboard().up())
     		y-=speed;
@@ -73,7 +74,7 @@ public class PlayerShip extends GameObjects{
 		if(ship==0){
 			speed=3.0f;
 			shootSpam=20;
-		}else{
+		}else if(ship==1){
 			speed=4.0f;
 			shootSpam=30;
 		}
