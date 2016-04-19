@@ -11,6 +11,8 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import gameobjects.GameObjects;
+import gamestates.GameState;
+import main.MainWindow;
 
 public class Star extends GameObjects{
 	
@@ -19,8 +21,8 @@ public class Star extends GameObjects{
 	private float x;
 	private float y;
 		
-	public Star(float x,float y){
-	super(null,x,x,3,3);	
+	public Star(MainWindow game,float x,float y){
+	super(game,x,x,3,3);	
 		this.x=x;
 		this.y=y;
 		Random r = new Random();
@@ -28,7 +30,9 @@ public class Star extends GameObjects{
 	}
 	
 	public void updateVariables(){
-		y+=7.0f;
+		
+		if(GameState.getCurrentGameState()!=game.pauseState())y+=7.0f;		
+		
 		counter++;
 		if(counter==time){
 			counter=0;

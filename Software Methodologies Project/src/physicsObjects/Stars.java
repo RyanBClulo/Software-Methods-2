@@ -2,20 +2,33 @@ package physicsObjects;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
-import main.GameLauncher;
+import java.util.Random;
+import gamestates.GameState;
+import main.MainWindow;
 
 public class Stars {
 	
 	private ArrayList<Star> starList;
+	private Random r = new Random();
+	private MainWindow game;
 	
-	public Stars(){
+	public Stars(MainWindow game){
+		this.game=game;
 		starList = new ArrayList<Star>();
+		for(int x=0 ; x<game.getWidth() ; x++){
+			for(int y=0 ; y<game.getHeight() ; y++){
+				if(r.nextInt(7001)==7000)addStar(new Star(game,x,y));
+			}
+		}
 	}
 	
 	public void updateVariables(){
+		
+		if(GameState.getCurrentGameState()!=game.pauseState())addStar(new Star(game,(int)r.nextInt(game.getWidth()),(int)-10));
+		
 		for( int i=0 ; i<starList.size() ; i++ ){
 			if(starList.get(i)!=null){
-				if(starList.get(i).getY()>(GameLauncher.gameHeight+10))
+				if(starList.get(i).getY()>(game.getHeight()+10))
 					removeStar(starList.get(i));
 				else
 					starList.get(i).updateVariables();

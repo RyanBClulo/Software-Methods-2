@@ -3,7 +3,6 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.util.Random;
 import display.Display;
 import gamestates.*;
 import graphics.Images;
@@ -18,8 +17,7 @@ public class MainWindow implements Runnable {
 	
 	private String	name;
 	private int 	width,
-					height,
-					starX;
+					height;
 	
 	private BufferStrategy	bs;
 	private Graphics	graphics;
@@ -36,9 +34,7 @@ public class MainWindow implements Runnable {
 						pauseState,
 						shipSelectionState;
 	
-	private Stars bullet = new Stars();
-	Random r = new Random();
-	
+	private Stars stars;
 	
 	/**
 	 * Sets Game window variables.
@@ -146,6 +142,8 @@ public class MainWindow implements Runnable {
 	
 		Images.initiateImages(); //This method initializes all the images of the game
 		
+		stars = new Stars(this);
+		
 		//Creates the states of the game and start the first one
 		playingState = new PlayingState(this);
 		startMenuState = new StartMenuState(this);
@@ -160,10 +158,8 @@ public class MainWindow implements Runnable {
 	 * Update all variable of the game.
 	 */
 	public void upgradeVariables(){
-		starX = r.nextInt(getWidth());
-		bullet.addStar(new Star((int)starX,(int)-10));
-		bullet.updateVariables();
 		
+		stars.updateVariables();
 		GameState.getCurrentGameState().updateVariables();
 		
 	}
@@ -186,7 +182,7 @@ public class MainWindow implements Runnable {
 		graphics.setColor(Color.black);
 		graphics.fillRect(0,0,width,height);
 		
-		bullet.draw(graphics);
+		stars.draw(graphics);
 		GameState.getCurrentGameState().draw(graphics); //Draw the current running game state
 		
 		//RENDERS EVERYTHING TOGETHER AND DRAWS IT!!!!

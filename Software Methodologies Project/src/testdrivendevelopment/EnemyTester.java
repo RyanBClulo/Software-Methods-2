@@ -1,6 +1,6 @@
 package testdrivendevelopment;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import java.awt.Rectangle;
 import org.junit.Test;
 import gameobjects.Enemy;
@@ -21,6 +21,85 @@ public class EnemyTester {
 				assertEquals(9.0f,enemy.getSpeed(),0.0f);
 			}
 		}
+	}
+	
+	/**
+	 * Every enemy should start with a speed of 9.0f and decrease this speed by 98% at every updateVariables() method calling.
+	 * When the speed decreases to lower then 1.0f, it is set to 1.0f so the enemy can enter in its specific movement.
+	 */
+	@Test
+	public void initialMovement(){
+		float speed;
+		for(int y=0 ; y<4 ; y++){ //generate all four moving patterns of enemies
+			Enemy enemy = new Enemy(null,0,0,y,0);
+			speed=9.0f;
+			for(int x=0 ; x<500 ; x++){
+				if(speed>1.0f){
+					assertEquals(speed,enemy.getSpeed(),0.0f);
+					speed*=0.98f;
+				}else{
+					assertEquals(1.0f,Math.abs(enemy.getSpeed()),0.0f);
+				}
+				enemy.updateVariables();
+			}
+		}
+	}
+	
+	/**
+	 * The stationary enemy should do the initial movement and after stays fixed in the position it stopped
+	 */
+	@Test
+	public void stationaryEnemy(){
+		float lastX=0, lastY=0;
+		Enemy enemy = new Enemy(null,0,0,3,0); //create a stationary enemy
+		
+		do{ //moves the player until it completes the initial movement
+			enemy.updateVariables();
+			if(enemy.getSpeed()==1.0f){
+				lastX=enemy.getX();
+				lastY=enemy.getY();
+			}
+		}while(enemy.getSpeed()!=1.0f);
+		
+		for(int x=0 ; x<200 ; x++){
+			enemy.updateVariables();
+			assertEquals(lastX,enemy.getX(),0.0f);
+			assertEquals(lastY,enemy.getY(),0.0f);
+		}
+	}
+	
+	@Test
+	public void sideToSideEnemy(){
+		float initialX=0,initialY=0,finalX=0,finalY=0;
+		float lastSpeed;
+		
+		Enemy enemy = new Enemy(null,0,0,0,0); //create an enemy that moves from one side to another
+		
+		do{ //moves the player until it completes the initial movement
+			enemy.updateVariables();
+		}while(enemy.getSpeed()!=1.0f);
+		
+		do{ //moves the player until it changes of direction, record the coordinates where it did
+			lastSpeed=enemy.getSpeed();
+			enemy.updateVariables();
+			if(lastSpeed!=enemy.getSpeed()){
+				initialX=enemy.getX();
+				initialY=enemy.getY();
+			}
+		}while(lastSpeed==enemy.getSpeed());
+		
+		do{ //moves the player until it changes of direction, record the coordinates where it did
+			lastSpeed=enemy.getSpeed();
+			enemy.updateVariables();
+			if(lastSpeed!=enemy.getSpeed()){
+				finalX=enemy.getX();
+				finalY=enemy.getY();
+			}
+		}while(lastSpeed==enemy.getSpeed());
+		
+		float distance = (float) Math.sqrt(Math.pow(initialX-finalX,2)+Math.pow(initialY-finalY,2));
+		
+		assertEquals(200f,distance,5f);		
 	}
 	
 	/**
@@ -48,44 +127,15 @@ public class EnemyTester {
 	@Test
 	public void hitBoxPosition(){
 		
-		//enemy that moves from one side to another
-		Enemy enemy1 = new Enemy(null,500,500,0,0);
-		
-		for(int x=0 ; x<500 ; x++){
-			// create a new rectangle on the expected position
-			Rectangle hitBox = new Rectangle((int)enemy1.getX()+5,(int)enemy1.getY()+5,40,40);
-			assertEquals(hitBox,enemy1.getBounds());
-			enemy1.updateVariables(); //move the enemy
-		}
-		
-		//enemy that moves in an eight pattern
-		Enemy enemy2 = new Enemy(null,500,500,1,0);
-		
-		for(int x=0 ; x<500 ; x++){
-			// create a new rectangle on the expected position
-			Rectangle hitBox = new Rectangle((int)enemy2.getX()+5,(int)enemy2.getY()+5,40,40);
-			assertEquals(hitBox,enemy2.getBounds());
-			enemy2.updateVariables(); //move the enemy
-		}
-		
-		//enemy that moves in an square pattern
-		Enemy enemy3 = new Enemy(null,500,500,2,0);
-		
-		for(int x=0 ; x<500 ; x++){
-			// create a new rectangle on the expected position
-			Rectangle hitBox = new Rectangle((int)enemy3.getX()+5,(int)enemy3.getY()+5,40,40);
-			assertEquals(hitBox,enemy3.getBounds());
-			enemy3.updateVariables(); //move the enemy
-		}
-		
-		//stationary enemy
-		Enemy enemy4 = new Enemy(null,500,500,3,0);
-		
-		for(int x=0 ; x<500 ; x++){
-			// create a new rectangle on the expected position
-			Rectangle hitBox = new Rectangle((int)enemy4.getX()+5,(int)enemy4.getY()+5,40,40);
-			assertEquals(hitBox,enemy4.getBounds());
-			enemy4.updateVariables(); //move the enemy
+		for(int y=0 ; y<4 ; y++){ //generate all moving patterns of enemies
+			Enemy enemy = new Enemy(null,500,500,y,0);
+			
+			for(int x=0 ; x<500 ; x++){
+				// create a new rectangle on the expected position
+				Rectangle hitBox = new Rectangle((int)enemy.getX()+5,(int)enemy.getY()+5,40,40);
+				assertEquals(hitBox,enemy.getBounds());
+				enemy.updateVariables(); //move the enemy
+			}
 		}
 	}
 }

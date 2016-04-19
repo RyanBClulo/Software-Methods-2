@@ -15,11 +15,8 @@ import main.MainWindow;
  */
 public class GameLauncher {
 	
-	public static int gameWidth		= 800;
-	public static int gameHeight	= 950;
-	
 	public static void main(String[] args){
-		MainWindow game = new MainWindow("SMP-eXtreme",gameWidth,gameHeight);
+		MainWindow game = new MainWindow("SMP-eXtreme",800,950);
 		game.start();
 	}
 }

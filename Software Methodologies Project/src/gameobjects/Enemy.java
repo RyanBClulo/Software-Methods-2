@@ -39,7 +39,7 @@ public class Enemy extends GameObjects{
 		if(rush){
 			y+=speed;
 			speed*=0.98f;
-			if(speed<0.1f){
+			if(speed<1f){
 				speed=1;
 				xINI=x;
 				yINI=y;
@@ -54,6 +54,7 @@ public class Enemy extends GameObjects{
 				}
 				break;
 			case 1:
+				
 				switch(movingStage){
 				case 0:
 					if(Math.abs(xINI-x)<distance){
@@ -100,7 +101,9 @@ public class Enemy extends GameObjects{
 					}
 					break;
 				}
+				break;
 			case 2:
+				
 				switch(movingStage){
 				case 0:
 					if(Math.abs(xINI-x)<distance/2){
@@ -138,6 +141,7 @@ public class Enemy extends GameObjects{
 					}
 					break;
 				}
+				break;
 			}
 		}
 	}
