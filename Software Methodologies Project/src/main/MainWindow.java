@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import display.Display;
+import gameobjectLists.Stars;
 import gamestates.*;
 import graphics.Images;
 import input.*;
-import physicsObjects.*;
 
 public class MainWindow implements Runnable {
 	

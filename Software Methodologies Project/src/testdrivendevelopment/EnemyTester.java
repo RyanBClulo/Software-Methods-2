@@ -68,38 +68,121 @@ public class EnemyTester {
 		}
 	}
 	
+	/**
+	 * The enemy that moves from one side to another should move in a straight line of length 200 pixels
+	 */
 	@Test
 	public void sideToSideEnemy(){
-		float initialX=0,initialY=0,finalX=0,finalY=0;
+		float initialX=0,initialY=0,finalX=0;
 		float lastSpeed;
 		
 		Enemy enemy = new Enemy(null,0,0,0,0); //create an enemy that moves from one side to another
 		
 		do{ //moves the player until it completes the initial movement
 			enemy.updateVariables();
+			initialY=enemy.getY(); // y position will never change
 		}while(enemy.getSpeed()!=1.0f);
 		
 		do{ //moves the player until it changes of direction, record the coordinates where it did
 			lastSpeed=enemy.getSpeed();
 			enemy.updateVariables();
+			assertEquals(initialY,enemy.getY(),0.0f); // test if the enemy stays in the same y position for every updateVariables() call
 			if(lastSpeed!=enemy.getSpeed()){
 				initialX=enemy.getX();
-				initialY=enemy.getY();
 			}
 		}while(lastSpeed==enemy.getSpeed());
 		
 		do{ //moves the player until it changes of direction, record the coordinates where it did
 			lastSpeed=enemy.getSpeed();
 			enemy.updateVariables();
+			assertEquals(initialY,enemy.getY(),0.0f); // test if the enemy stays in the same y position for every updateVariables() call
 			if(lastSpeed!=enemy.getSpeed()){
 				finalX=enemy.getX();
-				finalY=enemy.getY();
 			}
 		}while(lastSpeed==enemy.getSpeed());
 		
-		float distance = (float) Math.sqrt(Math.pow(initialX-finalX,2)+Math.pow(initialY-finalY,2));
+		float distance = (float) Math.sqrt(Math.pow(initialX-finalX,2)); // calculate the distance that the enemy has moved
 		
-		assertEquals(200f,distance,5f);		
+		assertEquals(200f,distance,0.0f); // test if it is equal to what it is supposed to be
+	}
+	
+	/**
+	 * The enemy that moves in a square patter should move in a square that has size 100x100.
+	 */
+	@Test
+	public void squareMovingEnemy(){
+		float lastY;
+		float lastX;
+		float[] X = new float[4];
+		float[] Y = new float[4];
+		
+		Enemy enemy = new Enemy(null,0,0,2,0); //create an enemy that moves in a square pattern
+		
+		do{ //moves the player until it completes the initial movement
+			enemy.updateVariables();
+		}while(enemy.getSpeed()!=1.0f);
+		
+		X[0]=enemy.getX();
+		Y[0]=enemy.getY();
+		
+		do{ //move the enemy until it starts to move down
+			lastY=enemy.getY();
+			enemy.updateVariables();
+		}while(lastY==enemy.getY());
+		
+		X[1]=enemy.getX();
+		Y[1]=enemy.getY()-1.0f; //get the correct position where the enemy changed movement
+		
+		//Test if the first distance moved is equal to 50, because it starts in the middle of the square
+		assertEquals(50f,Math.sqrt(Math.pow(X[0]-X[1],2)+Math.pow(Y[0]-Y[1],2)),0.0f);
+		
+		do{ //move the enemy until it starts to move to the left
+			lastX=enemy.getX();
+			enemy.updateVariables();
+		}while(lastX==enemy.getX());
+		
+		X[2]=enemy.getX()+1.0f; //get the correct position where the enemy changed movement
+		Y[2]=enemy.getY();
+		
+		//Test if the first distance moved is equal to 100
+		assertEquals(100f,Math.sqrt(Math.pow(X[1]-X[2],2)+Math.pow(Y[1]-Y[2],2)),0.0f);
+		
+		do{ //move the enemy until it starts to move up
+			lastY=enemy.getY();
+			enemy.updateVariables();
+		}while(lastY==enemy.getY());
+		
+		X[3]=enemy.getX();
+		Y[3]=enemy.getY()+1.0f; //get the correct position where the enemy changed movement
+		
+		//Test if the first distance moved is equal to 100
+		assertEquals(100f,Math.sqrt(Math.pow(X[2]-X[3],2)+Math.pow(Y[2]-Y[3],2)),0.0f);
+		
+		do{ //move the enemy until it starts to move to the right again
+			lastX=enemy.getX();
+			enemy.updateVariables();
+		}while(lastX==enemy.getX());
+		
+		X[0]=enemy.getX()-1.0f; //get the correct position where the enemy changed movement
+		Y[0]=enemy.getY();
+		
+		//Test if the first distance moved is equal to 100
+		assertEquals(100f,Math.sqrt(Math.pow(X[0]-X[3],2)+Math.pow(Y[0]-Y[3],2)),0.0f);
+		
+		do{ //move the enemy until it starts to move down again
+			lastX=enemy.getX();
+			lastY=enemy.getY();
+			enemy.updateVariables();
+		}while(lastY==enemy.getY());
+		
+		//Test if the enemy changed position in the same corner than before
+		assertEquals(X[1],lastX,0.0f);
+		assertEquals(Y[1],lastY,0.0f);
+		
+		//Now that all the corners of the square have been passed through, test if the diagonal of the square are equal
+		//to 100 times square root of two, defining a 100x100 square movement
+		assertEquals(100*Math.sqrt(2),Math.sqrt(Math.pow(X[0]-X[2],2)+Math.pow(Y[0]-Y[2],2)),0.0);
+		assertEquals(100*Math.sqrt(2),Math.sqrt(Math.pow(X[1]-X[3],2)+Math.pow(Y[1]-Y[3],2)),0.0);
 	}
 	
 	/**

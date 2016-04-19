@@ -48,11 +48,13 @@ public class Enemy extends GameObjects{
 		}else{
 			switch(movingPattern){
 			case 0:
+				
 				x+=speed;
-				if(Math.abs(xINI-x)>distance){
+				if(Math.abs(xINI-x)>distance-1){
 					speed*=-1;
 				}
 				break;
+				
 			case 1:
 				
 				switch(movingStage){
@@ -102,10 +104,12 @@ public class Enemy extends GameObjects{
 					break;
 				}
 				break;
+				
 			case 2:
 				
 				switch(movingStage){
 				case 0:
+					
 					if(Math.abs(xINI-x)<distance/2){
 						x+=speed;
 					}else if (Math.abs(yINI-y)<distance){
@@ -118,7 +122,9 @@ public class Enemy extends GameObjects{
 						}
 					}
 					break;
+					
 				case 1:
+					
 					if(Math.abs(xINI-x)<distance){
 						x+=speed;
 					}else if (Math.abs(yINI-y)<distance){
@@ -129,7 +135,9 @@ public class Enemy extends GameObjects{
 						}
 					}
 					break;
+					
 				case 2:
+					
 					if(Math.abs(xINI-x)>0){
 						x+=speed;
 					}else if (Math.abs(yINI-y)>0){
@@ -142,6 +150,7 @@ public class Enemy extends GameObjects{
 					break;
 				}
 				break;
+				
 			}
 		}
 	}

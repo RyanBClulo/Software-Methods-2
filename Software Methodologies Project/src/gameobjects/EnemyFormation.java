@@ -27,7 +27,6 @@ public class EnemyFormation {
 	private static void formations(MainWindow game,int formation,LinkedList<Enemy> enemy){
 		movingPattern = r.nextInt(4);
 		enemies = r.nextInt(4);
-		movingPattern = 1;
 		
 		switch (formation){
 		case LINE: //done
