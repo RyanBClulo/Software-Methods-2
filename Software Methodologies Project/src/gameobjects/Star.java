@@ -1,4 +1,4 @@
-package gamestates;
+package gameobjects;
 
 /**
  * @author Franco Reda
@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
-import gameobjects.GameObjects;
+import gamestates.GameState;
 import main.MainWindow;
 
 public class Star extends GameObjects{

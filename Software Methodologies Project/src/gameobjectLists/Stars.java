@@ -3,8 +3,9 @@ package gameobjectLists;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
+
+import gameobjects.Star;
 import gamestates.GameState;
-import gamestates.Star;
 import main.MainWindow;
 
 public class Stars {

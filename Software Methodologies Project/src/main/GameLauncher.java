@@ -11,7 +11,6 @@ import main.MainWindow;
  * @author Charles Manchester
  * @author Eder Paz
  * @author Franco Reda
- * 
  */
 public class GameLauncher {
 	
