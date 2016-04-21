@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import score.Score;
+import score.Statistics;
 import collision.Collision;
 import gameobjectLists.EnemiesList;
 import gameobjectLists.ProjectilesList;
@@ -73,9 +74,11 @@ public class PlayingState extends GameState{
 		enemyBullets.updateVariables();
 		player.updateVariables();
 		enemies.updateVariables();
+		Statistics.updateAccuracy();
 		
 		if(enemies.getEnemy1List().size()==0){
 			EnemyFormation.createFormation(game,enemies.getEnemy1List());
+			Score.addScore(25);
 		}else{
 			counter++;
 			if(counter==60){

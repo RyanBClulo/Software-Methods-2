@@ -2,7 +2,9 @@ package gamestates;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.FileNotFoundException;
 
+import score.HighScore;
 import main.MainWindow;
 
 /**
@@ -28,8 +30,15 @@ public class HandleQuitState extends GameState{
 			if(GameState.getChangeState()){
 				if(game.getMouse().getMouseX() >= 325 && game.getMouse().getMouseX() <= 475){
 					if(game.getMouse().getMouseY() >= 410 && game.getMouse().getMouseY() <= 460){
-						if(GameState.getLastGameState()==game.startMenu())
+						if(GameState.getLastGameState()==game.startMenu()){
+							try {
+								HighScore.writeScores();
+							} catch (FileNotFoundException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							game.stop();
+							}
 						else
 							GameState.setGameStateTo(game.startMenu());
 					}
