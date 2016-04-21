@@ -18,14 +18,16 @@ public class ShipSelectionState extends GameState{
 			if(GameState.getChangeState()){
 				if(game.getMouse().getMouseY() >= 425 && game.getMouse().getMouseY() <= 475){
 					if(game.getMouse().getMouseX() >= 300 && game.getMouse().getMouseX() <= 350){
-						GameState.setGameStateTo(game.playingState());
+						GameState.setGameStateTo(game.difficultyState());
 						GameState.setChangeState(false);
 						game.getPlayingState().getPlayerShip().setShip(0);
+						game.getDifficultystate().resetChoice();
 					}
 					if(game.getMouse().getMouseX() >= 450 && game.getMouse().getMouseX() <= 500){
-						GameState.setGameStateTo(game.playingState());
+						GameState.setGameStateTo(game.difficultyState());
 						GameState.setChangeState(false);
 						game.getPlayingState().getPlayerShip().setShip(1);
+						game.getDifficultystate().resetChoice();
 					}
 				}
 			}

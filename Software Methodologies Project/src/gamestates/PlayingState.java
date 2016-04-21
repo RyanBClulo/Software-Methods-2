@@ -23,6 +23,7 @@ public class PlayingState extends GameState{
 	private EnemiesList enemies;
 	private ProjectilesList enemyBullets;
 	private Collision collisionDetector;
+	private int difficulty;
 	
 	private int counter;
 	private int enemyIndex;
@@ -39,7 +40,6 @@ public class PlayingState extends GameState{
 		enemies = new EnemiesList();
 		enemyBullets = new ProjectilesList();
 		collisionDetector = new Collision();
-		
 	}
 	
 	/**
@@ -95,5 +95,13 @@ public class PlayingState extends GameState{
 	
 	public PlayerShip getPlayerShip(){
 		return player;
+	}
+	
+	public int getDifficulty(){
+		return difficulty;
+	}
+	
+	public void setdifficulty(int difficulty){
+		this.difficulty=difficulty;
 	}
 }

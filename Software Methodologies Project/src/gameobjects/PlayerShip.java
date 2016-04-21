@@ -69,6 +69,10 @@ public class PlayerShip extends GameObjects{
 		return bullet;
 	}
 	
+	public int getShip(){
+		return ship;
+	}
+	
 	public void setShip(int ship){
 		this.ship=ship;
 		if(ship==0){

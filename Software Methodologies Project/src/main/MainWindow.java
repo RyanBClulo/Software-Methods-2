@@ -32,7 +32,11 @@ public class MainWindow implements Runnable {
 						startMenuState,
 						handleQuitState,
 						pauseState,
-						shipSelectionState;
+						shipSelectionState,
+						difficultyState,
+						continueState,
+						gameOverState,
+						highScoreState;
 	
 	private Stars stars;
 	
@@ -150,6 +154,10 @@ public class MainWindow implements Runnable {
 		handleQuitState = new HandleQuitState(this);
 		pauseState = new PauseState(this);
 		shipSelectionState = new ShipSelectionState(this);
+		continueState = new ContinueState(this);
+		difficultyState = new DifficultyState(this);
+		gameOverState = new GameOverState(this);
+		highScoreState = new HighScoreState(this);
 		GameState.setGameStateTo(startMenuState);
 		
 	}
@@ -262,7 +270,51 @@ public class MainWindow implements Runnable {
 		return shipSelectionState;
 	}
 	
+	/**
+	 * Getter for the continue screen.
+	 * @return Continue game state.
+	 */
+	public GameState continueState(){
+		return continueState;
+	}
+	
+	/**
+	 * Getter for the select difficulty screen.
+	 * @return Select difficulty state.
+	 */
+	public GameState difficultyState(){
+		return difficultyState;
+	}
+	
+	/**
+	 * Getter for the game over screen.
+	 * @return Game Over state.
+	 */
+	public GameState gameOverState(){
+		return gameOverState;
+	}
+	
+	/**
+	 * Getter for the high scores screen.
+	 * @return High score game state.
+	 */
+	public GameState highScoreState(){
+		return highScoreState;
+	}
+	
+	/**
+	 * Getter for the game playing state, allows to use the methods defined within the playing state class.
+	 * @return Playing state itself.
+	 */
 	public PlayingState getPlayingState(){
 		return (PlayingState)playingState;
+	}
+	
+	/**
+	 * Getter for the game difficulty select screen, allows to use the methods defined within the difficulty state class.
+	 * @return Difficulty selection state itself.
+	 */
+	public DifficultyState getDifficultystate(){
+		return (DifficultyState)difficultyState;
 	}
 }
