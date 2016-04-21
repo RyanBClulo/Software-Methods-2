@@ -317,4 +317,12 @@ public class MainWindow implements Runnable {
 	public DifficultyState getDifficultystate(){
 		return (DifficultyState)difficultyState;
 	}
+	
+	/**
+	 * Getter for the game continue screen, allows to use the methods defined within the continue state class.
+	 * @return Continue State itself.
+	 */
+	public ContinueState getContinueState(){
+		return (ContinueState)continueState;
+	}
 }

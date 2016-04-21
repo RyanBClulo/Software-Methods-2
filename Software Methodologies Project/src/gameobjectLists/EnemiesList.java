@@ -25,6 +25,10 @@ public class EnemiesList {
 		}
 	}
 	
+	public void reset(){
+		enemy1.clear();
+	}
+	
 	public void addEnemy1(Enemy enemy){
 		enemy1.add(enemy);
 	}

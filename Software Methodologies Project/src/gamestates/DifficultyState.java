@@ -10,6 +10,7 @@ import main.MainWindow;
 public class DifficultyState extends GameState{
 	
 	private boolean prompt=false;
+	private int difficulty;
 
 	public DifficultyState(MainWindow game) {
 		super(game);
@@ -21,6 +22,7 @@ public class DifficultyState extends GameState{
 			if(prompt){
 				if(game.getMouse().getMouseY()>550 && game.getMouse().getMouseY()<578){
 					if(game.getMouse().getMouseX()>330 && game.getMouse().getMouseX()<380){
+						game.getPlayingState().gameStart(difficulty);
 						GameState.setGameStateTo(game.playingState());
 						GameState.setChangeState(false);
 					}else if(game.getMouse().getMouseX()>420 && game.getMouse().getMouseX()<470){
@@ -32,13 +34,13 @@ public class DifficultyState extends GameState{
 			}else{
 				if(game.getMouse().getMouseY()>400 && game.getMouse().getMouseY()<428){
 					if(game.getMouse().getMouseX()>210 && game.getMouse().getMouseX()<310){
-						game.getPlayingState().setdifficulty(0);
+						difficulty=0;
 						prompt=true;
 					}else if(game.getMouse().getMouseX()>350 && game.getMouse().getMouseX()<450){
-						game.getPlayingState().setdifficulty(1);
+						difficulty=1;
 						prompt=true;
 					}else if(game.getMouse().getMouseX()>490 && game.getMouse().getMouseX()<590){
-						game.getPlayingState().setdifficulty(2);
+						difficulty=2;
 						prompt=true;
 					}
 				}
@@ -55,7 +57,7 @@ public class DifficultyState extends GameState{
 		if(prompt){
 			graphics.drawString("Do you confirm your selection?",255,350);
 			
-			switch(game.getPlayingState().getDifficulty()){
+			switch(difficulty){
 			case 0:
 				graphics.drawString("EASY",375,400);
 				break;

@@ -26,6 +26,10 @@ public class ProjectilesList {
 		}
 	}
 	
+	public void reset(){
+		projectileList.clear();
+	}
+	
 	public void addProjectile(Projectile projectile){
 		projectileList.add(projectile);
 	}

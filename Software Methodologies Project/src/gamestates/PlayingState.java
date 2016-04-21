@@ -23,7 +23,9 @@ public class PlayingState extends GameState{
 	private EnemiesList enemies;
 	private ProjectilesList enemyBullets;
 	private Collision collisionDetector;
+	
 	private int difficulty;
+	private int continues;
 	
 	private int counter;
 	private int enemyIndex;
@@ -40,6 +42,23 @@ public class PlayingState extends GameState{
 		enemies = new EnemiesList();
 		enemyBullets = new ProjectilesList();
 		collisionDetector = new Collision();
+		continues=3;
+	}
+	
+	public void gameStart(int difficulty){
+		enemies.reset();
+		enemyBullets.reset();
+		player.setShipLocation((float)(game.getWidth()-player.getWidth())/2,(float)(game.getHeight()-player.getHeight())/1.2f);
+		player.setLife(3);
+		continues=3;
+		this.difficulty=difficulty;
+	}
+	
+	public void faseStart(){
+		enemies.reset();
+		enemyBullets.reset();
+		player.setShipLocation((float)(game.getWidth()-player.getWidth())/2,(float)(game.getHeight()-player.getHeight())/1.2f);
+		player.setLife(3);
 	}
 	
 	/**
@@ -56,7 +75,7 @@ public class PlayingState extends GameState{
 			EnemyFormation.createFormation(game,enemies.getEnemy1List());
 		}else{
 			counter++;
-			if(counter==100){
+			if(counter==60){
 				counter=0;
 				enemyIndex=r.nextInt(enemies.getEnemy1List().size());
 				enemyBullets.addProjectile(
@@ -66,18 +85,22 @@ public class PlayingState extends GameState{
 			}
 		}
 		
+		collisionDetector.playerBulletEnemy(player.getBullets(),enemies);
+		collisionDetector.playerEnemy(player,enemies);
+		collisionDetector.playerEnemybullet(enemyBullets, player);
+		
 		if(game.getKeyboard().esc()){
 			if(GameState.getChangeState()){
 				GameState.setGameStateTo(game.pauseState());
 				GameState.setChangeState(false);
 			}
+		}else if(player.getLife()<=0){
+			game.getContinueState().resetTimer();
+			GameState.setGameStateTo(game.continueState());
+			GameState.setChangeState(false);
 		}else{
 			GameState.setChangeState(true);
 		}
-		
-		collisionDetector.playerBulletEnemy(player.getBullets(),enemies);
-		collisionDetector.playerEnemy(player,enemies);
-		collisionDetector.playerEnemybullet(enemyBullets, player);
 	}
 	
 	/**
@@ -101,7 +124,11 @@ public class PlayingState extends GameState{
 		return difficulty;
 	}
 	
-	public void setdifficulty(int difficulty){
-		this.difficulty=difficulty;
+	public int getContinues(){
+		return continues;
+	}
+	
+	public void useContinue(){
+		continues-=1;
 	}
 }
