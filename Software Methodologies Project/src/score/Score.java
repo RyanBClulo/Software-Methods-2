@@ -12,12 +12,6 @@ import java.util.Scanner;
 public class Score {
 	private static int currentScore=-25;
 
-	
-	
-	public static void readScores() throws FileNotFoundException{
-		@SuppressWarnings("resource")
-		Scanner inputScores =new Scanner(new File("scores.txt"));
-	}
 	public static void drawScore(Graphics g){
 		String scoreString="Score: "+currentScore;
 		String accuracyString="Accuracy: "+(int)(Statistics.getAccuracy()*100)+"%";

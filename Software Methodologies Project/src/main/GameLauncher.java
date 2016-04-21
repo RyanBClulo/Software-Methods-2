@@ -1,5 +1,8 @@
 package main;
 
+import java.io.FileNotFoundException;
+
+import score.HighScore;
 import main.MainWindow;
 
 /**
@@ -16,6 +19,12 @@ public class GameLauncher {
 	
 	public static void main(String[] args){
 		MainWindow game = new MainWindow("SMP-eXtreme",800,950);
+		try {
+			HighScore.readScores();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		game.start();
 	}
 }
