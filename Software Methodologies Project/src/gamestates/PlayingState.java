@@ -49,6 +49,7 @@ public class PlayingState extends GameState{
 	public void gameStart(int difficulty){
 		enemies.reset();
 		enemyBullets.reset();
+		player.getBullets().reset();
 		player.setShipLocation((float)(game.getWidth()-player.getWidth())/2,(float)(game.getHeight()-player.getHeight())/1.2f);
 		player.setLife(3);
 		continues=3;
@@ -58,6 +59,7 @@ public class PlayingState extends GameState{
 	public void faseStart(){
 		enemies.reset();
 		enemyBullets.reset();
+		player.getBullets().reset();
 		player.setShipLocation((float)(game.getWidth()-player.getWidth())/2,(float)(game.getHeight()-player.getHeight())/1.2f);
 		player.setLife(3);
 	}

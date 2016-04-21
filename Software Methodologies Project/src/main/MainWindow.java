@@ -158,6 +158,7 @@ public class MainWindow implements Runnable {
 		difficultyState = new DifficultyState(this);
 		gameOverState = new GameOverState(this);
 		highScoreState = new HighScoreState(this);
+		getContinueState().resetTimer();
 		GameState.setGameStateTo(startMenuState);
 		
 	}

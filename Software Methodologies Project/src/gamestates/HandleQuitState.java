@@ -34,6 +34,8 @@ public class HandleQuitState extends GameState{
 							GameState.setGameStateTo(game.startMenu());
 					}
 					if(game.getMouse().getMouseY() >= 490 && game.getMouse().getMouseY() <= 540){
+						if(GameState.getLastGameState() == game.continueState())
+							game.getContinueState().resetTimer();
 						GameState.backToLastState();
 						GameState.setChangeState(false);
 					}
@@ -57,7 +59,7 @@ public class HandleQuitState extends GameState{
 		
 		graphics.setColor(Color.WHITE);
 		
-		graphics.drawString("Quit the game? Are you sure?",250,300);
+		graphics.drawString("Quit the game? Are you sure?",260,300);
 		if(GameState.getLastGameState()==game.pauseState())
 			graphics.drawString("Your current score will not be saved",215,350);
 		

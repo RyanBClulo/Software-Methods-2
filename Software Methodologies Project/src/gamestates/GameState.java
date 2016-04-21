@@ -13,6 +13,7 @@ public abstract class GameState{
 	
 	protected MainWindow game;
 	protected Font font = new Font("SansSerif",Font.BOLD,20);
+	protected Font timerfont = new Font("Helvetica",Font.BOLD,80);
 	protected int counter;
 	
 	private static GameState currentState = null,lastState = null;
