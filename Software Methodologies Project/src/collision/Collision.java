@@ -1,5 +1,7 @@
 package collision;
 
+import score.Score;
+import score.Statistics;
 import gameobjectLists.EnemiesList;
 import gameobjectLists.ProjectilesList;
 import gameobjects.PlayerShip;
@@ -22,6 +24,8 @@ public class Collision {
 				if(bullet.getBulletList().get(x).getBounds().intersects(enemy.getEnemy1List().get(y).getBounds())){
 					enemy.removeEnemy1(enemy.getEnemy1List().get(y));
 					bullet.removeProjectile(bullet.getBulletList().get(x));
+					Score.hitScore();
+					Statistics.addhit();
 					break;
 				}
 			}

@@ -3,6 +3,8 @@ package input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import score.Statistics;
+
 public class Keyboard implements KeyListener{
 	
 	private boolean moveUp =false;
@@ -35,6 +37,7 @@ public class Keyboard implements KeyListener{
 	        case KeyEvent.VK_SPACE:
 	        	//handle space (shooting)
 	        	shoot = true;
+	        	Statistics.addShot();
 	        	break;
 	        case KeyEvent.VK_ESCAPE:
 	        	esc=true;
