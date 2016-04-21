@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import score.Score;
 import collision.Collision;
 import gameobjectLists.EnemiesList;
 import gameobjectLists.ProjectilesList;
@@ -88,9 +89,11 @@ public class PlayingState extends GameState{
 		enemyBullets.draw(graphics);
 		enemies.draw(graphics);
 		player.draw(graphics);
+		Score.drawScore(graphics);
 		graphics.setFont(font);
 		graphics.setColor(Color.WHITE);
 		graphics.drawString("Amount of Lives: "+player.getLife(),game.getWidth()/2-70,game.getHeight()-50);
+
 	}
 	
 	public PlayerShip getPlayerShip(){
