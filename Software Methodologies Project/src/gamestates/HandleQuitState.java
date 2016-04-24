@@ -34,13 +34,16 @@ public class HandleQuitState extends GameState{
 							try {
 								HighScore.writeScores();
 							} catch (FileNotFoundException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 							game.stop();
-							}
-						else
+						}else if(GameState.getLastGameState()==game.pauseState()){
 							GameState.setGameStateTo(game.startMenu());
+							GameState.setChangeState(false);
+						}else if(GameState.getLastGameState()==game.continueState()){
+							GameState.setGameStateTo(game.gameOverState());
+							GameState.setChangeState(false);
+						}
 					}
 					if(game.getMouse().getMouseY() >= 490 && game.getMouse().getMouseY() <= 540){
 						if(GameState.getLastGameState() == game.continueState())

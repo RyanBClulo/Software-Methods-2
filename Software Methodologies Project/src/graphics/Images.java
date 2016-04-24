@@ -9,9 +9,9 @@ public class Images {
 	
 	public static void initiateImages(){
 		
-		SpriteSheet test = new SpriteSheet(ImageLoader.loadImage("/test.png"));
-		SpriteSheet galagaSprites = new SpriteSheet(ImageLoader.loadImage("/Galaga_Sprite_Sheet.png"));
-		SpriteSheet test1 = new SpriteSheet(ImageLoader.loadImage("/test1.png"));
+		SpriteSheet test = new SpriteSheet(ImageLoader.loadImage("test"));
+		SpriteSheet galagaSprites = new SpriteSheet(ImageLoader.loadImage("Galaga_Sprite_Sheet"));
+		SpriteSheet test1 = new SpriteSheet(ImageLoader.loadImage("test1"));
 		
 		playerShip[0] = test.crop(27,25,48,52);
 		playerShip[1] = test1.crop(27,25,48,52);

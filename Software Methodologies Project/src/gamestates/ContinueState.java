@@ -59,6 +59,7 @@ public class ContinueState extends GameState{
 		graphics.drawRect((game.getWidth()-140)/2+90,430,50,28);
 		graphics.drawString(game.getPlayingState().getContinues()+" continues left",30,30);
 		graphics.setFont(timerfont);
+		
 		if(timer>6){
 			graphics.setColor(Color.GREEN);
 		}else if(timer>3){
@@ -66,6 +67,7 @@ public class ContinueState extends GameState{
 		}else{
 			graphics.setColor(Color.RED);
 		}
+		
 		graphics.drawString(""+timer,370,350);
 	}
 }

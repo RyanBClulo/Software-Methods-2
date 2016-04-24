@@ -1,5 +1,6 @@
 package gamestates;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import main.MainWindow;
@@ -12,11 +13,20 @@ public class GameOverState extends GameState{
 
 	@Override
 	public void updateVariables() {
-		
+		counter++;
+		if(counter==600){
+			GameState.setGameStateTo(game.startMenu());
+			GameState.setChangeState(false);
+		}else{
+			GameState.setChangeState(true);
+		}
 	}
 
 	@Override
 	public void draw(Graphics graphics) {
-		
+		graphics.setColor(Color.WHITE);
+		graphics.setFont(font);
+		graphics.drawString("GAME OVER",game.getWidth()/2,350);
+		graphics.drawString(""+counter,50,50);
 	}
 }
