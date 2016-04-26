@@ -21,7 +21,12 @@ public class Score {
 		currentScore+=ammount;
 	}
 	public static void hitScore(){
-		currentScore+=Math.round(10*Statistics.getAccuracy());
+		if(Statistics.getHits()==0)currentScore+=5;
+		else currentScore+=Math.round(10*Statistics.getAccuracy());
+	}
+	public static void resetScores(){
+		currentScore=-25;
+		Statistics.resetStats();
 	}
 
 }

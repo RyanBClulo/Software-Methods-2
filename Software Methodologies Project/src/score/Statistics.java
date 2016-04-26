@@ -9,7 +9,7 @@ public class Statistics {
 		if (shots==0)
 			setAccuracy(1);
 		else
-		setAccuracy(((double)hits)/shots);
+		setAccuracy(((double)getHits())/shots);
 	}
 
 	public static double getAccuracy() {
@@ -22,11 +22,26 @@ public class Statistics {
 
 	public static void addhit() {
 		// TODO Auto-generated method stub
-		hits++;
+		setHits(getHits() + 1);
 	}
 
 	public static void addShot() {
 		// TODO Auto-generated method stub
 		shots++;
+	}
+
+	public static int getHits() {
+		return hits;
+	}
+
+	public static void setHits(int hits) {
+		Statistics.hits = hits;
+	}
+
+	public static void resetStats() {
+		// TODO Auto-generated method stub
+		accuracy=1;
+		hits=0;
+		shots=0;
 	}
 }
