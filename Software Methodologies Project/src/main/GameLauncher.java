@@ -22,7 +22,6 @@ public class GameLauncher {
 		try {
 			HighScore.readScores();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		game.start();
