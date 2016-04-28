@@ -9,6 +9,7 @@ import gameobjectLists.EnemiesList;
 import gameobjectLists.ProjectilesList;
 import gameobjects.EnemyFormation;
 import gameobjects.GameObjects;
+import gameobjects.MiniBoss;
 import gameobjects.PlayerShip;
 import gameobjects.Projectile;
 import main.MainWindow;
@@ -24,12 +25,14 @@ public class PlayingState extends GameState{
 	private PlayerShip player;
 	private EnemiesList enemies;
 	private ProjectilesList enemyBullets;
-	private int enemyBulletType;
 	private Collision collisionDetector;
+	private MiniBoss boss;
 	
+	private int enemyBulletType;
 	private int difficulty;
 	private int continues;
 	
+	private int enemiesWave;
 	private int counter;
 	private int enemyIndex;
 	private Random r = new Random();
@@ -45,6 +48,7 @@ public class PlayingState extends GameState{
 		enemies = new EnemiesList();
 		enemyBullets = new ProjectilesList();
 		collisionDetector = new Collision(game);
+		boss = new MiniBoss(game);
 		continues=3;
 	}
 	
@@ -53,7 +57,8 @@ public class PlayingState extends GameState{
 		enemyBullets.reset();
 		player.getBullets().reset();
 		player.setShipLocation((float)(game.getWidth()-player.getWidth())/2,(float)(game.getHeight()-player.getHeight())/1.2f);
-		player.setLife(3);
+		player.setLife(5);
+		player.resetSpecials();
 		continues=3;
 		this.difficulty=difficulty;
 	}
@@ -62,6 +67,7 @@ public class PlayingState extends GameState{
 		enemies.reset();
 		enemyBullets.reset();
 		player.getBullets().reset();
+		player.resetSpecials();
 		player.setShipLocation((float)(game.getWidth()-player.getWidth())/2,(float)(game.getHeight()-player.getHeight())/1.2f);
 		player.setLife(5);
 	}
@@ -74,17 +80,22 @@ public class PlayingState extends GameState{
 		
 		enemyBullets.updateVariables();
 		player.updateVariables();
-		enemies.updateVariables();
+		if(enemiesWave!=2)enemies.updateVariables();
+		else boss.updateVariables();
 		Statistics.updateAccuracy();
 		
 		collisionDetector.playerBulletEnemy(player.getBullets(),enemies);
 		collisionDetector.playerEnemy(player,enemies);
 		collisionDetector.playerEnemybullet(enemyBullets, player);
+		collisionDetector.specialsEnemy(player.getSpecials(), enemies);
 		
-		if(enemies.getEnemy1List().size()==0){
-			EnemyFormation.createFormation(game,enemies.getEnemy1List());
-			enemyBulletType = r.nextInt(3)+3;
-			Score.addScore(25);
+		if(enemies.getEnemy1List().size()==0){				
+			if(enemiesWave!=2){
+				EnemyFormation.createFormation(game,enemies.getEnemy1List());
+				enemiesWave++;
+				enemyBulletType = r.nextInt(3)+3;
+				Score.addScore(25);
+			}
 		}else{
 			counter++;
 			if(counter==40){
@@ -117,7 +128,8 @@ public class PlayingState extends GameState{
 	@Override
 	public void draw(Graphics graphics) {
 		enemyBullets.draw(graphics);
-		enemies.draw(graphics);
+		if(enemiesWave!=2)enemies.draw(graphics);
+		else boss.draw(graphics);
 		player.draw(graphics);
 		Score.drawScore(graphics);
 		graphics.setFont(font);

@@ -2,6 +2,7 @@ package collision;
 
 import gameobjectLists.EnemiesList;
 import gameobjectLists.ProjectilesList;
+import gameobjectLists.SpecialLists;
 import gameobjects.PlayerShip;
 import main.MainWindow;
 import score.Score;
@@ -66,6 +67,19 @@ public class Collision {
 				player.playerDeath();
 				player.setLife(player.getLife()-1);
 				break;
+			}
+		}
+	}
+	
+	public void specialsEnemy(SpecialLists specials,EnemiesList enemies){
+		for(int x=0 ; x<enemies.getEnemy1List().size() ; x++){
+			for(int y=0 ; y<specials.getShurikenList().size() ; y++){
+				if(enemies.getEnemy1List().get(x).getBounds().intersects(specials.getShurikenList().get(y).getBounds())){
+					enemies.getEnemy1List().get(x).setLife(enemies.getEnemy1List().get(x).getLife()-1);
+					if(enemies.getEnemy1List().get(x).getLife()<=0)
+						enemies.removeEnemy1(enemies.getEnemy1List().get(x));
+					break;
+				}
 			}
 		}
 	}

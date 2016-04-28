@@ -13,6 +13,7 @@ public class Keyboard implements KeyListener{
 	private boolean moveRight =false;
 	private boolean shoot = false;
 	private boolean esc = false;
+	private boolean alt = false;
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -34,10 +35,29 @@ public class Keyboard implements KeyListener{
 	            // handle right
 	        	moveRight=true;
 	            break;
+	        case KeyEvent.VK_W:
+	            // handle up (Moves the ship in the positive direction)
+	        	moveUp=true;
+	            break;
+	        case KeyEvent.VK_S:
+	            // handle down
+	        	moveDown=true;
+	            break;
+	        case KeyEvent.VK_A:
+	            // handle left
+	        	moveLeft=true;
+	            break;
+	        case KeyEvent.VK_D:
+	            // handle right
+	        	moveRight=true;
+	            break;
 	        case KeyEvent.VK_SPACE:
 	        	//handle space (shooting)
 	        	shoot = true;
 	        	Statistics.addShot();
+	        	break;
+	        case KeyEvent.VK_M:
+	        	alt = true;
 	        	break;
 	        case KeyEvent.VK_ESCAPE:
 	        	esc=true;
@@ -65,9 +85,28 @@ public class Keyboard implements KeyListener{
 	            // handle right
 	        	moveRight=false;
 	            break;
+	        case KeyEvent.VK_W:
+	            // handle up (Moves the ship in the positive direction)
+	        	moveUp=false;
+	            break;
+	        case KeyEvent.VK_S:
+	            // handle down
+	        	moveDown=false;
+	            break;
+	        case KeyEvent.VK_A:
+	            // handle left
+	        	moveLeft=false;
+	            break;
+	        case KeyEvent.VK_D:
+	            // handle right
+	        	moveRight=false;
+	            break;
 	        case KeyEvent.VK_SPACE :
 	        	// handle space (shooting)
 	        	shoot=false;
+	        	break;
+	        case KeyEvent.VK_M:
+	        	alt = false;
 	        	break;
 	        case KeyEvent.VK_ESCAPE:
 	        	esc=false;
@@ -101,5 +140,9 @@ public class Keyboard implements KeyListener{
 	
 	public boolean esc(){
 		return esc;
+	}
+	
+	public boolean alt(){
+		return alt;
 	}
 }

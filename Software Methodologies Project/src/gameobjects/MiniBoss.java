@@ -8,12 +8,14 @@ import main.MainWindow;
 public class MiniBoss extends GameObjects {
 	
 	public MiniBoss(MainWindow game) {
-		super(game,0,0,miniBossWidth,miniBossHeight);
+		super(game,(game.getWidth()-miniBossWidth)/2,-(miniBossHeight+500),miniBossWidth,miniBossHeight);
 	}
 
 	@Override
 	public void updateVariables() {
-		
+		if(y<100){
+			y+=2.0f;
+		}
 	}
 
 	@Override
