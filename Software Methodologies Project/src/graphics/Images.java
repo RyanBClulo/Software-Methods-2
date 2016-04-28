@@ -8,6 +8,7 @@ public class Images {
 	public static BufferedImage[][] projectile = new BufferedImage[6][6];
 	public static BufferedImage[] enemyShip = new BufferedImage[4];
 	public static BufferedImage[] shuriken = new BufferedImage[8];
+	public static BufferedImage[] superNova = new BufferedImage[8];
 	public static BufferedImage boss;
 	
 	public static void initiateImages(){
@@ -22,6 +23,7 @@ public class Images {
 		
 		for(int x=0 ; x<8 ; x++){
 			shuriken[x] = specialAttacks.crop(x*19,0,19,19);
+			superNova[x] = specialAttacks.crop(x*31,19,31,31);
 		}
 		
 		for(int x=0 ; x<4 ; x++){

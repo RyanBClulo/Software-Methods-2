@@ -46,6 +46,9 @@ public class PlayerShip extends GameObjects{
 				specialAmount--;
 				specialSpam=false;
 				switch(ship){
+				case 1:
+					special.addSuperNova(new SuperNova(game,x+(playerWidth-superNovaWidth)/2,y));
+					break;
 				case 2:
 					special.addShuriken(new Shuriken(game,x+(playerWidth-shurikenWidth)/2,y));
 					break;
@@ -112,6 +115,7 @@ public class PlayerShip extends GameObjects{
 			bounds.width=width-2*bounds.x;
 			bounds.height=height-25;
 			bulletPower=2;
+			specialAmount=5;
 		}else if(ship==2){
 			speed=5.0f;
 			shootSpam=10;
@@ -125,7 +129,13 @@ public class PlayerShip extends GameObjects{
 	}
 	
 	public void resetSpecials(){
-		specialAmount=10;
+		switch(ship){
+		case 1:
+			specialAmount=5;
+			break;
+		case 2:
+			specialAmount=10;
+		}
 	}
 	
 	public SpecialLists getSpecials(){

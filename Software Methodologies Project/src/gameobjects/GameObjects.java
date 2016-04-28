@@ -16,6 +16,8 @@ public abstract class GameObjects {
 	public static final int miniBossHeight=130;
 	public static final int shurikenWidth=45;
 	public static final int shurikenHeight=45;
+	public static final int superNovaWidth=40;
+	public static final int superNovaHeight=40;
 
 	protected MainWindow game;
 	protected float x,y;

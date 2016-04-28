@@ -170,7 +170,6 @@ public class MainWindow implements Runnable {
 		highScoreState = new HighScoreState(this);
 		getContinueState().resetTimer();
 		GameState.setGameStateTo(startMenuState);
-		
 	}
 	
 	/**
