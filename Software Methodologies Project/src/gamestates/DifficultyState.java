@@ -20,7 +20,7 @@ public class DifficultyState extends GameState{
 	public void updateVariables() {
 		if(game.getMouse().isRightPressed()){
 			if(prompt){
-				if(game.getMouse().getMouseY()>550 && game.getMouse().getMouseY()<578){
+				if(game.getMouse().getMouseY()>600 && game.getMouse().getMouseY()<628){
 					if(game.getMouse().getMouseX()>330 && game.getMouse().getMouseX()<380){
 						game.getPlayingState().gameStart(difficulty);
 						GameState.setGameStateTo(game.playingState());
@@ -70,11 +70,11 @@ public class DifficultyState extends GameState{
 			}
 			
 			graphics.drawImage(Images.playerShip[game.getPlayingState().getPlayerShip().getShip()],
-					(game.getWidth()-GameObjects.enemyWidth)/2,450,50,50,null);
-			graphics.drawString("YES",335,572);
-			graphics.drawRect((game.getWidth()-140)/2,550,50,28);
-			graphics.drawString("NO",430,572);
-			graphics.drawRect((game.getWidth()-140)/2+90,550,50,28);
+					(game.getWidth()-GameObjects.playerWidth)/2,450,GameObjects.playerWidth,GameObjects.playerHeight,null);
+			graphics.drawString("YES",335,622);
+			graphics.drawRect((game.getWidth()-140)/2,600,50,28);
+			graphics.drawString("NO",430,622);
+			graphics.drawRect((game.getWidth()-140)/2+90,600,50,28);
 		}else{
 			graphics.drawString("Select the Difficulty",310,350);
 			graphics.drawString("EASY",235,422);

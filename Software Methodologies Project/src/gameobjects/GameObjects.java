@@ -6,12 +6,14 @@ import main.MainWindow;
 
 public abstract class GameObjects {
 	
-	public static final int playerWidth=50;
-	public static final int playerHeight=50;
+	public static final int playerWidth=70;
+	public static final int playerHeight=70;
 	public static final int enemyWidth=50;
 	public static final int enemyHeight=50;
-	public static final int bulletWidth=20;
+	public static final int bulletWidth=14;
 	public static final int bulletHeight=20;
+	public static final int miniBossWidth=150;
+	public static final int miniBossHeight=130;
 
 	protected MainWindow game;
 	protected float x,y;
@@ -19,6 +21,7 @@ public abstract class GameObjects {
 	protected float speed= 1.0f;
 	protected int life;
 	protected int counter;
+	protected int anim;
 	protected Rectangle bounds;
 	
 	public GameObjects(MainWindow game,float x, float y, int width, int height){

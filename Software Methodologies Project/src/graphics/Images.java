@@ -4,21 +4,32 @@ import java.awt.image.BufferedImage;
 
 public class Images {
 	
-	public static BufferedImage[] playerShip = new BufferedImage[2];
+	public static BufferedImage[] playerShip = new BufferedImage[3];
+	public static BufferedImage[][] projectile = new BufferedImage[6][6];
 	public static BufferedImage[] enemyShip = new BufferedImage[4];
+	public static BufferedImage boss;
 	
 	public static void initiateImages(){
 		
-		SpriteSheet test = new SpriteSheet(ImageLoader.loadImage("test"));
-		SpriteSheet galagaSprites = new SpriteSheet(ImageLoader.loadImage("Galaga_Sprite_Sheet"));
-		SpriteSheet test1 = new SpriteSheet(ImageLoader.loadImage("test1"));
+		SpriteSheet playerShips = new SpriteSheet(ImageLoader.loadImage("Playerships"));
+		SpriteSheet projectiles  = new SpriteSheet(ImageLoader.loadImage("Projectiles"));
+		SpriteSheet enemies = new SpriteSheet(ImageLoader.loadImage("Enemies"));
+		SpriteSheet bosses = new SpriteSheet(ImageLoader.loadImage("Bosses"));
 		
-		playerShip[0] = test.crop(27,25,48,52);
-		playerShip[1] = test1.crop(27,25,48,52);
+		boss = bosses.crop(0,0,124,122);
 		
-		enemyShip[0] = galagaSprites.crop(249,219, 13,10);
-		enemyShip[1] = galagaSprites.crop(250, 146, 13, 10);
-		enemyShip[2] = galagaSprites.crop(250, 171, 13, 10);
-		enemyShip[3] = galagaSprites.crop(249, 195, 13, 10);		
+		for(int x=0 ; x<4 ; x++){
+			enemyShip[x] = enemies.crop(x*64,0,64,64);
+		}
+		
+		for(int x=0 ; x<6 ; x++){
+			for(int y=0 ; y<6 ; y++){
+				projectile[y][x] = projectiles.crop(x*5,y*8,5,8);
+			}
+		}
+		
+		for(int x=0 ; x<3 ; x++){
+			playerShip[x] = playerShips.crop(x*66,0,66,52);
+		}
 	}
 }

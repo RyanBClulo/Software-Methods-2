@@ -5,9 +5,19 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import display.Display;
 import gameobjectLists.Stars;
-import gamestates.*;
+import gamestates.ContinueState;
+import gamestates.DifficultyState;
+import gamestates.GameOverState;
+import gamestates.GameState;
+import gamestates.HandleQuitState;
+import gamestates.HighScoreState;
+import gamestates.PauseState;
+import gamestates.PlayingState;
+import gamestates.ShipSelectionState;
+import gamestates.StartMenuState;
 import graphics.Images;
-import input.*;
+import input.Keyboard;
+import input.Mouse;
 
 public class MainWindow implements Runnable {
 	
@@ -167,7 +177,6 @@ public class MainWindow implements Runnable {
 	 * Update all variable of the game.
 	 */
 	public void upgradeVariables(){
-		
 		stars.updateVariables();
 		GameState.getCurrentGameState().updateVariables();
 		
@@ -190,7 +199,6 @@ public class MainWindow implements Runnable {
 		//This section renders the background
 		graphics.setColor(Color.black);
 		graphics.fillRect(0,0,width,height);
-		
 		stars.draw(graphics);
 		GameState.getCurrentGameState().draw(graphics); //Draw the current running game state
 		

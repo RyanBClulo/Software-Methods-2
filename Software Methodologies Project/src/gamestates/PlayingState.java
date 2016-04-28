@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
-import score.Score;
-import score.Statistics;
 import collision.Collision;
 import gameobjectLists.EnemiesList;
 import gameobjectLists.ProjectilesList;
@@ -14,6 +12,8 @@ import gameobjects.GameObjects;
 import gameobjects.PlayerShip;
 import gameobjects.Projectile;
 import main.MainWindow;
+import score.Score;
+import score.Statistics;
 
 /**
  * Game state that runs when playing.
@@ -24,6 +24,7 @@ public class PlayingState extends GameState{
 	private PlayerShip player;
 	private EnemiesList enemies;
 	private ProjectilesList enemyBullets;
+	private int enemyBulletType;
 	private Collision collisionDetector;
 	
 	private int difficulty;
@@ -43,7 +44,7 @@ public class PlayingState extends GameState{
 		player = new PlayerShip(game);
 		enemies = new EnemiesList();
 		enemyBullets = new ProjectilesList();
-		collisionDetector = new Collision();
+		collisionDetector = new Collision(game);
 		continues=3;
 	}
 	
@@ -62,7 +63,7 @@ public class PlayingState extends GameState{
 		enemyBullets.reset();
 		player.getBullets().reset();
 		player.setShipLocation((float)(game.getWidth()-player.getWidth())/2,(float)(game.getHeight()-player.getHeight())/1.2f);
-		player.setLife(3);
+		player.setLife(5);
 	}
 	
 	/**
@@ -76,24 +77,25 @@ public class PlayingState extends GameState{
 		enemies.updateVariables();
 		Statistics.updateAccuracy();
 		
+		collisionDetector.playerBulletEnemy(player.getBullets(),enemies);
+		collisionDetector.playerEnemy(player,enemies);
+		collisionDetector.playerEnemybullet(enemyBullets, player);
+		
 		if(enemies.getEnemy1List().size()==0){
 			EnemyFormation.createFormation(game,enemies.getEnemy1List());
+			enemyBulletType = r.nextInt(3)+3;
 			Score.addScore(25);
 		}else{
 			counter++;
-			if(counter==60){
+			if(counter==40){
 				counter=0;
 				enemyIndex=r.nextInt(enemies.getEnemy1List().size());
 				enemyBullets.addProjectile(
 						new Projectile(game,
 								enemies.getEnemy1List().get(enemyIndex).getX()+(GameObjects.enemyWidth-GameObjects.bulletWidth)/2,
-								enemies.getEnemy1List().get(enemyIndex).getY()+GameObjects.enemyHeight/2, 8.0f));
+								enemies.getEnemy1List().get(enemyIndex).getY()+GameObjects.enemyHeight/2, 8.0f,enemyBulletType));
 			}
 		}
-		
-		collisionDetector.playerBulletEnemy(player.getBullets(),enemies);
-		collisionDetector.playerEnemy(player,enemies);
-		collisionDetector.playerEnemybullet(enemyBullets, player);
 		
 		if(game.getKeyboard().esc()){
 			if(GameState.getChangeState()){

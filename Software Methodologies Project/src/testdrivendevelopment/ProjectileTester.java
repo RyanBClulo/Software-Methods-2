@@ -18,7 +18,7 @@ public class ProjectileTester {
 		for(int x=0 ; x<100 ; x++){
 			for(int y=0 ; y<100 ; y++){
 				for(int z=-11 ; z<11 ; z++){
-					Projectile bullet = new Projectile(null,x,y,z);
+					Projectile bullet = new Projectile(null,x,y,z,0);
 					
 					assertEquals(bullet.getX(),x,0.0f);
 					assertEquals(bullet.getY(),y,0.0f);
@@ -39,7 +39,7 @@ public class ProjectileTester {
 			//y defines the speed in which the projectile should be moving
 			
 			//for positive speed
-			Projectile bullet1 = new Projectile(null,100,100,y);
+			Projectile bullet1 = new Projectile(null,100,100,y,0);
 			for(float x=0 ; x<100 ; x+=y){
 				assertEquals(bullet1.getX(),100,0.0f);
 				assertEquals(bullet1.getY(),100+x,0.0f);
@@ -47,7 +47,7 @@ public class ProjectileTester {
 			}
 			
 			//for negative speed
-			Projectile bullet2 = new Projectile(null,100,100,-y);
+			Projectile bullet2 = new Projectile(null,100,100,-y,0);
 			for(float x=0 ; x<100 ; x+=y){
 				assertEquals(bullet2.getX(),100,0.0f);
 				assertEquals(bullet2.getY(),100-x,0.0f);
@@ -63,7 +63,7 @@ public class ProjectileTester {
 	public void HitBox(){
 		for(int x=0 ; x<200 ; x++){
 			for(int y=0 ; y<200 ; y++){
-				Projectile bullet = new Projectile(null,x,y,1);
+				Projectile bullet = new Projectile(null,x,y,1,0);
 				/*
 				 * The hit box of a projectile should always be a rectangle located 4 pixels to the right of its x position
 				 * and 4 pixels below its y position.
@@ -82,7 +82,7 @@ public class ProjectileTester {
 	public void hitBoxPosition(){
 		for(float y=1 ; y<100 ; y++){ //assign different speed for the projectile
 			//for positive speed
-			Projectile bullet1 = new Projectile(null,100,100,y);
+			Projectile bullet1 = new Projectile(null,100,100,y,0);
 			for(float x=0 ; x<100 ; x+=y){
 				
 				Rectangle hitBox = new Rectangle(100+4,100+(int)x+4,12,12); //create a new rectangle on the expected position
@@ -93,7 +93,7 @@ public class ProjectileTester {
 			}
 			
 			//for negative speed
-			Projectile bullet2 = new Projectile(null,100,100,-y);
+			Projectile bullet2 = new Projectile(null,100,100,-y,0);
 			for(float x=0 ; x<100 ; x+=y){
 				
 				Rectangle hitBox2 = new Rectangle(100+4,100-(int)x+4,12,12); //create a new rectangle on the expected position
