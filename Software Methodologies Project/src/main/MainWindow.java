@@ -21,19 +21,19 @@ import input.Mouse;
 
 public class MainWindow implements Runnable {
 	
-	private int 	counter;
-	private long	lasttime,
-					newtime;
+	private int 			counter;
+	private long			lasttime,
+							newtime;
 	
-	private String	name;
-	private int 	width,
-					height;
+	private String			name;
+	private int 			width,
+							height;
 	
 	private BufferStrategy	bs;
-	private Graphics	graphics;
-	private Thread		thread;
-	private Display		display;
-	private boolean		running=false;
+	private Graphics		graphics;
+	private Thread			thread;
+	private Display			display;
+	private boolean			running=false;
 	
 	private				Keyboard keyboard =  new Keyboard(); //Creating a new Keyboard object
 	private				Mouse mouse = new Mouse(); //Creating a new mouse object;
@@ -159,15 +159,15 @@ public class MainWindow implements Runnable {
 		stars = new Stars(this);
 		
 		//Creates the states of the game and start the first one
-		playingState = new PlayingState(this);
-		startMenuState = new StartMenuState(this);
-		handleQuitState = new HandleQuitState(this);
-		pauseState = new PauseState(this);
-		shipSelectionState = new ShipSelectionState(this);
-		continueState = new ContinueState(this);
-		difficultyState = new DifficultyState(this);
-		gameOverState = new GameOverState(this);
-		highScoreState = new HighScoreState(this);
+		playingState 		= new PlayingState(this);
+		startMenuState 		= new StartMenuState(this);
+		handleQuitState 	= new HandleQuitState(this);
+		pauseState 			= new PauseState(this);
+		shipSelectionState 	= new ShipSelectionState(this);
+		continueState 		= new ContinueState(this);
+		difficultyState		= new DifficultyState(this);
+		gameOverState 		= new GameOverState(this);
+		highScoreState 		= new HighScoreState(this);
 		getContinueState().resetTimer();
 		GameState.setGameStateTo(startMenuState);
 	}
