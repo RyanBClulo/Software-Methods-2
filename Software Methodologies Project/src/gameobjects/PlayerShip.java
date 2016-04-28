@@ -5,6 +5,7 @@ import gameobjectLists.ProjectilesList;
 import gameobjectLists.SpecialLists;
 import graphics.Images;
 import main.MainWindow;
+import score.Statistics;
 
 public class PlayerShip extends GameObjects{
 	
@@ -33,11 +34,14 @@ public class PlayerShip extends GameObjects{
 		if(counter>shootSpam){
 			counter=0;
 			if(game.getKeyboard().space()){
-				if(ship!=1)bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+GameObjects.bulletHeight,-9.0f,ship));
+				if(ship!=1){
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+GameObjects.bulletHeight,-9.0f,ship));
+				}
 				else{
 					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2-15,(int)y+GameObjects.bulletHeight,-9.0f,ship));
 					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2+15,(int)y+GameObjects.bulletHeight,-9.0f,ship));
 				}
+				Statistics.addShot();
 			}
 		}
 		
