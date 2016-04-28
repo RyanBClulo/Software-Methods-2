@@ -22,4 +22,9 @@ public class MiniBoss extends GameObjects {
 	public void draw(Graphics graphics) {
 		graphics.drawImage(Images.boss,(int)x,(int)y,width,height,null);
 	}
+	
+	public void backToInitialPosition(){
+		x=game.getWidth()-miniBossWidth/2;
+		y=-(miniBossHeight+500);
+	}
 }

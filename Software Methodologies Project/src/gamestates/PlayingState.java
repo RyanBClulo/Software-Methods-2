@@ -55,7 +55,9 @@ public class PlayingState extends GameState{
 	public void gameStart(int difficulty){
 		enemies.reset();
 		enemyBullets.reset();
+		enemiesWave=0;
 		player.getBullets().reset();
+		boss.backToInitialPosition();
 		player.setShipLocation((float)(game.getWidth()-player.getWidth())/2,(float)(game.getHeight()-player.getHeight())/1.2f);
 		player.setLife(5);
 		player.resetSpecials();
@@ -66,8 +68,10 @@ public class PlayingState extends GameState{
 	public void faseStart(){
 		enemies.reset();
 		enemyBullets.reset();
+		enemiesWave=0;
 		player.getBullets().reset();
 		player.resetSpecials();
+		boss.backToInitialPosition();
 		player.setShipLocation((float)(game.getWidth()-player.getWidth())/2,(float)(game.getHeight()-player.getHeight())/1.2f);
 		player.setLife(5);
 	}
@@ -80,8 +84,9 @@ public class PlayingState extends GameState{
 		
 		enemyBullets.updateVariables();
 		player.updateVariables();
-		if(enemiesWave!=2)enemies.updateVariables();
+		if(enemiesWave!=6)enemies.updateVariables();
 		else boss.updateVariables();
+		
 		Statistics.updateAccuracy();
 		
 		collisionDetector.playerBulletEnemy(player.getBullets(),enemies);
@@ -90,7 +95,7 @@ public class PlayingState extends GameState{
 		collisionDetector.specialsEnemy(player.getSpecials(), enemies);
 		
 		if(enemies.getEnemy1List().size()==0){				
-			if(enemiesWave!=2){
+			if(enemiesWave!=6){
 				EnemyFormation.createFormation(game,enemies.getEnemy1List());
 				enemiesWave++;
 				enemyBulletType = r.nextInt(3)+3;
@@ -128,7 +133,7 @@ public class PlayingState extends GameState{
 	@Override
 	public void draw(Graphics graphics) {
 		enemyBullets.draw(graphics);
-		if(enemiesWave!=2)enemies.draw(graphics);
+		if(enemiesWave!=6)enemies.draw(graphics);
 		else boss.draw(graphics);
 		player.draw(graphics);
 		Score.drawScore(graphics);
