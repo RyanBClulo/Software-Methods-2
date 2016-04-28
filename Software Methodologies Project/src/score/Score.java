@@ -9,7 +9,7 @@ public class Score {
 	private static Font font = new Font("SansSerif", Font.BOLD, 24);
 
 	public static void drawScore(Graphics g){
-		String scoreString="Score: "+currentScore;
+		String scoreString="Score: "+getCurrentScore();
 		String accuracyString="Accuracy: "+(int)(Statistics.getAccuracy()*100)+"%";
 		g.setColor(Color.MAGENTA);
 		g.setFont(font); 
@@ -18,15 +18,23 @@ public class Score {
 	}
 	
 	public static void addScore(int ammount){
-		currentScore+=ammount;
+		setCurrentScore(getCurrentScore() + ammount);
 	}
 	public static void hitScore(){
-		if(Statistics.getHits()==0)currentScore+=5;
-		else currentScore+=Math.round(10*Statistics.getAccuracy());
+		if(Statistics.getHits()==0)setCurrentScore(getCurrentScore() + 5);
+		else setCurrentScore((int)(getCurrentScore() + Math.round(10*Statistics.getAccuracy())));
 	}
 	public static void resetScores(){
-		currentScore=-25;
+		setCurrentScore(-25);
 		Statistics.resetStats();
+	}
+
+	public static int getCurrentScore() {
+		return currentScore;
+	}
+
+	public static void setCurrentScore(int currentScore) {
+		Score.currentScore = currentScore;
 	}
 
 }
