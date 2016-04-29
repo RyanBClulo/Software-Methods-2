@@ -6,7 +6,9 @@ import graphics.Images;
 import main.MainWindow;
 
 public class Shuriken extends GameObjects{
-
+	
+	private int timer;
+	
 	public Shuriken(MainWindow game,float x,float y) {
 		super(game, x, y,shurikenWidth,shurikenHeight);
 		speed=8.0f;
@@ -18,12 +20,24 @@ public class Shuriken extends GameObjects{
 
 	@Override
 	public void updateVariables() {
-		y-=speed;
 		
-		if(game.getKeyboard().right()){
-			x+=1.5f;
-		}else if(game.getKeyboard().left()){
-			x-=1.5f;
+		timer++;
+		if(timer<=60){
+			y-=5f;
+		}else if(timer<=180){
+			if(game.getKeyboard().right()){
+				x+=10f;
+			}else if(game.getKeyboard().left()){
+				x-=10f;
+			}
+			
+			if(game.getKeyboard().up()){
+				y-=10f;
+			}else if(game.getKeyboard().down()){
+				y+=10f;
+			}
+		}else{
+			y-=10f;
 		}
 		
 		counter++;

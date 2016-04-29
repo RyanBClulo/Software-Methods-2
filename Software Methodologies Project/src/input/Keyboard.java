@@ -2,15 +2,6 @@ package input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Keyboard implements KeyListener{
 	
@@ -61,21 +52,6 @@ public class Keyboard implements KeyListener{
 	        case KeyEvent.VK_SPACE:
 	        	//handle space (shooting)
 	        	shoot = true;
-	        	try {
-					playSound("shot.wav");
-				} catch (MalformedURLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (LineUnavailableException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (UnsupportedAudioFileException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 	        	break;
 	        case KeyEvent.VK_M:
 	        	alt = true;
@@ -137,16 +113,6 @@ public class Keyboard implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		
-	}
-	
-	public static void playSound(String fileName) throws MalformedURLException, LineUnavailableException, UnsupportedAudioFileException, IOException{
-	    File url = new File(fileName);
-	    Clip clip = AudioSystem.getClip();
-
-	    AudioInputStream ais = AudioSystem.
-	        getAudioInputStream( url );
-	    clip.open(ais);
-	    clip.start();
 	}
 	
 	public boolean up(){

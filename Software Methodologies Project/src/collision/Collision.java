@@ -72,6 +72,7 @@ public class Collision {
 	}
 	
 	public void specialsEnemy(SpecialLists specials,EnemiesList enemies){
+		
 		for(int x=0 ; x<enemies.getEnemy1List().size() ; x++){
 			for(int y=0 ; y<specials.getShurikenList().size() ; y++){
 				if(enemies.getEnemy1List().get(x).getBounds().intersects(specials.getShurikenList().get(y).getBounds())){
@@ -79,6 +80,21 @@ public class Collision {
 					if(enemies.getEnemy1List().get(x).getLife()<=0)
 						enemies.removeEnemy1(enemies.getEnemy1List().get(x));
 					break;
+				}
+			}
+		}
+		
+		for(int x=0 ; x<enemies.getEnemy1List().size() ; x++){
+			for(int y=0 ; y<specials.getSuperNovaList().size() ; y++){
+				if(enemies.getEnemy1List().get(x).getBounds().intersects(specials.getSuperNovaList().get(y).getBounds())){
+					if(specials.getSuperNovaList().get(y).isExploded()){
+						enemies.getEnemy1List().get(x).setLife(enemies.getEnemy1List().get(x).getLife()-1);
+						if(enemies.getEnemy1List().get(x).getLife()<=0)
+							enemies.removeEnemy1(enemies.getEnemy1List().get(x));
+						break;
+					}else{
+						specials.getSuperNovaList().get(y).explode();
+					}
 				}
 			}
 		}

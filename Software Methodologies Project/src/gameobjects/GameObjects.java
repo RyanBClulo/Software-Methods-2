@@ -18,6 +18,7 @@ public abstract class GameObjects {
 	public static final int shurikenHeight=45;
 	public static final int superNovaWidth=40;
 	public static final int superNovaHeight=40;
+	public static final int laserWidth=20;
 
 	protected MainWindow game;
 	protected float x,y;

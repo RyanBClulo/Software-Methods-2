@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import gameobjectLists.ProjectilesList;
 import gameobjectLists.SpecialLists;
 import graphics.Images;
+import input.Sound;
 import main.MainWindow;
 import score.Statistics;
 
@@ -42,6 +43,7 @@ public class PlayerShip extends GameObjects{
 					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2+15,(int)y+GameObjects.bulletHeight,-9.0f,ship));
 				}
 				Statistics.addShot();
+				Sound.playSound("Shot.wav");
 			}
 		}
 		
@@ -50,6 +52,9 @@ public class PlayerShip extends GameObjects{
 				specialAmount--;
 				specialSpam=false;
 				switch(ship){
+				case 0:
+					special.addLaser(new Laser(game));
+					break;
 				case 1:
 					special.addSuperNova(new SuperNova(game,x+(playerWidth-superNovaWidth)/2,y));
 					break;
@@ -111,6 +116,7 @@ public class PlayerShip extends GameObjects{
 			bounds.width=width-bounds.x*2;
 			bounds.height=height-40;
 			bulletPower=3;
+			specialAmount=5;
 		}else if(ship==1){
 			speed=3.0f;
 			shootSpam=15;
@@ -134,6 +140,9 @@ public class PlayerShip extends GameObjects{
 	
 	public void resetSpecials(){
 		switch(ship){
+		case 0:
+			specialAmount=5;
+			break;
 		case 1:
 			specialAmount=5;
 			break;

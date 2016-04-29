@@ -6,7 +6,9 @@ import java.net.MalformedURLException;
 import javax.sound.sampled.*;
 
 public class Sound {
+	
 	private Clip clip;
+	
     public Sound(String fileName) {
         // specify the sound to play
         // (assuming the sound can be played by the audio system)
@@ -42,14 +44,42 @@ public class Sound {
 
     // play, stop, loop the sound clip
     }
+    
     public void play(){
         clip.setFramePosition(0);  // Must always rewind!
         clip.start();
     }
+    
     public void loop(){
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
+    
     public void stop(){
             clip.stop();
         }
-    }
+    
+    public static void playSound(String fileName){
+	    File url = new File(fileName);
+	    Clip clip = null;
+	    AudioInputStream ais = null;
+	    
+		try {
+			clip = AudioSystem.getClip();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			ais = AudioSystem.getAudioInputStream( url );
+		} catch (UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		}
+		
+	    try {
+			clip.open(ais);
+		} catch (LineUnavailableException | IOException e) {
+			e.printStackTrace();
+		}
+	    clip.start();
+	}
+}
