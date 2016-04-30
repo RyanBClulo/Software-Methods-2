@@ -47,10 +47,26 @@ public class Shuriken extends GameObjects{
 			if(anim==8)
 				anim=0;
 		}
+		
+		if(damage){
+			damageTimer++;
+			if(damageTimer==damageTime){
+				damageTimer=0;
+				damage=false;
+			}
+		}
 	}
 
 	@Override
 	public void draw(Graphics graphics) {
 		graphics.drawImage(Images.shuriken[anim],(int)x,(int)y,width,height,null);
+	}
+	
+	public void damage(){
+		damage=true;
+	}
+	
+	public boolean hasDoneDamage(){
+		return damage;
 	}
 }

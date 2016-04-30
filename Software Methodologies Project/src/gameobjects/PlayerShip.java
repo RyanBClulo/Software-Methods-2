@@ -116,7 +116,7 @@ public class PlayerShip extends GameObjects{
 			bounds.width=width-bounds.x*2;
 			bounds.height=height-40;
 			bulletPower=3;
-			specialAmount=5;
+			specialAmount=10;
 		}else if(ship==1){
 			speed=3.0f;
 			shootSpam=15;
@@ -141,7 +141,7 @@ public class PlayerShip extends GameObjects{
 	public void resetSpecials(){
 		switch(ship){
 		case 0:
-			specialAmount=5;
+			specialAmount=10;
 			break;
 		case 1:
 			specialAmount=5;
