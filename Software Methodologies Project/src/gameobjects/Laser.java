@@ -27,7 +27,6 @@ public class Laser extends GameObjects{
 
 	@Override
 	public void updateVariables() {
-		System.out.println(y);
 		if(!isHitting){
 			yInTime+=speed;
 			y=game.getPlayingState().getPlayerShip().getY()-(10+2*height+yInTime);

@@ -4,15 +4,21 @@ import java.awt.Graphics;
 import java.util.LinkedList;
 
 import gameobjects.Projectile;
+import main.MainWindow;
 
 public class ProjectilesList {
 	
+	private MainWindow game;
 	private LinkedList<Projectile> projectileList = new LinkedList<Projectile>();
+	
+	public ProjectilesList(MainWindow game){
+		this.game=game;
+	}
 	
 	public void updateVariables(){
 		for( int i=0 ; i<projectileList.size() ; i++ ){
 			if(projectileList.get(i)!=null){
-				if(projectileList.get(i).getY()<-10)
+				if(projectileList.get(i).getY()<-10 || projectileList.get(i).getY() > game.getHeight())
 					removeProjectile(projectileList.get(i));
 				else
 					projectileList.get(i).updateVariables();

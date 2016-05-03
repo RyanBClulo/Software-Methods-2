@@ -16,11 +16,12 @@ public class PlayerShip extends GameObjects{
 	private int specialAmount;
 	private int bulletPower;
 	
-	private ProjectilesList bullet = new ProjectilesList();
+	private ProjectilesList bullet;
 	private SpecialLists special = new SpecialLists();
 	
 	public PlayerShip(MainWindow game){
 		super(game,0,0,playerWidth,playerHeight);
+		bullet = new ProjectilesList(game);
 		this.x=(float)(game.getWidth()-width)/2;
 		this.y=(float)(game.getHeight()-height)/1.2f;
 	}
@@ -35,12 +36,18 @@ public class PlayerShip extends GameObjects{
 		if(counter>shootSpam){
 			counter=0;
 			if(game.getKeyboard().space()){
-				if(ship!=1){
-					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+GameObjects.bulletHeight,-9.0f,ship));
-				}
-				else{
-					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2-15,(int)y+GameObjects.bulletHeight,-9.0f,ship));
-					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2+15,(int)y+GameObjects.bulletHeight,-9.0f,ship));
+				switch(ship){
+				case 0:
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+GameObjects.bulletHeight,-9.0f,0,ship));
+					break;
+				case 1:
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2-15,(int)y+GameObjects.bulletHeight,-9.0f,0,ship));
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2+15,(int)y+GameObjects.bulletHeight,-9.0f,0,ship));
+					break;
+				case 2:
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+GameObjects.bulletHeight,-9.0f,9.0f,ship));
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+GameObjects.bulletHeight,-9.0f,-9.0f,ship));
+					break;
 				}
 				Statistics.addShot();
 				Sound.playSound("Shot.wav");
