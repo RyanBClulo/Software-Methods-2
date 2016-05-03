@@ -2,13 +2,14 @@ package gamestates;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
+import input.Sound;
 import main.MainWindow;
 
 public class GameOverState extends GameState{
 
 	public GameOverState(MainWindow game) {
 		super(game);
+		
 	}
 
 	@Override

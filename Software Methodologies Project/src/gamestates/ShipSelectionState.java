@@ -1,5 +1,7 @@
 package gamestates;
 
+import input.Sound;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -14,24 +16,28 @@ public class ShipSelectionState extends GameState{
 
 	@Override
 	public void updateVariables() {
+		Sound b = new Sound("click.wav");
 		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
 				if(game.getMouse().getMouseY() >= 425 && game.getMouse().getMouseY() <= 525){
 					if(game.getMouse().getMouseX() >= 200 && game.getMouse().getMouseX() <= 300){
 						GameState.setGameStateTo(game.difficultyState());
 						GameState.setChangeState(false);
+						b.play();
 						game.getPlayingState().getPlayerShip().setShip(0);
 						game.getDifficultystate().resetChoice();
 					}
 					if(game.getMouse().getMouseX() >= 350 && game.getMouse().getMouseX() <= 450){
 						GameState.setGameStateTo(game.difficultyState());
 						GameState.setChangeState(false);
+						b.play();
 						game.getPlayingState().getPlayerShip().setShip(1);
 						game.getDifficultystate().resetChoice();
 					}
 					if(game.getMouse().getMouseX() >= 500 && game.getMouse().getMouseX() <= 600){
 						GameState.setGameStateTo(game.difficultyState());
 						GameState.setChangeState(false);
+						b.play();
 						game.getPlayingState().getPlayerShip().setShip(2);
 						game.getDifficultystate().resetChoice();
 					}
