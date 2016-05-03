@@ -8,6 +8,7 @@ import gameobjects.PlayerShip;
 import main.MainWindow;
 import score.Score;
 import score.Statistics;
+import input.Sound;
 
 /**
  * 
@@ -62,11 +63,13 @@ public class Collision {
 	 * @param player
 	 */
 	public void playerEnemybullet(ProjectilesList bullet,PlayerShip player){
+		Sound b = new Sound("hit.wav");
 		for(int x=0 ; x<bullet.getBulletList().size() ; x++){
 			if(bullet.getBulletList().get(x).getBounds().intersects(player.getBounds())){
 				bullet.removeProjectile(bullet.getBulletList().get(x));
 				player.playerDeath();
 				player.setLife(player.getLife()-1);
+				b.play();
 				break;
 			}
 		}

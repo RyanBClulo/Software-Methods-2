@@ -1,7 +1,7 @@
 package gameobjects;
 
 import java.awt.Graphics;
-
+import input.Sound;
 import graphics.Images;
 import main.MainWindow;
 
@@ -11,6 +11,8 @@ public class Shuriken extends GameObjects{
 	
 	public Shuriken(MainWindow game,float x,float y) {
 		super(game, x, y,shurikenWidth,shurikenHeight);
+		Sound b = new Sound("Saucer.wav");
+		b.play();
 		speed=8.0f;
 		bounds.x=7;
 		bounds.y=7;

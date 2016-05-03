@@ -3,7 +3,7 @@ package gamestates;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.FileNotFoundException;
-
+import input.Sound;
 import score.HighScore;
 import score.Score;
 import main.MainWindow;
@@ -27,6 +27,7 @@ public class HandleQuitState extends GameState{
 	 */
 	@Override
 	public void updateVariables() {
+		Sound b = new Sound("click.wav");
 		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
 				if(game.getMouse().getMouseX() >= 325 && game.getMouse().getMouseX() <= 475){
@@ -36,6 +37,7 @@ public class HandleQuitState extends GameState{
 						}else if(GameState.getLastGameState()==game.pauseState()){
 							GameState.setGameStateTo(game.startMenu());
 							GameState.setChangeState(false);
+							b.play();
 							try {
 								HighScore.writeScores();
 							} catch (FileNotFoundException e) {
@@ -45,6 +47,7 @@ public class HandleQuitState extends GameState{
 						}else if(GameState.getLastGameState()==game.continueState()){
 							GameState.setGameStateTo(game.gameOverState());
 							GameState.setChangeState(false);
+							b.play();
 						}
 					}
 					if(game.getMouse().getMouseY() >= 490 && game.getMouse().getMouseY() <= 540){
@@ -52,6 +55,7 @@ public class HandleQuitState extends GameState{
 							game.getContinueState().resetTimer();
 						GameState.backToLastState();
 						GameState.setChangeState(false);
+						b.play();
 					}
 				}
 			}

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import graphics.Images;
 import main.MainWindow;
+import input.Sound;
 
 public class Laser extends GameObjects{
 	
@@ -27,6 +28,7 @@ public class Laser extends GameObjects{
 
 	@Override
 	public void updateVariables() {
+		Sound b = new Sound("shot.wav");
 		System.out.println(y);
 		if(!isHitting){
 			yInTime+=speed;
@@ -40,6 +42,7 @@ public class Laser extends GameObjects{
 			if(game.getKeyboard().alt() && timer <= 60){
 				yInTime=length=(int)(game.getPlayingState().getPlayerShip().getY()-(10+2*height)-y);
 				x=game.getPlayingState().getPlayerShip().getX()+(game.getPlayingState().getPlayerShip().getWidth()-laserWidth)/2;
+				b.play();
 			}
 		}
 		

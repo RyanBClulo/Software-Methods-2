@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import graphics.Images;
 import main.MainWindow;
+import input.Sound;
 
 public class SuperNova extends GameObjects{
 	
@@ -21,6 +22,7 @@ public class SuperNova extends GameObjects{
 
 	@Override
 	public void updateVariables() {
+		Sound b = new Sound("explosion.wav");
 		if(explode){
 			if(anim!=16)
 				anim++;
@@ -30,6 +32,7 @@ public class SuperNova extends GameObjects{
 			height+=20;
 			bounds.width+=20;
 			bounds.height+=20;
+			b.play();
 		}else{
 			y-=4.0f;
 			counter++;
