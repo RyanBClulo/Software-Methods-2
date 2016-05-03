@@ -4,7 +4,9 @@ import java.awt.Graphics;
 import gameobjectLists.ProjectilesList;
 import gameobjectLists.SpecialLists;
 import graphics.Images;
+import input.Sound;
 import main.MainWindow;
+import score.Statistics;
 
 public class PlayerShip extends GameObjects{
 	
@@ -14,11 +16,12 @@ public class PlayerShip extends GameObjects{
 	private int specialAmount;
 	private int bulletPower;
 	
-	private ProjectilesList bullet = new ProjectilesList();
+	private ProjectilesList bullet;
 	private SpecialLists special = new SpecialLists();
 	
 	public PlayerShip(MainWindow game){
 		super(game,0,0,playerWidth,playerHeight);
+		bullet = new ProjectilesList(game);
 		this.x=(float)(game.getWidth()-width)/2;
 		this.y=(float)(game.getHeight()-height)/1.2f;
 	}
@@ -33,11 +36,21 @@ public class PlayerShip extends GameObjects{
 		if(counter>shootSpam){
 			counter=0;
 			if(game.getKeyboard().space()){
-				if(ship!=1)bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+GameObjects.bulletHeight,-9.0f,ship));
-				else{
-					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2-15,(int)y+GameObjects.bulletHeight,-9.0f,ship));
-					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2+15,(int)y+GameObjects.bulletHeight,-9.0f,ship));
+				switch(ship){
+				case 0:
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+GameObjects.bulletHeight,-9.0f,0,ship));
+					break;
+				case 1:
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2-15,(int)y+GameObjects.bulletHeight,-9.0f,0,ship));
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2+15,(int)y+GameObjects.bulletHeight,-9.0f,0,ship));
+					break;
+				case 2:
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+GameObjects.bulletHeight,-9.0f,9.0f,ship));
+					bullet.addProjectile(new Projectile(game,(int)x+(width-bulletWidth)/2,(int)y+GameObjects.bulletHeight,-9.0f,-9.0f,ship));
+					break;
 				}
+				Statistics.addShot();
+				Sound.playSound("Shot.wav");
 			}
 		}
 		
@@ -46,6 +59,9 @@ public class PlayerShip extends GameObjects{
 				specialAmount--;
 				specialSpam=false;
 				switch(ship){
+				case 0:
+					special.addLaser(new Laser(game));
+					break;
 				case 1:
 					special.addSuperNova(new SuperNova(game,x+(playerWidth-superNovaWidth)/2,y));
 					break;
@@ -107,6 +123,7 @@ public class PlayerShip extends GameObjects{
 			bounds.width=width-bounds.x*2;
 			bounds.height=height-40;
 			bulletPower=3;
+			specialAmount=10;
 		}else if(ship==1){
 			speed=3.0f;
 			shootSpam=15;
@@ -130,6 +147,9 @@ public class PlayerShip extends GameObjects{
 	
 	public void resetSpecials(){
 		switch(ship){
+		case 0:
+			specialAmount=10;
+			break;
 		case 1:
 			specialAmount=5;
 			break;

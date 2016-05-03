@@ -2,6 +2,7 @@ package gamestates;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import input.Sound;
 
 import main.MainWindow;
 
@@ -19,6 +20,8 @@ public class ContinueState extends GameState{
 
 	@Override
 	public void updateVariables() {
+		Sound b = new Sound("click.wav");
+		Sound c = new Sound("game-over.wav");
 		
 		counter++;
 		if(counter==60){
@@ -31,17 +34,21 @@ public class ContinueState extends GameState{
 				if(game.getMouse().getMouseX()>330 && game.getMouse().getMouseX()<380){
 					GameState.setGameStateTo(game.playingState());
 					GameState.setChangeState(false);
+					b.play();
 					game.getPlayingState().useContinue();
 					game.getPlayingState().faseStart();
 				}
 				if(game.getMouse().getMouseX()>420 && game.getMouse().getMouseX()<470){
 					GameState.setGameStateTo(game.handleQuitState());
 					GameState.setChangeState(false);
+					b.play();
+					c.play();
 				}
 			}
 		}else if(timer<0){
 			GameState.setGameStateTo(game.gameOverState());
 			GameState.setChangeState(false);
+			c.play();
 		}else{
 			GameState.setChangeState(true);
 		}

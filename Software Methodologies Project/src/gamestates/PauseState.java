@@ -2,7 +2,7 @@ package gamestates;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
+import input.Sound;
 import main.MainWindow;
 
 public class PauseState extends GameState{
@@ -13,10 +13,12 @@ public class PauseState extends GameState{
 
 	@Override
 	public void updateVariables() {
+		Sound b = new Sound("click.wav");
 		if(game.getKeyboard().esc()){
 			if(GameState.getChangeState()){
 				GameState.setGameStateTo(game.playingState());
 				GameState.setChangeState(false);
+				b.play();
 			}
 		}else if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
@@ -24,10 +26,12 @@ public class PauseState extends GameState{
 					if(game.getMouse().getMouseY() >= 410 && game.getMouse().getMouseY() <= 460){
 						GameState.setGameStateTo(game.playingState());
 						GameState.setChangeState(false);
+						b.play();
 					}
 					if(game.getMouse().getMouseY() >= 490 && game.getMouse().getMouseY() <= 540){
 						GameState.setGameStateTo(game.handleQuitState());
 						GameState.setChangeState(false);
+						b.play();
 					}
 				}
 			}

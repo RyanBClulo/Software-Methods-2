@@ -46,7 +46,7 @@ public class PlayingState extends GameState{
 		super(game);
 		player = new PlayerShip(game);
 		enemies = new EnemiesList();
-		enemyBullets = new ProjectilesList();
+		enemyBullets = new ProjectilesList(game);
 		collisionDetector = new Collision(game);
 		boss = new MiniBoss(game);
 		continues=3;
@@ -109,7 +109,7 @@ public class PlayingState extends GameState{
 				enemyBullets.addProjectile(
 						new Projectile(game,
 								enemies.getEnemy1List().get(enemyIndex).getX()+(GameObjects.enemyWidth-GameObjects.bulletWidth)/2,
-								enemies.getEnemy1List().get(enemyIndex).getY()+GameObjects.enemyHeight/2, 8.0f,enemyBulletType));
+								enemies.getEnemy1List().get(enemyIndex).getY()+GameObjects.enemyHeight/2,8.0f,0,enemyBulletType));
 			}
 		}
 		

@@ -32,7 +32,7 @@ public class Enemy extends GameObjects{
 		bounds.width=width-2*bounds.x;
 		bounds.height=height-2*bounds.y;
 		speed=9;
-		life=3;
+		life=5;
 	}
 	
 	public void updateVariables(){

@@ -18,6 +18,12 @@ public abstract class GameObjects {
 	public static final int shurikenHeight=45;
 	public static final int superNovaWidth=40;
 	public static final int superNovaHeight=40;
+	public static final int laserWidth=20;
+	
+	public static final int laserPower=4;
+	public static final int shurikenPower=5;
+	
+	public static final int damageTime=10;
 
 	protected MainWindow game;
 	protected float x,y;
@@ -26,6 +32,8 @@ public abstract class GameObjects {
 	protected int life;
 	protected int counter;
 	protected int anim;
+	protected int damageTimer;
+	protected boolean damage;
 	protected Rectangle bounds;
 	
 	public GameObjects(MainWindow game,float x, float y, int width, int height){

@@ -2,7 +2,7 @@ package gamestates;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
+import input.Sound;
 import gameobjects.GameObjects;
 import graphics.Images;
 import main.MainWindow;
@@ -18,6 +18,7 @@ public class DifficultyState extends GameState{
 
 	@Override
 	public void updateVariables() {
+		Sound b = new Sound("click.wav");
 		if(game.getMouse().isRightPressed()){
 			if(prompt){
 				if(game.getMouse().getMouseY()>600 && game.getMouse().getMouseY()<628){
@@ -25,9 +26,11 @@ public class DifficultyState extends GameState{
 						game.getPlayingState().gameStart(difficulty);
 						GameState.setGameStateTo(game.playingState());
 						GameState.setChangeState(false);
+						b.play();
 					}else if(game.getMouse().getMouseX()>420 && game.getMouse().getMouseX()<470){
 						GameState.setGameStateTo(game.startMenu());
 						GameState.setChangeState(false);
+						b.play();
 					}
 				}
 				
@@ -36,12 +39,15 @@ public class DifficultyState extends GameState{
 					if(game.getMouse().getMouseX()>210 && game.getMouse().getMouseX()<310){
 						difficulty=0;
 						prompt=true;
+						b.play();
 					}else if(game.getMouse().getMouseX()>350 && game.getMouse().getMouseX()<450){
 						difficulty=1;
 						prompt=true;
+						b.play();
 					}else if(game.getMouse().getMouseX()>490 && game.getMouse().getMouseX()<590){
 						difficulty=2;
 						prompt=true;
+						b.play();
 					}
 				}
 			}
