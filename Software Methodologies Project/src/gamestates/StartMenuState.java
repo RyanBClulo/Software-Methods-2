@@ -29,6 +29,7 @@ public class StartMenuState extends GameState{
 	@Override
 	public void updateVariables() {
 		Sound b = new Sound("click.wav");
+		
 		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
 				if(game.getMouse().getMouseX() >= 200 && game.getMouse().getMouseX() <= 600){
@@ -37,10 +38,12 @@ public class StartMenuState extends GameState{
 						b.play();
 						GameState.setChangeState(false);
 					}
+					
 					if(game.getMouse().getMouseY() >= 437 && game.getMouse().getMouseY() <= 512){
 						//Place for got to showScoreState
 						b.play();
 					}
+					
 					if(game.getMouse().getMouseY() >= 542 && game.getMouse().getMouseY() <= 617){
 						GameState.setGameStateTo(game.handleQuitState());
 						b.play();
@@ -67,7 +70,8 @@ public class StartMenuState extends GameState{
 		graphics.drawRect((game.getWidth()-400)/2,(game.getHeight()-285)/2+2*(75+30),400,75);
 		
 		graphics.drawString("SMP - eXtreme",330,200);
-		graphics.drawString("Temporary Start",325,375);
+	//	graphics.drawString("Temporary Start",325,375);
+		graphics.drawString("Start",(game.getWidth()/2)-30,(2*game.getHeight()/5));
 		graphics.drawString("Temporary High Scores",290,480);
 		graphics.drawString("Temporary Exit",330,585);
 	}
