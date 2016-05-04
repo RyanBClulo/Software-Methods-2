@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import input.Sound;
 import gameobjects.GameObjects;
 import graphics.Images;
+import graphics.TextSettings;
 import main.MainWindow;
 
 public class DifficultyState extends GameState{
@@ -59,7 +60,7 @@ public class DifficultyState extends GameState{
 	@Override
 	public void draw(Graphics graphics) {
 		graphics.setColor(Color.WHITE);
-		graphics.setFont(font);
+		graphics.setFont(TextSettings.menuFont);
 		if(prompt){
 			graphics.drawString("Do you confirm your selection?",255,350);
 			

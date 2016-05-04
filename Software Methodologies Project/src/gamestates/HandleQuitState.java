@@ -3,6 +3,8 @@ package gamestates;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.FileNotFoundException;
+
+import graphics.TextSettings;
 import input.Sound;
 import score.HighScore;
 import score.Score;
@@ -70,7 +72,7 @@ public class HandleQuitState extends GameState{
 	@Override
 	public void draw(Graphics graphics) {
 		graphics.setColor(Color.WHITE);
-		graphics.setFont(font);
+		graphics.setFont(TextSettings.menuFont);
 		
 		if(GameState.getLastGameState()==game.pauseState())
 			game.playingState().draw(graphics);

@@ -12,6 +12,7 @@ import gameobjects.GameObjects;
 import gameobjects.MiniBoss;
 import gameobjects.PlayerShip;
 import gameobjects.Projectile;
+import graphics.TextSettings;
 import main.MainWindow;
 import score.Score;
 import score.Statistics;
@@ -137,9 +138,9 @@ public class PlayingState extends GameState{
 		else boss.draw(graphics);
 		player.draw(graphics);
 		Score.drawScore(graphics);
-		graphics.setFont(font);
+		graphics.setFont(TextSettings.gameFont);
 		graphics.setColor(Color.WHITE);
-		graphics.drawString("Amount of Lives: "+player.getLife(),game.getWidth()/2-70,game.getHeight()-50);
+		graphics.drawString("Amount of Lives: "+player.getLife(),game.getWidth()/2-107,game.getHeight()-50);
 
 	}
 	

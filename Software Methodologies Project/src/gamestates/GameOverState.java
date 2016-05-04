@@ -2,6 +2,8 @@ package gamestates;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import graphics.TextSettings;
 import input.Sound;
 import main.MainWindow;
 
@@ -26,7 +28,7 @@ public class GameOverState extends GameState{
 	@Override
 	public void draw(Graphics graphics) {
 		graphics.setColor(Color.WHITE);
-		graphics.setFont(font);
+		graphics.setFont(TextSettings.menuFont);
 		graphics.drawString("GAME OVER",game.getWidth()/2,350);
 		graphics.drawString(""+counter,50,50);
 	}

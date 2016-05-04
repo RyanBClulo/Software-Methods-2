@@ -3,6 +3,7 @@ package gamestates;
 import java.awt.Color;
 import java.awt.Graphics;
 import input.Sound;
+import graphics.TextSettings;
 
 import main.MainWindow;
 
@@ -57,15 +58,19 @@ public class ContinueState extends GameState{
 	@Override
 	public void draw(Graphics graphics) {
 		graphics.setColor(Color.WHITE);
-		graphics.setFont(font);
+		graphics.setFont(TextSettings.menuFont);
 		graphics.drawString("YOU'VE LOST!",330,250);
 		graphics.drawString("Wanna Continue?",315,400);
+		
 		graphics.drawString("YES",335,452);
 		graphics.drawRect((game.getWidth()-140)/2,430,50,28);
+		
 		graphics.drawString("NO",430,452);
 		graphics.drawRect((game.getWidth()-140)/2+90,430,50,28);
+		
 		graphics.drawString(game.getPlayingState().getContinues()+" continues left",30,30);
-		graphics.setFont(timerfont);
+		
+		graphics.setFont(TextSettings.timerFont);
 		
 		if(timer>6){
 			graphics.setColor(Color.GREEN);

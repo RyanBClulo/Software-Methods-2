@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import graphics.Images;
+import graphics.TextSettings;
 import main.MainWindow;
 
 public class ShipSelectionState extends GameState{
@@ -51,7 +52,7 @@ public class ShipSelectionState extends GameState{
 	@Override
 	public void draw(Graphics graphics) {
 		graphics.setColor(Color.WHITE);
-		graphics.setFont(font);
+		graphics.setFont(TextSettings.subMenuTitle);
 		
 		graphics.drawString("Select your Ship",330,350);
 		
@@ -59,6 +60,7 @@ public class ShipSelectionState extends GameState{
 			graphics.drawImage(Images.playerShip[x],(game.getWidth()-400)/2+x*150,(game.getHeight()-100)/2,100,100,null);
 		}
 		
+		graphics.setFont(TextSettings.menuFont);
 		if(game.getMouse().getMouseY() >= 425 && game.getMouse().getMouseY() <= 525){
 			if(game.getMouse().getMouseX() >= 200 && game.getMouse().getMouseX() <= 300)
 				graphics.drawString("Ship 1 Atributes",330,590);

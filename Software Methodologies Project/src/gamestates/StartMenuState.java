@@ -3,12 +3,13 @@ package gamestates;
 import java.awt.Color;
 import java.awt.Graphics;
 import input.Sound;
-
 import main.MainWindow;
+import graphics.TextSettings;
+
 
 /**
  * Game state that shows the start menu.
- * @author Eder Paz
+ * @author Eder Paz; @author Franco Reda
  */
 public class StartMenuState extends GameState{
 	
@@ -33,18 +34,19 @@ public class StartMenuState extends GameState{
 		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
 				if(game.getMouse().getMouseX() >= 200 && game.getMouse().getMouseX() <= 600){
-					if(game.getMouse().getMouseY() >= 332 && game.getMouse().getMouseY() <= 407){
+					
+					if(game.getMouse().getMouseY() >= ((game.getHeight()/2)-37.5) && game.getMouse().getMouseY() <= ((game.getHeight()/2)+37.5)){
 						GameState.setGameStateTo(game.shipSelectionState());
 						b.play();
 						GameState.setChangeState(false);
 					}
 					
-					if(game.getMouse().getMouseY() >= 437 && game.getMouse().getMouseY() <= 512){
+					if(game.getMouse().getMouseY() >= ((2*game.getHeight()/3)-37.5) && game.getMouse().getMouseY() <= ((2*game.getHeight()/3)+37.5)){
 						//Place for got to showScoreState
 						b.play();
 					}
 					
-					if(game.getMouse().getMouseY() >= 542 && game.getMouse().getMouseY() <= 617){
+					if(game.getMouse().getMouseY() >= ((5*game.getHeight()/6)-37.5) && game.getMouse().getMouseY() <= ((5*game.getHeight()/6)+37.5)){
 						GameState.setGameStateTo(game.handleQuitState());
 						b.play();
 						GameState.setChangeState(false);
@@ -63,16 +65,17 @@ public class StartMenuState extends GameState{
 	public void draw(Graphics graphics) {
 		
 		graphics.setColor(Color.WHITE);
-		graphics.setFont(font);
 		
-		graphics.drawRect((game.getWidth()-400)/2,(game.getHeight()-285)/2,400,75);
-		graphics.drawRect((game.getWidth()-400)/2,(game.getHeight()-285)/2+75+30,400,75);
-		graphics.drawRect((game.getWidth()-400)/2,(game.getHeight()-285)/2+2*(75+30),400,75);
+		graphics.drawRect((game.getWidth()/2)-200,(int) ((game.getHeight()/2)-37.5),400,75);		//Box for Start
+		graphics.drawRect((game.getWidth()/2)-200,(int) ((2*game.getHeight()/3)-37.5),400,75);		//Box For High scores
+		graphics.drawRect((game.getWidth()/2)-200,(int) ((5*game.getHeight()/6)-37.5),400,75);		//Box for Quit
 		
-		graphics.drawString("SMP - eXtreme",330,200);
-	//	graphics.drawString("Temporary Start",325,375);
-		graphics.drawString("Start",(game.getWidth()/2)-30,(2*game.getHeight()/5));
-		graphics.drawString("Temporary High Scores",290,480);
-		graphics.drawString("Temporary Exit",330,585);
+		graphics.setFont(TextSettings.titleFont);
+		graphics.drawString("SMP - eXtreme", (game.getWidth()/2)-169,(game.getHeight()/4));
+		
+		graphics.setFont(TextSettings.menuFont);
+		graphics.drawString("Start",		(game.getWidth()/2)-45,(game.getHeight()/2));
+		graphics.drawString("High Scores",	(game.getWidth()/2)-105,(2*game.getHeight()/3));
+		graphics.drawString("Quit",			(game.getWidth()/2)-37,(5*game.getHeight()/6));
 	}
 }
