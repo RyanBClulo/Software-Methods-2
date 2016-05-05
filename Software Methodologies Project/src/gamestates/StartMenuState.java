@@ -70,10 +70,10 @@ public class StartMenuState extends GameState{
 		graphics.drawRect((game.getWidth()/2)-200,(int) ((5*game.getHeight()/6)-37.5),400,75);		//Box for Quit
 		
 		graphics.setFont(TextSettings.titleFont);
-		graphics.drawString("SMP - eXtreme", (game.getWidth()/2)-169,(game.getHeight()/4));
+		graphics.drawString("SMP - eXtreme", (game.getWidth()/2)-250,(game.getHeight()/4));
 		
 		graphics.setFont(TextSettings.menuFont);
-		graphics.drawString("Start",		(game.getWidth()/2)-45,(game.getHeight()/2)+11);
+		graphics.drawString("Start",		(game.getWidth()/2)-40,(game.getHeight()/2)+11);
 		graphics.drawString("High Scores",	(game.getWidth()/2)-105,(2*game.getHeight()/3)+11);
 		graphics.drawString("Quit",			(game.getWidth()/2)-37,(5*game.getHeight()/6)+11);
 	}

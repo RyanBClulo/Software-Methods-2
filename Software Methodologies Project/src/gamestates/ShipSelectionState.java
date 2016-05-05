@@ -54,28 +54,37 @@ public class ShipSelectionState extends GameState{
 		graphics.setColor(Color.WHITE);
 		graphics.setFont(TextSettings.subMenuTitle);
 		
-		graphics.drawString("Select your Ship",330,350);
+		graphics.drawString("Select your Ship",(game.getWidth()/2)-190,(game.getHeight()/4));
 		
 		for(int x=0 ; x<3 ; x++){
 			graphics.drawImage(Images.playerShip[x],(game.getWidth()-400)/2+x*150,(game.getHeight()-100)/2,100,100,null);
 		}
 		
-		graphics.setFont(TextSettings.menuFont);
+		
 		if(game.getMouse().getMouseY() >= 425 && game.getMouse().getMouseY() <= 525){
 			if(game.getMouse().getMouseX() >= 200 && game.getMouse().getMouseX() <= 300){	
-				graphics.drawString("Durandal",330,580);
-				graphics.drawString("Special: Laser",350,650);
-				graphics.drawString("Shot Type: Fast Shot",350,620);
+				graphics.setFont(TextSettings.subMenuFont);
+				graphics.drawString("Durandal",(game.getWidth()/2)-55,580);
+				
+				graphics.setFont(TextSettings.subMenuFont2);
+				graphics.drawString("Special: Laser",(game.getWidth()/2)-130,650);
+				graphics.drawString("Shot Type: Fast Shot",(game.getWidth()/2)-130,620);
 			}
 			if(game.getMouse().getMouseX() >= 350 && game.getMouse().getMouseX() <= 450){
-				graphics.drawString("Joyeuse",330,580);
-				graphics.drawString("Special: Bomb",350,650);
-				graphics.drawString("Shot Type: Double Shot",350,620);
+				graphics.setFont(TextSettings.subMenuFont);
+				graphics.drawString("Joyeuse",(game.getWidth()/2)-52,580);
+				
+				graphics.setFont(TextSettings.subMenuFont2);
+				graphics.drawString("Special: Bomb",(game.getWidth()/2)-130,650);
+				graphics.drawString("Shot Type: Double Shot",(game.getWidth()/2)-130,620);
 			}
 			if(game.getMouse().getMouseX() >= 500 && game.getMouse().getMouseX() <= 600){
-				graphics.drawString("Tizona",330,580);
-				graphics.drawString("Special: Shuriken",350,650);
-				graphics.drawString("Shot Type: Double Twist Shot",350,620);
+				graphics.setFont(TextSettings.subMenuFont);
+				graphics.drawString("Tizona",(game.getWidth()/2)-41,580);
+				
+				graphics.setFont(TextSettings.subMenuFont2);
+				graphics.drawString("Special: Shuriken",(game.getWidth()/2)-130,650);
+				graphics.drawString("Shot Type: Double Twist Shot",(game.getWidth()/2)-130,620);
 			}				
 		}
 	}

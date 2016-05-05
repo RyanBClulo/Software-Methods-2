@@ -23,12 +23,12 @@ public class DifficultyState extends GameState{
 		if(game.getMouse().isRightPressed()){
 			if(prompt){
 				if(game.getMouse().getMouseY()>600 && game.getMouse().getMouseY()<628){
-					if(game.getMouse().getMouseX()>330 && game.getMouse().getMouseX()<380){
+					if(game.getMouse().getMouseX()>(game.getWidth()/3)-30 && game.getMouse().getMouseX()<(game.getWidth()/3)+30){
 						game.getPlayingState().gameStart(difficulty);
 						GameState.setGameStateTo(game.playingState());
 						GameState.setChangeState(false);
 						b.play();
-					}else if(game.getMouse().getMouseX()>420 && game.getMouse().getMouseX()<470){
+					}else if(game.getMouse().getMouseX()>(2*game.getWidth()/3)-30 && game.getMouse().getMouseX()<(2*game.getWidth()/3)+30){
 						GameState.setGameStateTo(game.startMenu());
 						GameState.setChangeState(false);
 						b.play();
@@ -36,16 +36,16 @@ public class DifficultyState extends GameState{
 				}
 				
 			}else{
-				if(game.getMouse().getMouseY()>400 && game.getMouse().getMouseY()<428){
-					if(game.getMouse().getMouseX()>210 && game.getMouse().getMouseX()<310){
+				if(game.getMouse().getMouseY()>(2*game.getHeight()/3)-20 && game.getMouse().getMouseY()<(2*game.getHeight()/3)+20){
+					if(game.getMouse().getMouseX()>((game.getWidth()/3)-60) && game.getMouse().getMouseX()<((game.getWidth()/3)+60)){
 						difficulty=0;
 						prompt=true;
 						b.play();
-					}else if(game.getMouse().getMouseX()>350 && game.getMouse().getMouseX()<450){
+					}else if(game.getMouse().getMouseX()>((game.getWidth()/2)-60) && game.getMouse().getMouseX()<((game.getWidth()/2)+60)){
 						difficulty=1;
 						prompt=true;
 						b.play();
-					}else if(game.getMouse().getMouseX()>490 && game.getMouse().getMouseX()<590){
+					}else if(game.getMouse().getMouseX()>((2*game.getWidth()/3)-60) && game.getMouse().getMouseX()<((2*game.getWidth()/3)+60)){
 						difficulty=2;
 						prompt=true;
 						b.play();
@@ -60,36 +60,47 @@ public class DifficultyState extends GameState{
 	@Override
 	public void draw(Graphics graphics) {
 		graphics.setColor(Color.WHITE);
-		graphics.setFont(TextSettings.menuFont);
+		
 		if(prompt){
-			graphics.drawString("Do you confirm your selection?",255,350);
+			graphics.setFont(TextSettings.subMenuTitle2);
+			graphics.drawString("Do you confirm your selection?",(game.getWidth()/2)-275,350);
 			
+			graphics.setFont(TextSettings.subMenuFont);
 			switch(difficulty){
 			case 0:
-				graphics.drawString("EASY",375,400);
+				graphics.drawString("EASY",(game.getWidth()/2)-35,400);
 				break;
 			case 1:
-				graphics.drawString("MEDIUM",360,400);
+				graphics.drawString("MEDIUM",(game.getWidth()/2)-52,400);
 				break;
 			case 2:
-				graphics.drawString("HARD",372,400);
+				graphics.drawString("HARD",(game.getWidth()/2)-38,400);
 				break;
 			}
 			
 			graphics.drawImage(Images.playerShip[game.getPlayingState().getPlayerShip().getShip()],
 					(game.getWidth()-GameObjects.playerWidth)/2,450,GameObjects.playerWidth,GameObjects.playerHeight,null);
-			graphics.drawString("YES",335,622);
-			graphics.drawRect((game.getWidth()-140)/2,600,50,28);
-			graphics.drawString("NO",430,622);
-			graphics.drawRect((game.getWidth()-140)/2+90,600,50,28);
+			graphics.drawString("YES",(game.getWidth()/3)-25,622);
+			graphics.drawRect((game.getWidth()/3)-30,600,60,30);
+			graphics.drawString("NO",(2*game.getWidth()/3)-20,622);
+			graphics.drawRect((2*game.getWidth()/3)-30,600,60,30);
 		}else{
-			graphics.drawString("Select the Difficulty",310,350);
-			graphics.drawString("EASY",235,422);
-			graphics.drawRect((game.getWidth()-380)/2,400,100,28);
-			graphics.drawString("MEDIUM",360,422);
-			graphics.drawRect((game.getWidth()-380)/2+140,400,100,28);
-			graphics.drawString("HARD",512,422);
-			graphics.drawRect((game.getWidth()-380)/2+280,400,100,28);
+			graphics.setFont(TextSettings.subMenuTitle);
+			graphics.drawString("Select the Difficulty",(game.getWidth()/2)-250,(game.getHeight()/4));
+			
+			graphics.setFont(TextSettings.subMenuFont);
+			graphics.setColor(Color.GREEN);
+			graphics.drawString("EASY",(game.getWidth()/3)-35,(2*game.getHeight()/3)+10);
+			graphics.drawRect((game.getWidth()/3)-60,(2*game.getHeight()/3)-20,120,40);
+			
+			graphics.setColor(Color.BLUE);
+			graphics.drawString("MEDIUM",(game.getWidth()/2)-52,(2*game.getHeight()/3)+10);
+			graphics.drawRect((game.getWidth()/2)-60,(2*game.getHeight()/3)-20,120,40);
+			
+			graphics.setColor(Color.RED);
+			graphics.drawString("HARD",(2*game.getWidth()/3)-38,(2*game.getHeight()/3)+10);
+			graphics.drawRect((2*game.getWidth()/3)-60,(2*game.getHeight()/3)-20,120,40);
+			graphics.setColor(Color.WHITE);
 		}
 	}
 	
