@@ -72,21 +72,22 @@ public class HandleQuitState extends GameState{
 	@Override
 	public void draw(Graphics graphics) {
 		graphics.setColor(Color.WHITE);
-		graphics.setFont(TextSettings.menuFont);
 		
 		if(GameState.getLastGameState()==game.pauseState())
 			game.playingState().draw(graphics);
 		
 		graphics.setColor(Color.WHITE);
-		
-		graphics.drawString("Quit the game? Are you sure?",260,300);
-		if(GameState.getLastGameState()==game.pauseState())
-			graphics.drawString("Your current score will not be saved",215,350);
-		
+		graphics.setFont(TextSettings.subMenuTitle2);
+		graphics.drawString("Quit the game? Are you sure?",(game.getWidth()/2)-267,300);
+		if(GameState.getLastGameState()==game.pauseState()){
+			graphics.setFont(TextSettings.subMenuFont2);
+			graphics.drawString("Your current score will not be saved",(game.getWidth()/2)-205,350);
+		}
 		graphics.drawRect((game.getWidth()-150)/2,(game.getHeight()-130)/2,150,50);
 		graphics.drawRect((game.getWidth()-150)/2,(game.getHeight()-130)/2+(50+30),150,50);
 		
-		graphics.drawString("YES",380,445);
-		graphics.drawString("NO",385,520);
+		graphics.setFont(TextSettings.subMenuFont);
+		graphics.drawString("YES",372,445);
+		graphics.drawString("NO",380,525);
 	}
 }

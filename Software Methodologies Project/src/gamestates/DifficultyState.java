@@ -63,7 +63,7 @@ public class DifficultyState extends GameState{
 		
 		if(prompt){
 			graphics.setFont(TextSettings.subMenuTitle2);
-			graphics.drawString("Do you confirm your selection?",(game.getWidth()/2)-275,350);
+			graphics.drawString("Do you confirm your selection?",(game.getWidth()/2)-275,(game.getHeight()/4));
 			
 			graphics.setFont(TextSettings.subMenuFont);
 			switch(difficulty){

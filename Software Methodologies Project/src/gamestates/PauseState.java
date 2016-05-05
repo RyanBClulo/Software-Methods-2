@@ -48,16 +48,16 @@ public class PauseState extends GameState{
 		game.playingState().draw(graphics);
 		
 		graphics.setColor(Color.WHITE);
-		graphics.setFont(TextSettings.titleFont);
-		
-		graphics.drawString("THE GAME IS PAUSED",(game.getWidth()/2)-235,300);
-		
 		graphics.setFont(TextSettings.menuFont);
+		
+		graphics.drawString("THE GAME IS PAUSED",(game.getWidth()/2)-197,300);
+		
+		graphics.setFont(TextSettings.subMenuFont);
 		graphics.drawRect((game.getWidth()-150)/2,(game.getHeight()-130)/2,150,50);
 		graphics.drawRect((game.getWidth()-150)/2,(game.getHeight()-130)/2+50+30,150,50);
 		
-		graphics.drawString("Resume",(game.getWidth()/2)-55,440);
-		graphics.drawString("Quit",(game.getWidth()/2)-35,520);
+		graphics.drawString("Resume",(game.getWidth()/2)-50,440);
+		graphics.drawString("Quit",(game.getWidth()/2)-25,520);
 		
 	}
 }
