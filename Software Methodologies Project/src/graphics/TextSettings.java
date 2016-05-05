@@ -1,6 +1,10 @@
 package graphics;
 
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -8,8 +12,21 @@ import java.util.*;
  * @author Franco Reda
  *
  */
-public final class TextSettings 
+public class TextSettings 
 {
+	public static void loadFont(String filename)
+	{
+		try {
+			GraphicsEnvironment ge = 
+					GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(filename + ".ttf")));
+		
+		} catch (IOException|FontFormatException e) {
+			System.out.println("nope");
+		}
+		//Handle exception
+	}
+	
 	
 	//Font used for Game Heading
 	public static final Font titleFont = new Font("Synchro LET",Font.PLAIN, 50);

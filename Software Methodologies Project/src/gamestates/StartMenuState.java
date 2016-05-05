@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import input.Sound;
 import main.MainWindow;
-import graphics.TextSettings;
+import graphics.*;
 
 
 /**
@@ -20,7 +20,7 @@ public class StartMenuState extends GameState{
 	public StartMenuState(MainWindow game) {
 		super(game);
 		Sound a = new Sound("load.wav");
-		
+		TextSettings.loadFont("Synchro LET");
 		a.play();
 	}
 	
@@ -74,8 +74,8 @@ public class StartMenuState extends GameState{
 		graphics.drawString("SMP - eXtreme", (game.getWidth()/2)-169,(game.getHeight()/4));
 		
 		graphics.setFont(TextSettings.menuFont);
-		graphics.drawString("Start",		(game.getWidth()/2)-45,(game.getHeight()/2));
-		graphics.drawString("High Scores",	(game.getWidth()/2)-105,(2*game.getHeight()/3));
-		graphics.drawString("Quit",			(game.getWidth()/2)-37,(5*game.getHeight()/6));
+		graphics.drawString("Start",		(game.getWidth()/2)-45,(game.getHeight()/2)+11);
+		graphics.drawString("High Scores",	(game.getWidth()/2)-105,(2*game.getHeight()/3)+11);
+		graphics.drawString("Quit",			(game.getWidth()/2)-37,(5*game.getHeight()/6)+11);
 	}
 }
