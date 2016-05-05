@@ -20,8 +20,10 @@ public class HandleQuitState extends GameState{
 	 * Constructor of the state.
 	 * @param game
 	 */
+	private Sound b;
 	public HandleQuitState(MainWindow game) {
 		super(game);
+		b = new Sound("click.wav");
 	}
 	
 	/**
@@ -29,7 +31,6 @@ public class HandleQuitState extends GameState{
 	 */
 	@Override
 	public void updateVariables() {
-		Sound b = new Sound("click.wav");
 		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
 				if(game.getMouse().getMouseX() >= 325 && game.getMouse().getMouseX() <= 475){

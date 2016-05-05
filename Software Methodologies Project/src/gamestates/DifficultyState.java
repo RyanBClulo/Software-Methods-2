@@ -12,14 +12,15 @@ public class DifficultyState extends GameState{
 	
 	private boolean prompt=false;
 	private int difficulty;
-
+	private Sound b;
+	
 	public DifficultyState(MainWindow game) {
 		super(game);
+		b = new Sound("click.wav");
 	}
 
 	@Override
 	public void updateVariables() {
-		Sound b = new Sound("click.wav");
 		if(game.getMouse().isRightPressed()){
 			if(prompt){
 				if(game.getMouse().getMouseY()>600 && game.getMouse().getMouseY()<628){

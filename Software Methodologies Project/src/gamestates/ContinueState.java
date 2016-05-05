@@ -10,9 +10,13 @@ import main.MainWindow;
 public class ContinueState extends GameState{
 	
 	private int timer;
+	private Sound b;
+	private Sound c;
 	
 	public ContinueState(MainWindow game) {
 		super(game);
+		b = new Sound("click.wav");
+		c = new Sound("game-over.wav");
 	}
 	
 	public void resetTimer(){
@@ -21,8 +25,6 @@ public class ContinueState extends GameState{
 
 	@Override
 	public void updateVariables() {
-		Sound b = new Sound("click.wav");
-		Sound c = new Sound("game-over.wav");
 		
 		counter++;
 		if(counter==60){

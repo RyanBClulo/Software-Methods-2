@@ -11,13 +11,15 @@ import main.MainWindow;
 
 public class ShipSelectionState extends GameState{
 
+	private Sound b;
+	
 	public ShipSelectionState(MainWindow game) {
 		super(game);
+		b = new Sound("click.wav");
 	}
 
 	@Override
 	public void updateVariables() {
-		Sound b = new Sound("click.wav");
 		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
 				if(game.getMouse().getMouseY() >= 425 && game.getMouse().getMouseY() <= 525){

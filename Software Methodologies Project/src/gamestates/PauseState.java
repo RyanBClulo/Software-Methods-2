@@ -9,13 +9,14 @@ import main.MainWindow;
 
 public class PauseState extends GameState{
 
+	private Sound b;
 	public PauseState(MainWindow game) {
 		super(game);
+		Sound b = new Sound("click.wav");
 	}
 
 	@Override
 	public void updateVariables() {
-		Sound b = new Sound("click.wav");
 		if(game.getKeyboard().esc()){
 			if(GameState.getChangeState()){
 				GameState.setGameStateTo(game.playingState());
