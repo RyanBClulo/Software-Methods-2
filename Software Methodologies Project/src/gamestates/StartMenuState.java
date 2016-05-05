@@ -30,7 +30,7 @@ public class StartMenuState extends GameState{
 	@Override
 	public void updateVariables() {
 		Sound b = new Sound("click.wav");
-		
+		Sound c = new Sound("high_scores.wav");
 		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
 				if(game.getMouse().getMouseX() >= 200 && game.getMouse().getMouseX() <= 600){
@@ -43,7 +43,7 @@ public class StartMenuState extends GameState{
 					
 					if(game.getMouse().getMouseY() >= ((2*game.getHeight()/3)-37.5) && game.getMouse().getMouseY() <= ((2*game.getHeight()/3)+37.5)){
 						//Place for got to showScoreState
-						b.play();
+						c.play();
 					}
 					
 					if(game.getMouse().getMouseY() >= ((5*game.getHeight()/6)-37.5) && game.getMouse().getMouseY() <= ((5*game.getHeight()/6)+37.5)){
