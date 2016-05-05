@@ -62,13 +62,21 @@ public class ShipSelectionState extends GameState{
 		
 		graphics.setFont(TextSettings.menuFont);
 		if(game.getMouse().getMouseY() >= 425 && game.getMouse().getMouseY() <= 525){
-			if(game.getMouse().getMouseX() >= 200 && game.getMouse().getMouseX() <= 300)
-				graphics.drawString("Ship 1 Atributes",330,590);
-			if(game.getMouse().getMouseX() >= 350 && game.getMouse().getMouseX() <= 450)
-				graphics.drawString("Ship 2 Atributes",330,590);
-			if(game.getMouse().getMouseX() >= 500 && game.getMouse().getMouseX() <= 600)
-				graphics.drawString("Ship 3 Atributes",330,590);
-				
+			if(game.getMouse().getMouseX() >= 200 && game.getMouse().getMouseX() <= 300){	
+				graphics.drawString("Durandal",330,580);
+				graphics.drawString("Special: Laser",350,650);
+				graphics.drawString("Shot Type: Fast Shot",350,620);
+			}
+			if(game.getMouse().getMouseX() >= 350 && game.getMouse().getMouseX() <= 450){
+				graphics.drawString("Joyeuse",330,580);
+				graphics.drawString("Special: Bomb",350,650);
+				graphics.drawString("Shot Type: Double Shot",350,620);
+			}
+			if(game.getMouse().getMouseX() >= 500 && game.getMouse().getMouseX() <= 600){
+				graphics.drawString("Tizona",330,580);
+				graphics.drawString("Special: Shuriken",350,650);
+				graphics.drawString("Shot Type: Double Twist Shot",350,620);
+			}				
 		}
 	}
 }
