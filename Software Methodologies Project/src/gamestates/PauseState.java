@@ -12,7 +12,7 @@ public class PauseState extends GameState{
 	private Sound b;
 	public PauseState(MainWindow game) {
 		super(game);
-		Sound b = new Sound("click.wav");
+		b = new Sound("click.wav");
 	}
 
 	@Override
