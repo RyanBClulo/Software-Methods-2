@@ -17,10 +17,15 @@ public class StartMenuState extends GameState{
 	 * Constructor of the state.
 	 * @param game
 	 */
+	private Sound b;
+	private Sound c;
+	
 	public StartMenuState(MainWindow game) {
 		super(game);
 		Sound a = new Sound("load.wav");
 		a.play();
+		b = new Sound("click.wav");
+		c = new Sound("high_scores.wav");
 	}
 	
 	/**
@@ -28,8 +33,6 @@ public class StartMenuState extends GameState{
 	 */
 	@Override
 	public void updateVariables() {
-		Sound b = new Sound("click.wav");
-		Sound c = new Sound("high_scores.wav");
 		if(game.getMouse().isRightPressed()){
 			if(GameState.getChangeState()){
 				if(game.getMouse().getMouseX() >= 200 && game.getMouse().getMouseX() <= 600){
