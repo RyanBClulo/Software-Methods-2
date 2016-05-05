@@ -13,29 +13,16 @@ import java.util.*;
  *
  */
 public class TextSettings 
-{
-	public static void loadFont(String filename)
-	{
-		try {
-			GraphicsEnvironment ge = 
-					GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(filename + ".ttf")));
-		
-		} catch (IOException|FontFormatException e) {
-			System.out.println("nope");
-		}
-		//Handle exception
-	}
-	
+{	
 	
 	//Font used for Game Heading
-	public static final Font titleFont = new Font("Synchro LET",Font.PLAIN, 50);
+	public static final Font titleFont = new Font("Lucida Console",Font.BOLD, 50);
 	
 	//Font used for heading of Submenus like the pause screen and Continue screen.
-	public static final Font subMenuTitle = new Font("Synchro LET",Font.BOLD, 30);
+	public static final Font subMenuTitle = new Font("Tahoma",Font.BOLD, 30);
 	
 	//Font used for menuText
-	public static final Font menuFont = new Font("OCR A Std", Font.PLAIN, 26);
+	public static final Font menuFont = new Font("MonoType", Font.PLAIN, 26);
 	
 	//Font used for in-game HUD
 	public static final Font gameFont = new Font("Orator Std", Font.BOLD, 20);

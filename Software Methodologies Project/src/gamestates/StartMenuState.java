@@ -20,7 +20,6 @@ public class StartMenuState extends GameState{
 	public StartMenuState(MainWindow game) {
 		super(game);
 		Sound a = new Sound("load.wav");
-		TextSettings.loadFont("Synchro LET");
 		a.play();
 	}
 	
