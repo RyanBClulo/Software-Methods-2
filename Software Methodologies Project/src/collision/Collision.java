@@ -18,9 +18,11 @@ import input.Sound;
 public class Collision {
 		
 	private MainWindow game;
+	private Sound b;
 	
 	public Collision(MainWindow game){
 		this.game=game;
+		b = new Sound("hit.wav");
 	}
 	/**
 	 * 
@@ -63,7 +65,6 @@ public class Collision {
 	 * @param player
 	 */
 	public void playerEnemybullet(ProjectilesList bullet,PlayerShip player){
-		Sound b = new Sound("hit.wav");
 		for(int x=0 ; x<bullet.getBulletList().size() ; x++){
 			if(bullet.getBulletList().get(x).getBounds().intersects(player.getBounds())){
 				bullet.removeProjectile(bullet.getBulletList().get(x));

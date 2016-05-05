@@ -39,7 +39,6 @@ public class Projectile extends GameObjects{
 		if(projectile==2){
 			switch(moving){
 			case 0:
-				System.out.println(speedX+"  "+moving);
 				x+=speedX;
 				speedX*=((float)70/(float)100);
 				if(Math.abs(speedX)<1){
@@ -53,7 +52,6 @@ public class Projectile extends GameObjects{
 				}
 				break;
 			case 1:
-				System.out.println(speedX+"  "+moving);
 				x+=speedX;
 				speedX*=((float)100/(float)70);
 				if(Math.abs(speedX)>9){
@@ -61,13 +59,11 @@ public class Projectile extends GameObjects{
 					else speedX=9.0f;
 				}
 				if(Math.abs(initialX-x)>25){
-					System.out.println("asdasd");
 					initialX=x;
 					moving++;
 				}
 				break;
 			case 2:
-				System.out.println(speedX+"  "+moving);
 				x+=speedX;
 				speedX*=((float)70/(float)100);
 				if(Math.abs(speedX)<1){
@@ -81,7 +77,6 @@ public class Projectile extends GameObjects{
 				}
 				break;
 			case 3:
-				System.out.println(speedX+"  "+moving);
 				x+=speedX;
 				speedX*=((float)100/(float)70);
 				if(Math.abs(speedX)>9){

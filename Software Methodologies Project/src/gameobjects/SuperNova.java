@@ -10,6 +10,8 @@ public class SuperNova extends GameObjects{
 	
 	private int animation;
 	private boolean explode;
+	private boolean superNova = true;
+	private Sound b;
 
 	public SuperNova(MainWindow game, float x, float y) {
 		super(game,x,y,superNovaWidth,superNovaHeight);
@@ -18,12 +20,16 @@ public class SuperNova extends GameObjects{
 		bounds.y=10;
 		bounds.width=width-bounds.x*2;
 		bounds.height=height-bounds.y*2;
+		b = new Sound("explosion.wav");
 	}
 
 	@Override
 	public void updateVariables() {
-		Sound b = new Sound("explosion.wav");
 		if(explode){
+			if(superNova){
+				superNova=false;
+				b.play();
+			}
 			if(anim!=16)
 				anim++;
 			x-=10;
@@ -32,7 +38,6 @@ public class SuperNova extends GameObjects{
 			height+=20;
 			bounds.width+=20;
 			bounds.height+=20;
-			b.play();
 		}else{
 			y-=4.0f;
 			counter++;

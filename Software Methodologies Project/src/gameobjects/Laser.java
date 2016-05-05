@@ -24,12 +24,12 @@ public class Laser extends GameObjects{
 		bounds.y=0;
 		bounds.width=laserWidth-bounds.x*2;
 		damage=isHitting=false;
+		Sound b = new Sound("shot.wav");
+		b.play();
 	}
 
 	@Override
 	public void updateVariables() {
-		Sound b = new Sound("shot.wav");
-		System.out.println(y);
 		if(!isHitting){
 			yInTime+=speed;
 			y=game.getPlayingState().getPlayerShip().getY()-(10+2*height+yInTime);
@@ -42,7 +42,6 @@ public class Laser extends GameObjects{
 			if(game.getKeyboard().alt() && timer <= 60){
 				yInTime=length=(int)(game.getPlayingState().getPlayerShip().getY()-(10+2*height)-y);
 				x=game.getPlayingState().getPlayerShip().getX()+(game.getPlayingState().getPlayerShip().getWidth()-laserWidth)/2;
-				b.play();
 			}
 		}
 		
