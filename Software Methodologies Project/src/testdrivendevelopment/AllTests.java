@@ -6,6 +6,6 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ EnemyTester.class, KeyboardTester.class, MouseTester.class, PlayerShipTester.class,
-		ProjectileTester.class })
+		ProjectileTester.class,ScoreTester.class })
 public class AllTests {
 }
