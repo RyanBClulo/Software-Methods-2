@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import graphics.TextSettings;
-import input.Sound;
+//import input.Sound;
 import main.MainWindow;
 
 public class GameOverState extends GameState{
