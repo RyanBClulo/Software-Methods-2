@@ -24,6 +24,6 @@ public class GameLauncher {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		game.start();
+		game.start(); 
 	}
 }

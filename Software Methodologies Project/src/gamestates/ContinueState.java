@@ -61,9 +61,10 @@ public class ContinueState extends GameState{
 	public void draw(Graphics graphics) {
 		graphics.setColor(Color.WHITE);
 		graphics.setFont(TextSettings.menuFont);
-		graphics.drawString("YOU'VE LOST!",330,250);
-		graphics.drawString("Wanna Continue?",315,400);
+		graphics.drawString("YOU'VE LOST!",(game.getWidth()/2)-125,250);
+		graphics.drawString("Wanna Continue?",(game.getWidth()/2)-150,400);
 		
+		graphics.setFont(TextSettings.gameFont);
 		graphics.drawString("YES",335,452);
 		graphics.drawRect((game.getWidth()-140)/2,430,50,28);
 		

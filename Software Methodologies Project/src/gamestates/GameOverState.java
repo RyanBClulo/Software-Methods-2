@@ -29,7 +29,7 @@ public class GameOverState extends GameState{
 	public void draw(Graphics graphics) {
 		graphics.setColor(Color.WHITE);
 		graphics.setFont(TextSettings.menuFont);
-		graphics.drawString("GAME OVER",game.getWidth()/2,350);
+		graphics.drawString("GAME OVER",(game.getWidth()/2) -112,350);
 		graphics.drawString(""+counter,50,50);
 	}
 }
